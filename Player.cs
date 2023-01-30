@@ -9,15 +9,13 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Player : Character
     {
         //change the starting position to be random based on valid map positions
-        public static int PlayerPosx = origx + 8 * Map.scale, PlayerPosy = origy + 4 * Map.scale;
-        public static int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;
-        public static string p = "P";
-        public static ConsoleKeyInfo key;
-        public static int GetPOSx = 0, GetPOSy = 0;
+        public int PlayerPosx = origx + 8 * Map.scale, PlayerPosy = origy + 4 * Map.scale;
+        public int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;
+        public string p = "P";
+        public ConsoleKeyInfo key;
+        public int GetPOSx = 0, GetPOSy = 0;        
 
-        //basehealth = 30;
-
-        public static void PlayerChoice()
+        public void PlayerChoice()
         {
             Console.WriteLine();
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
@@ -76,13 +74,13 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
             }
         }
-        public static void PlayerDraw(string p, int PlayerPosx, int PlayerPosy)
+        public void PlayerDraw(string p, int PlayerPosx, int PlayerPosy)
         {
             Console.SetCursorPosition(origx + PlayerPosx, origy + PlayerPosy);
             Console.Write(p);
         }
 
-        public static void GetPlayerPOS()
+        public void GetPlayerPOS()
         {
             GetPOSx = PlayerPosx;
             GetPOSy = PlayerPosy;

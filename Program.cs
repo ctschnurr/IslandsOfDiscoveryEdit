@@ -9,8 +9,13 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Program
     {
         public static bool gameOver = false;
+
         static void Main(string[] args)
         {
+            //Map map = new Map();
+            Player player = new Player();
+            Enemy enemy = new Enemy();
+
             while (gameOver == false)
             {
                 if (Map.firstmaprender == true)
@@ -19,46 +24,24 @@ namespace IslandsOfDiscoveryTxtRPG
                     Map.DisplayMap(Map.scale);
                     Map.firstmaprender = false;
                 }
-                //GameLoop();
-                Player.PlayerDraw(Player.p, Player.PlayerPosx, Player.PlayerPosy); //draws the player on the map
-                Enemy.SpawnMe(); //spawns an enemy construct
+                player.PlayerDraw(player.p, player.PlayerPosx, player.PlayerPosy); //draws the player on the map                
+                enemy.SpawnMe(); //spawns an enemy construct
                 Console.WriteLine();
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                Player.GetPlayerPOS();
-                Enemy.GetEnemyPOS();
-                Player.PlayerChoice();
-                Player.PlayerDraw(Player.p, Player.PlayerPosx, Player.PlayerPosy);
-                Enemy.MoveMe();
-                Enemy.EnemyDraw(Enemy.e, Enemy.EnemyPosx, Enemy.EnemyPosy);
-                Console.SetCursorPosition(Player.GetPOSx, Player.GetPOSy);
-                Map.ColourCode(Player.GetPOSy - 1, Player.GetPOSx - 1);
-                Console.Write(Map.map[Player.GetPOSy - 1, Player.GetPOSx - 1]);
-                Console.SetCursorPosition(Enemy.GetPOSx, Enemy.GetPOSy);
-                Map.ColourCode(Enemy.GetPOSy - 1, Enemy.GetPOSx - 1);
-                Console.Write(Map.map[Enemy.GetPOSy - 1, Enemy.GetPOSx - 1]);
+                player.GetPlayerPOS();
+                enemy.GetEnemyPOS();
+                player.PlayerChoice();
+                player.PlayerDraw(player.p, player.PlayerPosx, player.PlayerPosy);
+                enemy.MoveMe();
+                enemy.EnemyDraw(enemy.e, enemy.EnemyPosx, enemy.EnemyPosy);
+                Console.SetCursorPosition(player.GetPOSx, player.GetPOSy);
+                Map.ColourCode(player.GetPOSy - 1, player.GetPOSx - 1);
+                Console.Write(Map.map[player.GetPOSy - 1, player.GetPOSx - 1]);
+                Console.SetCursorPosition(enemy.GetPOSx, enemy.GetPOSy);
+                Map.ColourCode(enemy.GetPOSy - 1, enemy.GetPOSx - 1);
+                Console.Write(Map.map[enemy.GetPOSy - 1, enemy.GetPOSx - 1]);
                 Console.BackgroundColor = ConsoleColor.Black;
             }
-        }
-
-        public static void GameLoop()
-        {
-            Player.PlayerDraw(Player.p, Player.PlayerPosx, Player.PlayerPosy); //draws the player on the map
-            Enemy.SpawnMe(); //spawns an enemy construct
-            Console.WriteLine();
-            Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-            Player.GetPlayerPOS();
-            Enemy.GetEnemyPOS();
-            Player.PlayerChoice();
-            Player.PlayerDraw(Player.p, Player.PlayerPosx, Player.PlayerPosy);
-            Enemy.MoveMe();
-            Enemy.EnemyDraw(Enemy.e, Enemy.EnemyPosx, Enemy.EnemyPosy);
-            Console.SetCursorPosition(Player.GetPOSx, Player.GetPOSy);
-            Map.ColourCode(Player.GetPOSy - 1, Player.GetPOSx - 1);
-            Console.Write(Map.map[Player.GetPOSy - 1, Player.GetPOSx - 1]);
-            Console.SetCursorPosition(Enemy.GetPOSx, Enemy.GetPOSy);
-            Map.ColourCode(Enemy.GetPOSy - 1, Enemy.GetPOSx - 1);
-            Console.Write(Map.map[Enemy.GetPOSy - 1, Enemy.GetPOSx - 1]);
-            Console.BackgroundColor = ConsoleColor.Black;
         }
     }
 }

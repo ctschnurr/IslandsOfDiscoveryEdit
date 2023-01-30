@@ -9,17 +9,18 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Enemy : Character
     {
         //change the enemy spawn position to be random based on valid map positions/spawners
-        public static int EnemyPosx = origx + 10 * Map.scale, EnemyPosy = origy + 4 * Map.scale;
-        public static int OldEnemyPosx = origx + 10 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;
-        public static string e = "E";
-        public static int GetPOSx = 0, GetPOSy = 0;
-        public static void SpawnMe()
-        {
-            Enemy enemy = new Enemy();
+        public int EnemyPosx = origx + 10 * Map.scale, EnemyPosy = origy + 4 * Map.scale;
+        public int OldEnemyPosx = origx + 10 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;
+        public string e = "E";
+        public int GetPOSx = 0, GetPOSy = 0;
+
+        public static int enemyCount = 0;
+        public void SpawnMe()
+        {                        
             EnemyDraw(e, EnemyPosx, EnemyPosy); //draws the enemy on the map
         }
 
-        public static void MoveMe()
+        public void MoveMe()
         {
             Random random = new Random();
             int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
@@ -71,13 +72,13 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public static void EnemyDraw(string e, int EnemyPosx, int EnemyPosy)
+        public void EnemyDraw(string e, int EnemyPosx, int EnemyPosy)
         {
             Console.SetCursorPosition(origx + EnemyPosx, origy + EnemyPosy);
             Console.Write(e);
         }
 
-        public static void GetEnemyPOS()
+        public void GetEnemyPOS()
         {
             GetPOSx = EnemyPosx;
             GetPOSy = EnemyPosy;
