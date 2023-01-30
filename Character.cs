@@ -12,6 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public static int basehealth = 0;
         public static int basespeed = 0;
         public static int basestrength = 0;
+        public static bool startFight = false;
 
     }
 }

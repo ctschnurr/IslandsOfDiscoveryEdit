@@ -17,6 +17,8 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void PlayerChoice()
         {
+            Console.WriteLine(); //leaving space for debug code
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
 
@@ -31,12 +33,12 @@ namespace IslandsOfDiscoveryTxtRPG
                     PlayerPosy--;
                     Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
                     Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                    Map.WallCheck(PlayerPosx, PlayerPosy);
+                    Map.WallCheck(PlayerPosx, PlayerPosy);                    
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
                         PlayerPosy++;
-                    }
+                    }                    
                     break;
                 case ConsoleKey.A:
                     PlayerPosx--;

@@ -8,11 +8,10 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Program
     {
-        public static bool gameOver = false;
+        public static bool gameOver = false;        
 
         static void Main(string[] args)
-        {
-            //Map map = new Map();
+        {            
             Player player = new Player();
             Enemy enemy = new Enemy();
 
@@ -31,6 +30,11 @@ namespace IslandsOfDiscoveryTxtRPG
                 player.GetPlayerPOS();
                 enemy.GetEnemyPOS();
                 player.PlayerChoice();
+                CombatManager.FightCheck(player.GetPOSx, player.GetPOSy, enemy.GetPOSx, enemy.GetPOSy);
+                if (CombatManager.startFight == true)
+                {
+                    
+                }
                 player.PlayerDraw(player.p, player.PlayerPosx, player.PlayerPosy);
                 enemy.MoveMe();
                 enemy.EnemyDraw(enemy.e, enemy.EnemyPosx, enemy.EnemyPosy);
