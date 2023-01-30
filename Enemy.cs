@@ -16,15 +16,17 @@ namespace IslandsOfDiscoveryTxtRPG
         public static void SpawnMe()
         {
             Enemy enemy = new Enemy();
+            EnemyDraw(e, EnemyPosx, EnemyPosy); //draws the enemy on the map
         }
 
         public static void MoveMe()
         {
             Random random = new Random();
-            int enemyMove = random.Next(1, 4);
+            int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
+            
         switch (enemyMove)
             {
-                case '1':
+                case 1:
                 EnemyPosy--; 
                 Map.WallCheck(EnemyPosx, EnemyPosy);
                 if (Map.moveRollBack == true)
@@ -34,7 +36,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
                     break;
 
-                case '2':
+                case 2:
                 EnemyPosx--;                
                 Map.WallCheck(EnemyPosx, EnemyPosy);
                 if (Map.moveRollBack == true)
@@ -44,7 +46,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
                     break;
 
-                case '3':
+                case 3:
                 EnemyPosy++;                
                 Map.WallCheck(EnemyPosx, EnemyPosy);
                 if (Map.moveRollBack == true)
@@ -54,7 +56,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
                     break;
 
-                case '4':
+                case 4:
                 EnemyPosx++;                
                 Map.WallCheck(EnemyPosx, EnemyPosy);
                 if (Map.moveRollBack == true)
@@ -64,7 +66,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
                     break;
 
-                default:
+                default:             
                     break;
             }
         }

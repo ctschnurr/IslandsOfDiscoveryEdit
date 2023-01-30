@@ -8,7 +8,7 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Map
     {
-        //change this to load maps from a file
+        //change this to load maps from a file/procedurally generated
         public static char[,] map = new char[,] // dimensions defined by following data:
         {
             {'^','^','^','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
@@ -105,13 +105,13 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public static void WallCheck(int x, int y) //checks to see if the player is allowed to move onto the map location
+        public static void WallCheck(int x, int y) //checks to see if the character is allowed to move onto the map location
         {
-            if (x > cols || x < 0 + 1) //prevents player from moving outside bounds of border
+            if (x > cols || x < 0 + 1) //prevents character from moving outside bounds of border
             {
                 moveRollBack = true;
             }
-            else if (y > rows || y < 0 + 1) //prevents player from moving outside bounds of border
+            else if (y > rows || y < 0 + 1) //prevents character from moving outside bounds of border
             {
                 moveRollBack = true;
             }
