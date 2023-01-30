@@ -12,7 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public int PlayerPosx = origx + 8 * Map.scale, PlayerPosy = origy + 4 * Map.scale;
         public int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;
         public string p = "P";
-        public ConsoleKeyInfo key;
+        public ConsoleKeyInfo key;        
         public int GetPOSx = 0, GetPOSy = 0;        
 
         public void PlayerChoice()
@@ -21,57 +21,58 @@ namespace IslandsOfDiscoveryTxtRPG
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
 
             key = Console.ReadKey();
-            if (key.Key == ConsoleKey.Escape)
+
+            switch (key.Key)
             {
-                Program.gameOver = true;
-            }
-            else if (key.Key == ConsoleKey.W)
-            {
-                PlayerPosy--;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                Map.WallCheck(PlayerPosx, PlayerPosy);
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
-                    PlayerPosy++;
-                }
-            }
-            else if (key.Key == ConsoleKey.A)
-            {
-                PlayerPosx--;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                Map.WallCheck(PlayerPosx, PlayerPosy);
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
-                    PlayerPosx++;
-                }
-            }
-            else if (key.Key == ConsoleKey.S)
-            {
-                PlayerPosy++;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                Map.WallCheck(PlayerPosx, PlayerPosy);
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
+                case ConsoleKey.Escape:
+                    Program.gameOver = true;
+                    break;
+                case ConsoleKey.W:
                     PlayerPosy--;
-                }
-            }
-            else if (key.Key == ConsoleKey.D)
-            {
-                PlayerPosx++;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                Map.WallCheck(PlayerPosx, PlayerPosy);
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
+                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
+                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
+                    Map.WallCheck(PlayerPosx, PlayerPosy);
+                    if (Map.moveRollBack == true)
+                    {
+                        Map.moveRollBack = false;
+                        PlayerPosy++;
+                    }
+                    break;
+                case ConsoleKey.A:
                     PlayerPosx--;
-                }
+                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
+                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
+                    Map.WallCheck(PlayerPosx, PlayerPosy);
+                    if (Map.moveRollBack == true)
+                    {
+                        Map.moveRollBack = false;
+                        PlayerPosx++;
+                    }
+                    break;
+                case ConsoleKey.S:
+                    PlayerPosy++;
+                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
+                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
+                    Map.WallCheck(PlayerPosx, PlayerPosy);
+                    if (Map.moveRollBack == true)
+                    {
+                        Map.moveRollBack = false;
+                        PlayerPosy--;
+                    }
+                    break;
+                case ConsoleKey.D:
+                    PlayerPosx++;
+                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
+                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
+                    Map.WallCheck(PlayerPosx, PlayerPosy);
+                    if (Map.moveRollBack == true)
+                    {
+                        Map.moveRollBack = false;
+                        PlayerPosx--;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         public void PlayerDraw(string p, int PlayerPosx, int PlayerPosy)
