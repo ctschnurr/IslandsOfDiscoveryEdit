@@ -13,11 +13,13 @@ namespace IslandsOfDiscoveryTxtRPG
         public int OldEnemyPosx = origx + 12 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;
         public string e = "E";
         public int GetPOSx = 0, GetPOSy = 0;
+        
 
         //public static int enemyCount = 0;
         public void SpawnMe()
         {                        
             EnemyDraw(e, EnemyPosx, EnemyPosy); //draws the enemy on the map
+            Program.enemyCount++;
         }
 
         public void MoveMe()

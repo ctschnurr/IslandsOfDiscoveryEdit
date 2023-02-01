@@ -8,11 +8,12 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class CombatManager
     {
-        public static bool startFight = false;         
+        public static bool startFight = false;
         public static void FightCheck(int playerx, int playery, int enemyx, int enemyy)
         {
             if (playerx == enemyx && playery == enemyy)
             {
+                Map.moveRollBack = true;
                 startFight = true;
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 4);
                 Console.WriteLine("Let's Fight!");
@@ -20,11 +21,26 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             else if (enemyx == playerx && enemyy == playery)
             {
+                Map.moveRollBack = true;
                 startFight = true;
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 4);
                 Console.WriteLine("Let's Fight!");
                 return;
             }
+        }
+        public static void Combat()
+        {
+            Random random = new Random();
+            int chance = random.Next(1,5);
+            if (chance < 3)
+            {
+                Program.gameOver = true;
+            }
+            else
+            {
+                Program.enemyCount--;
+            }
+            startFight = false;
         }
     }
 

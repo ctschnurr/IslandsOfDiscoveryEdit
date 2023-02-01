@@ -15,7 +15,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public ConsoleKeyInfo key;        
         public int GetPOSx = 0, GetPOSy = 0;        
 
-        public void PlayerChoice()
+        public void PlayerChoice(int playerx, int playery, int enemyx, int enemyy)
         {
             Console.WriteLine(); //leaving space for debug code
             Console.WriteLine();
@@ -33,7 +33,8 @@ namespace IslandsOfDiscoveryTxtRPG
                     PlayerPosy--;
                     Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
                     Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                    Map.WallCheck(PlayerPosx, PlayerPosy);                    
+                    Map.WallCheck(PlayerPosx, PlayerPosy);
+                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
@@ -45,6 +46,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
                     Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
                     Map.WallCheck(PlayerPosx, PlayerPosy);
+                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
@@ -56,6 +58,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
                     Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
                     Map.WallCheck(PlayerPosx, PlayerPosy);
+                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
@@ -67,6 +70,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
                     Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
                     Map.WallCheck(PlayerPosx, PlayerPosy);
+                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;

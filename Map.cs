@@ -130,6 +130,6 @@ namespace IslandsOfDiscoveryTxtRPG
                         break;
                 }
             }
-        }
+        }       
     }
 }
