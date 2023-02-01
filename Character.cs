@@ -14,5 +14,10 @@ namespace IslandsOfDiscoveryTxtRPG
         public static int basestrength = 0;
         public static bool startFight = false;
 
+        public char character;
+        public int posX, posY;
+        public bool dead = false;
+
+        public int[,] POS = new int[Map.rows, Map.cols];
     }
 }

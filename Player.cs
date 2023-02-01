@@ -12,8 +12,17 @@ namespace IslandsOfDiscoveryTxtRPG
         public int PlayerPosx = origx + 8 * Map.scale, PlayerPosy = origy + 4 * Map.scale;
         public int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;
         public string p = "P";
-        public ConsoleKeyInfo key;        
+        public ConsoleKeyInfo key;
         public int GetPOSx = 0, GetPOSy = 0;        
+
+        //moving positions into an array test area
+        public Player(int x, int y) : base()
+        {
+            posX = x;
+            posY = y;
+            character = 'p';
+            PlayerPos = POS[posX, posY];
+        }
 
         public void PlayerChoice(int playerx, int playery, int enemyx, int enemyy)
         {
