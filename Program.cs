@@ -13,8 +13,8 @@ namespace IslandsOfDiscoveryTxtRPG
 
         static void Main(string[] args)
         {            
-            Player player = new Player();
-            Enemy enemy = new Enemy();
+            Player player = new Player(5,5);
+            Enemy enemy = new Enemy(7,7);
 
             while (gameOver == false)
             {

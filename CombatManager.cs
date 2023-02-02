@@ -34,11 +34,14 @@ namespace IslandsOfDiscoveryTxtRPG
             int chance = random.Next(1,5);
             if (chance < 3)
             {
-                Program.gameOver = true;
+                Console.WriteLine("game over");
+                //Program.gameOver = true;
             }
             else
             {
+                Console.WriteLine("enemy dies");
                 Program.enemyCount--;
+                Console.WriteLine("enemy count is" + Program.enemyCount);
             }
             startFight = false;
         }
