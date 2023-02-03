@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="CombatManager.cs" />
+    <Compile Include="CursorController.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />

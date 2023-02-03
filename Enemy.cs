@@ -10,8 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         //change the enemy spawn position to be random based on valid map positions/spawners
         public int EnemyPosx = origx + 12 * Map.scale, EnemyPosy = origy + 4 * Map.scale;
-        public int OldEnemyPosx = origx + 12 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;
-        public string e = "E";
+        public int OldEnemyPosx = origx + 12 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;        
         public int GetPOSx = 0, GetPOSy = 0;
 
         public int EnemyPos;
@@ -21,12 +20,14 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             posX = x;
             posY = y;
-            character = '@';
+            character = "@";            
+            corpse = "x";
             EnemyPos = POS[posX, posY];
+            dead = false;
         }
         public void SpawnMe()
         {                        
-            EnemyDraw(e, EnemyPosx, EnemyPosy); //draws the enemy on the map
+            EnemyDraw(character, EnemyPosx, EnemyPosy); //draws the enemy on the map
             Program.enemyCount++;
         }
 
@@ -90,10 +91,17 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void EnemyDraw(string e, int EnemyPosx, int EnemyPosy)
+        public void EnemyDraw(string character, int EnemyPosx, int EnemyPosy)
         {
             Console.SetCursorPosition(origx + EnemyPosx, origy + EnemyPosy);
-            Console.Write(e);
+            if (dead == false)
+            {
+                Console.Write(character);
+            }
+            else
+            {
+                Console.Write(corpse);
+            }
         }
 
         public void GetEnemyPOS()

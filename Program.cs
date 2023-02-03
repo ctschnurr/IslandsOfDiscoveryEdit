@@ -24,7 +24,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     Map.DisplayMap(Map.scale);
                     Map.firstmaprender = false;
                 }
-                player.PlayerDraw(player.p, player.PlayerPosx, player.PlayerPosy); //draws the player on the map
+                player.PlayerDraw(player.character, player.PlayerPosx, player.PlayerPosy); //draws the player on the map
                 if (enemyCount < 1)
                 {
                     enemy.SpawnMe(); //spawns an enemy construct
@@ -38,11 +38,11 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     CombatManager.Combat();
                 }
-                player.PlayerDraw(player.p, player.PlayerPosx, player.PlayerPosy);
+                player.PlayerDraw(player.character, player.PlayerPosx, player.PlayerPosy);
                 if (enemyCount > 0)
                 {
                     enemy.MoveMe();
-                    enemy.EnemyDraw(enemy.e, enemy.EnemyPosx, enemy.EnemyPosy);
+                    enemy.EnemyDraw(enemy.character, enemy.EnemyPosx, enemy.EnemyPosy);
                     Console.SetCursorPosition(player.GetPOSx, player.GetPOSy);
                     Map.ColourCode(player.GetPOSy - 1, player.GetPOSx - 1);
                     Console.Write(Map.map[player.GetPOSy - 1, player.GetPOSx - 1]);

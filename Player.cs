@@ -10,20 +10,21 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         //change the starting position to be random based on valid map positions
         public int PlayerPosx = origx + 8 * Map.scale, PlayerPosy = origy + 4 * Map.scale;
-        public int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;
-        public string p = "P";
+        public int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;        
         public ConsoleKeyInfo key;
         public int GetPOSx = 0, GetPOSy = 0;
 
         public int PlayerPos;
 
         //moving positions into an array test area
-        public Player(int x, int y) : base()
+        public Player(int x, int y)
         {
             posX = x;
             posY = y;
-            character = 'p';
+            character = "P";
+            corpse = "X";
             PlayerPos = POS[posX, posY];
+            dead = false;
         }
 
         public void PlayerChoice(int playerx, int playery, int enemyx, int enemyy)

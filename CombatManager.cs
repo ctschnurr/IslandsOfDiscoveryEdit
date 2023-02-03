@@ -35,11 +35,13 @@ namespace IslandsOfDiscoveryTxtRPG
             if (chance < 3)
             {
                 Console.WriteLine("game over");
+
                 //Program.gameOver = true;
             }
             else
             {
                 Console.WriteLine("enemy dies");
+                //Enemy.dead = true;
                 Program.enemyCount--;
                 Console.WriteLine("enemy count is" + Program.enemyCount);
             }
