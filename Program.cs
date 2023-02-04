@@ -9,8 +9,7 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Program
     {
         public static bool gameOver = false;
-        public static int enemyCount = 0;
-
+       
         static void Main(string[] args)
         {            
             Player player = new Player(3,5);
@@ -31,7 +30,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 CursorController.InputAreaCursor();
                 player.GetPlayerPOS();                          //stores the player position before they move
                 enemy.GetEnemyPOS();                            //stores the enemy position before they move, this should eventually use an array for multiple enemies
-                player.PlayerChoice(enemy.posX, enemy.posY);                          //this is going to cause issues if there's more than one enemy; store enemy location in an array?                
+                player.PlayerChoice(enemy.posX, enemy.posY);    //this is going to cause issues if there's more than one enemy; store enemy location in an array?                
                 player.PlayerDraw(player.posX, player.posY);
                 Map.Redraw(player.oldPosX, player.oldPosY);     //redraws the position the player left with the underlying map location
                 enemy.MoveMe(player.posX, player.posY);

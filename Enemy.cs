@@ -8,7 +8,8 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Enemy : Character
     {      
-        public Enemy(int x, int y) : base()
+        private int enemyCount = 0;
+        public Enemy(int x, int y)
         {
             posX = x;
             posY = y;
@@ -20,8 +21,7 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         public void SpawnMe()
         {                        
-            EnemyDraw(posX, posY); //draws the enemy on the map
-            Program.enemyCount++;
+            EnemyDraw(posX, posY); //draws the enemy on the map            
         }
 
         public void MoveMe(int x, int y)
@@ -117,6 +117,16 @@ namespace IslandsOfDiscoveryTxtRPG
             CursorController.InputAreaCursor();
             Console.WriteLine();                                            //makes space for the player position information that came before this
             Console.WriteLine("Enemy position is: " + posX + " " + posY);
+        }
+
+        public void EnemyUpdatePrototype(int playerPosX, int playerPosY)
+        {
+            if (enemyCount == 0)
+            {
+                SpawnMe();
+            }
+            GetEnemyPOS();
+            MoveMe(playerPosX, playerPosY);
         }
 
         public void EnemyDraw(int posX, int posY)
