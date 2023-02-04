@@ -12,10 +12,10 @@ namespace IslandsOfDiscoveryTxtRPG
         public static int basespeed = 0;
         public static int basestrength = 0;        
 
-        public string character;
-        public string corpse;       
-        public int posX, posY, oldPosX, oldPosY;
-        public bool dead = false;
+        public string character; //the alive version of the character
+        public string corpse;       //the dead version of the character
+        public int posX, posY, oldPosX, oldPosY; //current and one step prior locations for characters (utilized for map redrawing)
+        public bool dead = false; //decides whether the character is dead or not, which determines what char is drawn for the character
 
         //public int[,] POS = new int[Map.rows, Map.cols]; currently not implemented
     }

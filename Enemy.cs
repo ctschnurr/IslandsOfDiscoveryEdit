@@ -26,7 +26,7 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         public void SpawnMe()
         {                        
-            EnemyDraw(character, posX, posY); //draws the enemy on the map
+            EnemyDraw(posX, posY); //draws the enemy on the map
             Program.enemyCount++;
         }
 
@@ -39,49 +39,49 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 case 1:
                 posY--;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                EnemyUpdate();                
                 Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
                     posY++;
+                    EnemyUpdate();
                 }
                     break;
 
                 case 2:
                 posX--;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                EnemyUpdate();
                 Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
                     posX++;
+                    EnemyUpdate();
                 }
                     break;
 
                 case 3:
                 posY++;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                EnemyUpdate();
                 Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
                     posY--;
+                    EnemyUpdate();
                 }
                     break;
 
                 case 4:
                 posX++;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                EnemyUpdate();
                 Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
                     posX--;
+                    EnemyUpdate();
                 }
                     break;
 
@@ -96,10 +96,17 @@ namespace IslandsOfDiscoveryTxtRPG
             Console.WriteLine("Enemy position is: " + posX + " " + posY);
         }
 
-        public void EnemyDraw(string p, int posX, int posY)
+        public void EnemyDraw(int posX, int posY)
         {
             CursorController.CharacterPrintCursor(posX, posY);
-            Console.Write(p);
+            if (dead == false)
+            {
+                Console.Write(character);
+            }
+            else if (dead == true)
+            {
+                Console.Write(corpse);
+            }
         }
         
 

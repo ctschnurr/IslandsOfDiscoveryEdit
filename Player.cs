@@ -89,10 +89,17 @@ namespace IslandsOfDiscoveryTxtRPG
             CursorController.InputAreaCursor();
             Console.WriteLine("Player position is: " + posX + " " + posY);
         }
-        public void PlayerDraw(string p, int posX, int posY)
+        public void PlayerDraw(int posX, int posY)
         {
-            CursorController.CharacterPrintCursor(posX, posY);            
-            Console.Write(p);
+            CursorController.CharacterPrintCursor(posX, posY); 
+            if (dead == false)
+            {
+                Console.Write(character);
+            }
+            else if (dead == true)
+            {
+                Console.Write(corpse);
+            }
         }
 
         public void GetPlayerPOS()

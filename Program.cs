@@ -25,18 +25,17 @@ namespace IslandsOfDiscoveryTxtRPG
                     Map.DisplayMap(Map.scale);
                     Map.firstmaprender = false;
                 }
-                player.PlayerDraw(player.character, player.posX, player.posY); //draws the player on the map               
+                player.PlayerDraw(player.posX, player.posY); //draws the player on the map               
                 Console.WriteLine();
                 CursorController.InputAreaCursor();
                 player.GetPlayerPOS(); //stores the player position before they move
-                //enemy.GetEnemyPOS(); //stores the enemy position before they move
+                //enemy.GetEnemyPOS(); //stores the enemy position before they move, this should eventually use an array for multiple enemies
                 player.PlayerChoice(); //this is going to cause issues if there's more than one enemy; store player and enemy location in an array?                
-                player.PlayerDraw(player.character, player.posX, player.posY);
-                Map.Redraw(player.oldPosX, player.oldPosY);
+                player.PlayerDraw(player.posX, player.posY);
+                Map.Redraw(player.oldPosX, player.oldPosY); //redraws the position the player left with the underlying map location
 
                 //YOU CAN CREATE AN IF STATEMENT IN A METHOD CALL
-                //no you can't dummy
-                
+                //no you can't dummy                
             }
         }
     }
