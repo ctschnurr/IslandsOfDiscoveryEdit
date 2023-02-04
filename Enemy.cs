@@ -7,13 +7,7 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Enemy : Character
-    {
-        //change the enemy spawn position to be random based on valid map positions/spawners
-        //public int EnemyPosx = origx + 12 * Map.scale, EnemyPosy = origy + 4 * Map.scale;
-        //public int OldEnemyPosx = origx + 12 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;        
-        //public int GetPOSx = 0, GetPOSy = 0;
-        //public static int enemyCount = 0;
-
+    {      
         public Enemy(int x, int y) : base()
         {
             posX = x;
@@ -30,7 +24,7 @@ namespace IslandsOfDiscoveryTxtRPG
             Program.enemyCount++;
         }
 
-        public void MoveMe()
+        public void MoveMe(int x, int y)
         {
             Random random = new Random();
             int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
@@ -41,9 +35,16 @@ namespace IslandsOfDiscoveryTxtRPG
                 posY--;
                 EnemyUpdate();                
                 Map.WallCheck(posX, posY);
+                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
+                    posY++;
+                    EnemyUpdate();
+                }
+                else if (CombatManager.moveRollBack == true)
+                {
+                    CombatManager.moveRollBack = false;
                     posY++;
                     EnemyUpdate();
                 }
@@ -53,9 +54,16 @@ namespace IslandsOfDiscoveryTxtRPG
                 posX--;
                 EnemyUpdate();
                 Map.WallCheck(posX, posY);
+                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
+                    posX++;
+                    EnemyUpdate();
+                }
+                else if (CombatManager.moveRollBack == true)
+                {
+                    CombatManager.moveRollBack = false;
                     posX++;
                     EnemyUpdate();
                 }
@@ -65,9 +73,16 @@ namespace IslandsOfDiscoveryTxtRPG
                 posY++;
                 EnemyUpdate();
                 Map.WallCheck(posX, posY);
+                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
+                    posY--;
+                    EnemyUpdate();
+                }
+                else if (CombatManager.moveRollBack == true)
+                {
+                    CombatManager.moveRollBack = false;
                     posY--;
                     EnemyUpdate();
                 }
@@ -77,9 +92,16 @@ namespace IslandsOfDiscoveryTxtRPG
                 posX++;
                 EnemyUpdate();
                 Map.WallCheck(posX, posY);
+                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
+                    posX--;
+                    EnemyUpdate();
+                }
+                else if (CombatManager.moveRollBack == true)
+                {
+                    CombatManager.moveRollBack = false;
                     posX--;
                     EnemyUpdate();
                 }
@@ -93,6 +115,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public void EnemyUpdate()
         {
             CursorController.InputAreaCursor();
+            Console.WriteLine();                                            //makes space for the player position information that came before this
             Console.WriteLine("Enemy position is: " + posX + " " + posY);
         }
 

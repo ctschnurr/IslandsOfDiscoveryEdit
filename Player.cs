@@ -21,7 +21,7 @@ namespace IslandsOfDiscoveryTxtRPG
             dead = false;
         }
 
-        public void PlayerChoice()
+        public void PlayerChoice(int x, int y)
         {
             Console.WriteLine(); //leaving space for debug code
             Console.WriteLine();
@@ -38,45 +38,74 @@ namespace IslandsOfDiscoveryTxtRPG
                 case ConsoleKey.W:
                     posY--;
                     PlayerUpdate();
-                    Map.WallCheck(posX, posY);                    
+                    Map.WallCheck(posX, posY);  
+                    //combat check goes here?
+                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
                         posY++;
                         PlayerUpdate(); //checks to make sure the player location is accurate
-                    }                    
+                    }      
+                    else if (CombatManager.moveRollBack == true)
+                    {
+                        CombatManager.moveRollBack = false;
+                        posY++;
+                        PlayerUpdate();
+                    }
                     break;
                 case ConsoleKey.A:
                     posX--;
                     PlayerUpdate();
-                    Map.WallCheck(posX, posY);                    
+                    Map.WallCheck(posX, posY);
+                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
                         posX++;
                         PlayerUpdate(); //checks to make sure the player location is accurate
                     }
+                    else if (CombatManager.moveRollBack == true)
+                    {
+                        CombatManager.moveRollBack = false;
+                        posX++;
+                        PlayerUpdate();
+                    }
                     break;
                 case ConsoleKey.S:
                     posY++;
                     PlayerUpdate();
-                    Map.WallCheck(posX, posY);                    
+                    Map.WallCheck(posX, posY);
+                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
                         posY--;
                         PlayerUpdate(); //checks to make sure the player location is accurate
                     }
+                    else if (CombatManager.moveRollBack == true)
+                    {
+                        CombatManager.moveRollBack = false;
+                        posY--;
+                        PlayerUpdate();
+                    }
                     break;
                 case ConsoleKey.D:
                     posX++;
                     PlayerUpdate();
-                    Map.WallCheck(posX, posY);                    
+                    Map.WallCheck(posX, posY);
+                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
                         posX--;
                         PlayerUpdate(); //checks to make sure the player location is accurate
+                    }
+                    else if (CombatManager.moveRollBack == true)
+                    {
+                        CombatManager.moveRollBack = false;
+                        posX--;
+                        PlayerUpdate();
                     }
                     break;
                 default:

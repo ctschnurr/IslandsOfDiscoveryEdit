@@ -9,43 +9,41 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class CombatManager
     {
         public static bool startFight = false;
+        public static bool moveRollBack = false;        
         public static void FightCheck(int playerx, int playery, int enemyx, int enemyy)
         {
             if (playerx == enemyx && playery == enemyy)
             {
-                Map.moveRollBack = true;
-                startFight = true;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 4);
-                Console.WriteLine("Let's Fight!");
-                return;
+                moveRollBack = true;
+                startFight = true;                
             }
             else if (enemyx == playerx && enemyy == playery)
             {
-                Map.moveRollBack = true;
+                moveRollBack = true;
                 startFight = true;
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 4);
-                Console.WriteLine("Let's Fight!");
-                return;
             }
+            return;
         }
         public static void Combat()
-        {
+        {            
             Random random = new Random();
             int chance = random.Next(1,5);
             if (chance < 3)
             {
+                CursorController.InputAreaCursor();
+                Console.WriteLine();
+                Console.WriteLine();
                 Console.WriteLine("game over");
-
-                //Program.gameOver = true;
+                startFight = false; 
             }
             else
             {
+                CursorController.InputAreaCursor();
+                Console.WriteLine();
+                Console.WriteLine();
                 Console.WriteLine("enemy dies");
-                //Enemy.dead = true;
-                Program.enemyCount--;
-                Console.WriteLine("enemy count is" + Program.enemyCount);
-            }
-            startFight = false;
+                startFight = false;                                
+            }            
         }
     }
 

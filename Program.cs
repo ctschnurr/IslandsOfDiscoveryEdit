@@ -14,7 +14,7 @@ namespace IslandsOfDiscoveryTxtRPG
         static void Main(string[] args)
         {            
             Player player = new Player(3,5);
-            Enemy enemy = new Enemy(7,7);
+            Enemy enemy = new Enemy(3,10);
             CursorController cursorController = new CursorController();
 
             while (gameOver == false)
@@ -25,14 +25,21 @@ namespace IslandsOfDiscoveryTxtRPG
                     Map.DisplayMap(Map.scale);
                     Map.firstmaprender = false;
                 }
-                player.PlayerDraw(player.posX, player.posY); //draws the player on the map               
+                player.PlayerDraw(player.posX, player.posY);    //draws the player on the map
+                enemy.SpawnMe();
                 Console.WriteLine();
                 CursorController.InputAreaCursor();
-                player.GetPlayerPOS(); //stores the player position before they move
-                //enemy.GetEnemyPOS(); //stores the enemy position before they move, this should eventually use an array for multiple enemies
-                player.PlayerChoice(); //this is going to cause issues if there's more than one enemy; store player and enemy location in an array?                
+                player.GetPlayerPOS();                          //stores the player position before they move
+                enemy.GetEnemyPOS();                            //stores the enemy position before they move, this should eventually use an array for multiple enemies
+                player.PlayerChoice(enemy.posX, enemy.posY);                          //this is going to cause issues if there's more than one enemy; store enemy location in an array?                
                 player.PlayerDraw(player.posX, player.posY);
-                Map.Redraw(player.oldPosX, player.oldPosY); //redraws the position the player left with the underlying map location
+                Map.Redraw(player.oldPosX, player.oldPosY);     //redraws the position the player left with the underlying map location
+                enemy.MoveMe(player.posX, player.posY);
+                Map.Redraw(enemy.oldPosX, enemy.oldPosY);       //redraws the position the enemy left with the underlying map location
+                if (CombatManager.startFight == true)
+                {
+                    CombatManager.Combat();
+                }
 
                 //YOU CAN CREATE AN IF STATEMENT IN A METHOD CALL
                 //no you can't dummy                
