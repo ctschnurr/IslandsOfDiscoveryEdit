@@ -7,27 +7,21 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Player : Character
-    {
-        //change the starting position to be random based on valid map positions
-        public int PlayerPosx = origx + 8 * Map.scale, PlayerPosy = origy + 4 * Map.scale;
-        public int OldPlayerPosx = origx + 8 * Map.scale, OldPlayerPosy = origy + 4 * Map.scale;        
+    {                
         public ConsoleKeyInfo key;
-        public int GetPOSx = 0, GetPOSy = 0;
-
-        public int PlayerPos;
-
-        //moving positions into an array test area
+        
         public Player(int x, int y)
         {
             posX = x;
             posY = y;
+            oldPosX = x;
+            oldPosY = y;
             character = "P";
-            corpse = "X";
-            PlayerPos = POS[posX, posY];
+            corpse = "X";            
             dead = false;
         }
 
-        public void PlayerChoice(int playerx, int playery, int enemyx, int enemyy)
+        public void PlayerChoice()
         {
             Console.WriteLine(); //leaving space for debug code
             Console.WriteLine();
@@ -42,67 +36,69 @@ namespace IslandsOfDiscoveryTxtRPG
                     Program.gameOver = true;
                     break;
                 case ConsoleKey.W:
-                    PlayerPosy--;
-                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                    Map.WallCheck(PlayerPosx, PlayerPosy);
-                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
+                    posY--;
+                    PlayerUpdate();
+                    Map.WallCheck(posX, posY);                    
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
-                        PlayerPosy++;
+                        posY++;
+                        PlayerUpdate(); //checks to make sure the player location is accurate
                     }                    
                     break;
                 case ConsoleKey.A:
-                    PlayerPosx--;
-                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                    Map.WallCheck(PlayerPosx, PlayerPosy);
-                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
+                    posX--;
+                    PlayerUpdate();
+                    Map.WallCheck(posX, posY);                    
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
-                        PlayerPosx++;
+                        posX++;
+                        PlayerUpdate(); //checks to make sure the player location is accurate
                     }
                     break;
                 case ConsoleKey.S:
-                    PlayerPosy++;
-                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                    Map.WallCheck(PlayerPosx, PlayerPosy);
-                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
+                    posY++;
+                    PlayerUpdate();
+                    Map.WallCheck(posX, posY);                    
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
-                        PlayerPosy--;
+                        posY--;
+                        PlayerUpdate(); //checks to make sure the player location is accurate
                     }
                     break;
                 case ConsoleKey.D:
-                    PlayerPosx++;
-                    Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                    Console.WriteLine("Player position is: " + PlayerPosx + " " + PlayerPosy);
-                    Map.WallCheck(PlayerPosx, PlayerPosy);
-                    CombatManager.FightCheck(playerx, playery, enemyx, enemyy); //this will change when there's more than one enemy
+                    posX++;
+                    PlayerUpdate();
+                    Map.WallCheck(posX, posY);                    
                     if (Map.moveRollBack == true)
                     {
                         Map.moveRollBack = false;
-                        PlayerPosx--;
+                        posX--;
+                        PlayerUpdate(); //checks to make sure the player location is accurate
                     }
                     break;
                 default:
                     break;
             }
         }
-        public void PlayerDraw(string p, int PlayerPosx, int PlayerPosy)
+
+        public void PlayerUpdate()
         {
-            Console.SetCursorPosition(origx + PlayerPosx, origy + PlayerPosy);
+            CursorController.InputAreaCursor();
+            Console.WriteLine("Player position is: " + posX + " " + posY);
+        }
+        public void PlayerDraw(string p, int posX, int posY)
+        {
+            CursorController.CharacterPrintCursor(posX, posY);            
             Console.Write(p);
         }
 
         public void GetPlayerPOS()
         {
-            GetPOSx = PlayerPosx;
-            GetPOSy = PlayerPosy;
+            oldPosX = posX;
+            oldPosY = posY;
         }
     }
 }

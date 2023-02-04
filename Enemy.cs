@@ -9,25 +9,24 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Enemy : Character
     {
         //change the enemy spawn position to be random based on valid map positions/spawners
-        public int EnemyPosx = origx + 12 * Map.scale, EnemyPosy = origy + 4 * Map.scale;
-        public int OldEnemyPosx = origx + 12 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;        
-        public int GetPOSx = 0, GetPOSy = 0;
-
-        public int EnemyPos;
+        //public int EnemyPosx = origx + 12 * Map.scale, EnemyPosy = origy + 4 * Map.scale;
+        //public int OldEnemyPosx = origx + 12 * Map.scale, OldEnemyPosy = origy + 4 * Map.scale;        
+        //public int GetPOSx = 0, GetPOSy = 0;
         //public static int enemyCount = 0;
 
         public Enemy(int x, int y) : base()
         {
             posX = x;
             posY = y;
+            oldPosX = x;
+            oldPosY = y;
             character = "@";            
-            corpse = "x";
-            EnemyPos = POS[posX, posY];
+            corpse = "x";            
             dead = false;
         }
         public void SpawnMe()
         {                        
-            EnemyDraw(character, EnemyPosx, EnemyPosy); //draws the enemy on the map
+            EnemyDraw(character, posX, posY); //draws the enemy on the map
             Program.enemyCount++;
         }
 
@@ -39,50 +38,50 @@ namespace IslandsOfDiscoveryTxtRPG
         switch (enemyMove)
             {
                 case 1:
-                EnemyPosy--;
+                posY--;
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + EnemyPosx + " " + EnemyPosy);
-                Map.WallCheck(EnemyPosx, EnemyPosy);
+                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
-                    EnemyPosy++;
+                    posY++;
                 }
                     break;
 
                 case 2:
-                EnemyPosx--;
+                posX--;
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + EnemyPosx + " " + EnemyPosy);
-                Map.WallCheck(EnemyPosx, EnemyPosy);
+                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
-                    EnemyPosx++;
+                    posX++;
                 }
                     break;
 
                 case 3:
-                EnemyPosy++;
+                posY++;
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + EnemyPosx + " " + EnemyPosy);
-                Map.WallCheck(EnemyPosx, EnemyPosy);
+                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
-                    EnemyPosy--;
+                    posY--;
                 }
                     break;
 
                 case 4:
-                EnemyPosx++;
+                posX++;
                 Console.SetCursorPosition(0, Map.rows * Map.scale + 3);
-                Console.WriteLine("Enemy position is: " + EnemyPosx + " " + EnemyPosy);
-                Map.WallCheck(EnemyPosx, EnemyPosy);
+                Console.WriteLine("Enemy position is: " + posX + " " + posY);
+                Map.WallCheck(posX, posY);
                 if (Map.moveRollBack == true)
                 {
                     Map.moveRollBack = false;
-                    EnemyPosx--;
+                    posX--;
                 }
                     break;
 
@@ -91,23 +90,23 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void EnemyDraw(string character, int EnemyPosx, int EnemyPosy)
+        public void EnemyUpdate()
         {
-            Console.SetCursorPosition(origx + EnemyPosx, origy + EnemyPosy);
-            if (dead == false)
-            {
-                Console.Write(character);
-            }
-            else
-            {
-                Console.Write(corpse);
-            }
+            CursorController.InputAreaCursor();
+            Console.WriteLine("Enemy position is: " + posX + " " + posY);
         }
+
+        public void EnemyDraw(string p, int posX, int posY)
+        {
+            CursorController.CharacterPrintCursor(posX, posY);
+            Console.Write(p);
+        }
+        
 
         public void GetEnemyPOS()
         {
-            GetPOSx = EnemyPosx;
-            GetPOSy = EnemyPosy;
+            oldPosX = posX;
+            oldPosY = posY;
         }
     }
 

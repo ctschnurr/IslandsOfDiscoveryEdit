@@ -105,6 +105,15 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
+        public static void Redraw(int x, int y)
+        {
+            CursorController.CharacterPrintCursor(x, y);                            //sets the cursor position to the players previous location                  
+            ColourCode(y - 1, x - 1);                                               //gets the appropriate colour for reprinting the previous position
+            Console.Write(map[y - 1, x - 1]);                                       //writes the map array location at the player's previous location
+            Console.BackgroundColor = ConsoleColor.Black;                           //resets the console color for normal printing        
+        }
+
+        //PUT THIS IN THE CHARACTER CLASS SO PLAYER AND ENEMY CAN USE DIFFERENT CHECKS YOU DOLT
         public static void WallCheck(int x, int y) //checks to see if the character is allowed to move onto the map location
         {
             if (x > cols || x < 0 + 1) //prevents character from moving outside bounds of border

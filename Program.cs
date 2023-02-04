@@ -13,8 +13,9 @@ namespace IslandsOfDiscoveryTxtRPG
 
         static void Main(string[] args)
         {            
-            Player player = new Player(5,5);
+            Player player = new Player(3,5);
             Enemy enemy = new Enemy(7,7);
+            CursorController cursorController = new CursorController();
 
             while (gameOver == false)
             {
@@ -24,40 +25,18 @@ namespace IslandsOfDiscoveryTxtRPG
                     Map.DisplayMap(Map.scale);
                     Map.firstmaprender = false;
                 }
-                player.PlayerDraw(player.character, player.PlayerPosx, player.PlayerPosy); //draws the player on the map
-                if (enemyCount < 1)
-                {
-                    enemy.SpawnMe(); //spawns an enemy construct
-                }
+                player.PlayerDraw(player.character, player.posX, player.posY); //draws the player on the map               
                 Console.WriteLine();
-                Console.SetCursorPosition(0, Map.rows * Map.scale + 2);
-                player.GetPlayerPOS();
-                enemy.GetEnemyPOS();
-                player.PlayerChoice(player.GetPOSx, player.GetPOSy, enemy.GetPOSx, enemy.GetPOSy); //this is going to cause issues if there's more than one enemy; store player and enemy location in an array?
-                if (CombatManager.startFight == true)
-                {
-                    CombatManager.Combat();
-                }
-                player.PlayerDraw(player.character, player.PlayerPosx, player.PlayerPosy);
-                if (enemyCount > 0)
-                {
-                    enemy.MoveMe();
-                    enemy.EnemyDraw(enemy.character, enemy.EnemyPosx, enemy.EnemyPosy);
-                    Console.SetCursorPosition(player.GetPOSx, player.GetPOSy);
-                    Map.ColourCode(player.GetPOSy - 1, player.GetPOSx - 1);
-                    Console.Write(Map.map[player.GetPOSy - 1, player.GetPOSx - 1]);
-                    Console.SetCursorPosition(enemy.GetPOSx, enemy.GetPOSy);
-                    Map.ColourCode(enemy.GetPOSy - 1, enemy.GetPOSx - 1);
-                    Console.Write(Map.map[enemy.GetPOSy - 1, enemy.GetPOSx - 1]);
-                    Console.BackgroundColor = ConsoleColor.Black;
-                }
-                else if (enemyCount < 1)
-                {
-                    Console.SetCursorPosition(player.GetPOSx, player.GetPOSy);
-                    Map.ColourCode(player.GetPOSy - 1, player.GetPOSx - 1);
-                    Console.Write(Map.map[player.GetPOSy - 1, player.GetPOSx - 1]);
-                    Console.BackgroundColor = ConsoleColor.Black;
-                }
+                CursorController.InputAreaCursor();
+                player.GetPlayerPOS(); //stores the player position before they move
+                //enemy.GetEnemyPOS(); //stores the enemy position before they move
+                player.PlayerChoice(); //this is going to cause issues if there's more than one enemy; store player and enemy location in an array?                
+                player.PlayerDraw(player.character, player.posX, player.posY);
+                Map.Redraw(player.oldPosX, player.oldPosY);
+
+                //YOU CAN CREATE AN IF STATEMENT IN A METHOD CALL
+                //no you can't dummy
+                
             }
         }
     }
