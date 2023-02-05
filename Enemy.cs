@@ -19,12 +19,31 @@ namespace IslandsOfDiscoveryTxtRPG
             corpse = "x";            
             dead = false;
         }
+        public void EnemyUpdate(int playerPosX, int playerPosY)
+        {
+            if (enemyCount == 0)
+            {
+                SpawnMe();
+            }
+            GetMyPOS();
+            MoveMe();
+            Map.WallCheck(posX, posY);
+            CombatManager.FightCheck(posX, posY, playerPosX, playerPosY);
+            if (Map.moveRollBack == true || CombatManager.moveRollBack == true)
+            {
+                CombatManager.moveRollBack = false;
+                Map.moveRollBack = false;
+                ResetMyPOS();                
+            }
+            Map.Redraw(oldPosX, oldPosY);
+            EnemyDraw(posX, posY);              //this has to follow the Map redraw to avoid weird disappearing enemy issues
+        }
         public void SpawnMe()
         {                        
             EnemyDraw(posX, posY); //draws the enemy on the map            
         }
 
-        public void MoveMe(int x, int y)
+        public void MoveMe()
         {
             Random random = new Random();
             int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
@@ -33,100 +52,23 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 case 1:
                 posY--;
-                EnemyUpdate();                
-                Map.WallCheck(posX, posY);
-                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
-                    posY++;
-                    EnemyUpdate();
-                }
-                else if (CombatManager.moveRollBack == true)
-                {
-                    CombatManager.moveRollBack = false;
-                    posY++;
-                    EnemyUpdate();
-                }
                     break;
 
                 case 2:
                 posX--;
-                EnemyUpdate();
-                Map.WallCheck(posX, posY);
-                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
-                    posX++;
-                    EnemyUpdate();
-                }
-                else if (CombatManager.moveRollBack == true)
-                {
-                    CombatManager.moveRollBack = false;
-                    posX++;
-                    EnemyUpdate();
-                }
                     break;
 
                 case 3:
-                posY++;
-                EnemyUpdate();
-                Map.WallCheck(posX, posY);
-                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
-                    posY--;
-                    EnemyUpdate();
-                }
-                else if (CombatManager.moveRollBack == true)
-                {
-                    CombatManager.moveRollBack = false;
-                    posY--;
-                    EnemyUpdate();
-                }
+                posY++;                
                     break;
 
                 case 4:
-                posX++;
-                EnemyUpdate();
-                Map.WallCheck(posX, posY);
-                CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                if (Map.moveRollBack == true)
-                {
-                    Map.moveRollBack = false;
-                    posX--;
-                    EnemyUpdate();
-                }
-                else if (CombatManager.moveRollBack == true)
-                {
-                    CombatManager.moveRollBack = false;
-                    posX--;
-                    EnemyUpdate();
-                }
+                posX++;              
                     break;
 
                 default:             
                     break;
             }
-        }
-
-        public void EnemyUpdate()
-        {
-            CursorController.InputAreaCursor();
-            Console.WriteLine();                                            //makes space for the player position information that came before this
-            Console.WriteLine("Enemy position is: " + posX + " " + posY);
-        }
-
-        public void EnemyUpdatePrototype(int playerPosX, int playerPosY)
-        {
-            if (enemyCount == 0)
-            {
-                SpawnMe();
-            }
-            GetEnemyPOS();
-            MoveMe(playerPosX, playerPosY);
         }
 
         public void EnemyDraw(int posX, int posY)
@@ -143,10 +85,16 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         
 
-        public void GetEnemyPOS()
+        public void GetMyPOS()          //used to overwrite previous position on the map
         {
             oldPosX = posX;
             oldPosY = posY;
+        }
+
+        public void ResetMyPOS()        //replace the old rollback system
+        {
+            posX = oldPosX;
+            posY = oldPosY;
         }
     }
 

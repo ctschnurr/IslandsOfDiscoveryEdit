@@ -20,12 +20,26 @@ namespace IslandsOfDiscoveryTxtRPG
             corpse = "X";            
             dead = false;
         }
-
-        public void PlayerChoice(int x, int y)
+        public void PlayerUpdate(int enemyPosX, int enemyPosY)
         {
-            Console.WriteLine(); //leaving space for debug code
-            Console.WriteLine();
-            Console.WriteLine();
+            GetMyPOS();
+            PlayerChoice();
+            Map.WallCheck(posX, posY);
+            CombatManager.FightCheck(posX, posY, enemyPosX, enemyPosY);
+            if (Map.moveRollBack == true || CombatManager.moveRollBack == true)
+            {
+                CombatManager.moveRollBack = false;
+                Map.moveRollBack = false;
+                ResetMyPOS();                
+            }
+            Map.Redraw(oldPosX, oldPosY);
+            PlayerDraw(posX, posY);            
+        }
+
+        public void PlayerChoice()
+        {
+            CursorController.InputAreaCursor();
+
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
 
             key = Console.ReadKey();
@@ -37,87 +51,21 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
                 case ConsoleKey.W:
                     posY--;
-                    PlayerUpdate();
-                    Map.WallCheck(posX, posY);  
-                    //combat check goes here?
-                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                    if (Map.moveRollBack == true)
-                    {
-                        Map.moveRollBack = false;
-                        posY++;
-                        PlayerUpdate(); //checks to make sure the player location is accurate
-                    }      
-                    else if (CombatManager.moveRollBack == true)
-                    {
-                        CombatManager.moveRollBack = false;
-                        posY++;
-                        PlayerUpdate();
-                    }
                     break;
                 case ConsoleKey.A:
-                    posX--;
-                    PlayerUpdate();
-                    Map.WallCheck(posX, posY);
-                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                    if (Map.moveRollBack == true)
-                    {
-                        Map.moveRollBack = false;
-                        posX++;
-                        PlayerUpdate(); //checks to make sure the player location is accurate
-                    }
-                    else if (CombatManager.moveRollBack == true)
-                    {
-                        CombatManager.moveRollBack = false;
-                        posX++;
-                        PlayerUpdate();
-                    }
+                    posX--;                    
                     break;
                 case ConsoleKey.S:
-                    posY++;
-                    PlayerUpdate();
-                    Map.WallCheck(posX, posY);
-                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                    if (Map.moveRollBack == true)
-                    {
-                        Map.moveRollBack = false;
-                        posY--;
-                        PlayerUpdate(); //checks to make sure the player location is accurate
-                    }
-                    else if (CombatManager.moveRollBack == true)
-                    {
-                        CombatManager.moveRollBack = false;
-                        posY--;
-                        PlayerUpdate();
-                    }
+                    posY++;                    
                     break;
                 case ConsoleKey.D:
-                    posX++;
-                    PlayerUpdate();
-                    Map.WallCheck(posX, posY);
-                    CombatManager.FightCheck(posX, posY, x, y); //absolutely not how this should work/where this should be
-                    if (Map.moveRollBack == true)
-                    {
-                        Map.moveRollBack = false;
-                        posX--;
-                        PlayerUpdate(); //checks to make sure the player location is accurate
-                    }
-                    else if (CombatManager.moveRollBack == true)
-                    {
-                        CombatManager.moveRollBack = false;
-                        posX--;
-                        PlayerUpdate();
-                    }
+                    posX++;                   
                     break;
                 default:
                     break;
             }
         }
 
-        public void PlayerUpdate()
-        {
-            CursorController.InputAreaCursor();
-            Console.WriteLine("Player position is: " + posX + " " + posY);
-        }
         public void PlayerDraw(int posX, int posY)
         {
             CursorController.CharacterPrintCursor(posX, posY); 
@@ -131,10 +79,15 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void GetPlayerPOS()
+        public void GetMyPOS()
         {
             oldPosX = posX;
             oldPosY = posY;
+        }
+        public void ResetMyPOS()        //replace the old rollback system
+        {
+            posX = oldPosX;
+            posY = oldPosY;
         }
     }
 }

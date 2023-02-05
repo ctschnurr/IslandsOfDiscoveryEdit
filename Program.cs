@@ -17,24 +17,18 @@ namespace IslandsOfDiscoveryTxtRPG
             CursorController cursorController = new CursorController();
 
             while (gameOver == false)
-            {
-                if (Map.firstmaprender == true)
+            {                
+                if (Map.firstmaprender == true) //anything to be done on startup or first load should go here
                 {
                     Console.Clear();
                     Map.DisplayMap(Map.scale);
                     Map.firstmaprender = false;
-                }
-                player.PlayerDraw(player.posX, player.posY);    //draws the player on the map
-                enemy.SpawnMe();
-                Console.WriteLine();
-                CursorController.InputAreaCursor();
-                player.GetPlayerPOS();                          //stores the player position before they move
-                enemy.GetEnemyPOS();                            //stores the enemy position before they move, this should eventually use an array for multiple enemies
-                player.PlayerChoice(enemy.posX, enemy.posY);    //this is going to cause issues if there's more than one enemy; store enemy location in an array?                
-                player.PlayerDraw(player.posX, player.posY);
-                Map.Redraw(player.oldPosX, player.oldPosY);     //redraws the position the player left with the underlying map location
-                enemy.MoveMe(player.posX, player.posY);
-                Map.Redraw(enemy.oldPosX, enemy.oldPosY);       //redraws the position the enemy left with the underlying map location
+                    player.PlayerDraw(player.posX, player.posY);
+                }      
+                               
+                player.PlayerUpdate(enemy.posX, enemy.posY);
+                enemy.EnemyUpdate(player.posX, player.posY);
+                
                 if (CombatManager.startFight == true)
                 {
                     CombatManager.Combat();
