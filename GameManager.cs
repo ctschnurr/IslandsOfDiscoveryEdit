@@ -12,23 +12,21 @@ namespace IslandsOfDiscoveryTxtRPG
 
         Player player = new Player(3, 5);
         Enemy enemy = new Enemy(3, 10);
+        Map map = new Map();
+        CombatManager combatManager = new CombatManager();
         CursorController cursorController = new CursorController();
 
-        public void RunGame()
-        {//Game Loop
-            while (gameOver == false)
-            {                
-                if (Map.firstmaprender == true) //anything to be done on startup or first load should go here
-                {
-                    Console.Clear();
-                    Map.DisplayMap(Map.scale);
-                    Map.firstmaprender = false;
-                    player.Draw(player.posX, player.posY);
-                }
 
+        //Game Loop
+        public void RunGame()
+        {            
+            while (gameOver == false)
+            {   
                 //updates
+                map.Update();
                 player.Update(enemy.posX, enemy.posY);
                 enemy.Update(player.posX, player.posY);
+                //combat manager update goes here.
 
                 //draws
                 player.Draw(player.posX, player.posY);
@@ -38,9 +36,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     CombatManager.Combat();
                 }
-
-                //YOU CAN CREATE AN IF STATEMENT IN A METHOD CALL
-                //no you can't dummy                
+              
             }
         }
     }

@@ -30,53 +30,63 @@ namespace IslandsOfDiscoveryTxtRPG
         public static int scale = 1;
         public static bool firstmaprender = true;
         public static bool moveRollBack = false;
-        public static void DisplayMap(int scale)
+
+        public void Update()
         {
-            int bordersize = cols * scale;
-            Console.BackgroundColor = ConsoleColor.Black;
-
-            for (int g = 0; g < 1; g++)
+            if (firstmaprender == true)
             {
-                Console.Write("╔");
-                for (int r = 0; r < bordersize; r++)
-                {
-                    Console.Write("═");
-                }
-                Console.Write("╗");
+                Console.Clear();
+                firstmaprender = false;
+                
+                DisplayMap(scale);
             }
-
-            Console.WriteLine();
-
-            for (int x = 0; x < rows; x++)
-            {
-                for (int m = 0; m < scale; m++)
-                {
-                    Console.Write("║");
-                    for (int y = 0; y < cols; y++)
-                    {
-                        for (int z = 0; z < scale; z++)
-                        {
-                            ColourCode(x, y);
-                            Console.Write(map[x, y]);
-                        }
-                    }
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.Write("║");
-                    Console.WriteLine();
-                }
-            }
-            for (int g = 0; g < 1; g++)
-            {
-                Console.Write("╚");
-                for (int r = 0; r < bordersize; r++)
-                {
-                    Console.Write("═");
-                }
-                Console.Write("╝");
-            }
-            Console.WriteLine();
         }
+        public void DisplayMap(int scale)
+        {     
+                int bordersize = cols * scale;
+                Console.BackgroundColor = ConsoleColor.Black;
 
+                for (int g = 0; g < 1; g++)
+                {
+                    Console.Write("╔");
+                    for (int r = 0; r < bordersize; r++)
+                    {
+                        Console.Write("═");
+                    }
+                    Console.Write("╗");
+                }
+
+                Console.WriteLine();
+
+                for (int x = 0; x < rows; x++)
+                {
+                    for (int m = 0; m < scale; m++)
+                    {
+                        Console.Write("║");
+                        for (int y = 0; y < cols; y++)
+                        {
+                            for (int z = 0; z < scale; z++)
+                            {
+                                ColourCode(x, y);
+                                Console.Write(map[x, y]);
+                            }
+                        }
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write("║");
+                        Console.WriteLine();
+                    }
+                }
+                for (int g = 0; g < 1; g++)
+                {
+                    Console.Write("╚");
+                    for (int r = 0; r < bordersize; r++)
+                    {
+                        Console.Write("═");
+                    }
+                    Console.Write("╝");
+                }
+                Console.WriteLine();
+        }
         public static void ColourCode(int x, int y)
         {
             switch (map[x, y]) //checks the characters in the array and assigns them colours
@@ -104,7 +114,6 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
             }
         }
-
         public static void Redraw(int x, int y)
         {
             CursorController.CharacterPrintCursor(x, y);                            //sets the cursor position to the players previous location                  
