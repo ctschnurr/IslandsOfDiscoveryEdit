@@ -9,6 +9,7 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Player : Character
     {                
         public ConsoleKeyInfo key;
+        private int level;
         
         public Player(int x, int y)
         {
@@ -19,8 +20,15 @@ namespace IslandsOfDiscoveryTxtRPG
             character = "P";
             corpse = "X";            
             dead = false;
+            level = 1;
+            basehealth = 25;
+            basespeed = 5;
+            basestrength = 5;
+            health = basehealth + level;
+            speed = basespeed + level;
+            strength = basestrength + level;
         }
-        public void PlayerUpdate(int enemyPosX, int enemyPosY)
+        public void Update(int enemyPosX, int enemyPosY)
         {
             GetMyPOS();
             PlayerChoice();
@@ -32,8 +40,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 Map.moveRollBack = false;
                 ResetMyPOS();                
             }
-            Map.Redraw(oldPosX, oldPosY);
-            PlayerDraw(posX, posY);            
+            Map.Redraw(oldPosX, oldPosY);                        
         }
 
         public void PlayerChoice()
@@ -47,7 +54,7 @@ namespace IslandsOfDiscoveryTxtRPG
             switch (key.Key)
             {
                 case ConsoleKey.Escape:
-                    Program.gameOver = true;
+                    GameManager.gameOver = true;
                     break;
                 case ConsoleKey.W:
                     posY--;
@@ -66,7 +73,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void PlayerDraw(int posX, int posY)
+        public void Draw(int posX, int posY)
         {
             CursorController.CharacterPrintCursor(posX, posY); 
             if (dead == false)
@@ -88,6 +95,13 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             posX = oldPosX;
             posY = oldPosY;
+        }
+        public void DeathCheck()
+        {
+            if (health <= 0)
+            {
+                dead = true;
+            }
         }
     }
 }

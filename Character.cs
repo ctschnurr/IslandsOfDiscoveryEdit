@@ -10,7 +10,8 @@ namespace IslandsOfDiscoveryTxtRPG
     {               
         public static int basehealth = 0;
         public static int basespeed = 0;
-        public static int basestrength = 0;        
+        public static int basestrength = 0;
+        public static int health, speed, strength;
 
         public string character; //the alive version of the character
         public string corpse;       //the dead version of the character

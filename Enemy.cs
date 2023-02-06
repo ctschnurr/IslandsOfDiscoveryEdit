@@ -18,8 +18,14 @@ namespace IslandsOfDiscoveryTxtRPG
             character = "@";            
             corpse = "x";            
             dead = false;
+            basehealth = 10;
+            basespeed = 3;
+            basestrength = 3;
+            health = basehealth;
+            speed = basespeed;
+            strength = basestrength;
         }
-        public void EnemyUpdate(int playerPosX, int playerPosY)
+        public void Update(int playerPosX, int playerPosY)
         {
             if (enemyCount == 0)
             {
@@ -35,12 +41,11 @@ namespace IslandsOfDiscoveryTxtRPG
                 Map.moveRollBack = false;
                 ResetMyPOS();                
             }
-            Map.Redraw(oldPosX, oldPosY);
-            EnemyDraw(posX, posY);              //this has to follow the Map redraw to avoid weird disappearing enemy issues
+            Map.Redraw(oldPosX, oldPosY);            
         }
         public void SpawnMe()
         {                        
-            EnemyDraw(posX, posY); //draws the enemy on the map            
+            Draw(posX, posY); //draws the enemy on the map            
         }
 
         public void MoveMe()
@@ -71,7 +76,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void EnemyDraw(int posX, int posY)
+        public void Draw(int posX, int posY)
         {
             CursorController.CharacterPrintCursor(posX, posY);
             if (dead == false)
@@ -95,6 +100,13 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             posX = oldPosX;
             posY = oldPosY;
+        }
+        public void DeathCheck()
+        {
+            if (health <= 0)
+            {
+                dead = true;
+            }
         }
     }
 
