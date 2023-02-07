@@ -11,20 +11,21 @@ namespace IslandsOfDiscoveryTxtRPG
         public static bool gameOver = false;
 
         Player player = new Player(3, 5);
-        Enemy enemy = new Enemy(3, 10);
+        Enemy enemy = new Enemy();
         Map map = new Map();
         CombatManager combatManager = new CombatManager();
         CursorController cursorController = new CursorController();
         HUD hud = new HUD();
+        EnemyManager enemyManager = new EnemyManager();
 
         //Game Loop
         public void RunGame()
-        {          
+        {                      
             while (gameOver == false)
             {   
                 //updates
                 map.Update();
-                player.Update(enemy.posX, enemy.posY);
+                player.Update(enemy);
                 enemy.Update(player.posX, player.posY);
                 //combat manager update goes here.
 

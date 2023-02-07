@@ -35,7 +35,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             if (firstmaprender == true)
             {
-                Console.Clear();
+                //Console.Clear();
                 firstmaprender = false;
                 
                 DisplayMap(scale);

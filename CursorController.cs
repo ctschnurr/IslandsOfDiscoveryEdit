@@ -53,22 +53,22 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public static void PlayerStatsCursorInner()
         {
-            Console.SetCursorPosition(playerStatsLeftInner, playerStatsTopInner);
+            //Console.SetCursorPosition();
         }
 
         public static void EnemyStatsCursorInner()
         {
-            Console.SetCursorPosition(enemyStatsLeft, enemyStatsTop);
+            //Console.SetCursorPosition();
         }
 
         public static void PlayerStatsCursorOuter()
         {
-            Console.SetCursorPosition(playerStatsLeftOuter, playerStatsTopOuter);
+            //Console.SetCursorPosition();
         }
 
         public static void EnemyStatsCursorOuter()
         {
-            Console.SetCursorPosition(enemyStatsLeftOuter, enemyStatsTopOuter);
+            //Console.SetCursorPosition();
         }
     }
 }

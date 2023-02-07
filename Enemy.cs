@@ -9,7 +9,9 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Enemy : Character
     {      
         private int enemyCount = 0;
-        public Enemy(int x, int y)
+        private int x = 12;
+        private int y = 11;
+        public Enemy()
         {
             posX = x;
             posY = y;

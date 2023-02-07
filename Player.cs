@@ -28,12 +28,12 @@ namespace IslandsOfDiscoveryTxtRPG
             speed = basespeed + level;
             strength = basestrength + level;
         }
-        public void Update(int enemyPosX, int enemyPosY)
+        public void Update(Enemy enemy)
         {
             GetMyPOS();
             PlayerChoice();
             Map.WallCheck(posX, posY);
-            CombatManager.FightCheck(posX, posY, enemyPosX, enemyPosY);
+            CombatManager.FightCheck(posX, posY, enemy.posX, enemy.posY);
             if (Map.moveRollBack == true || CombatManager.moveRollBack == true)
             {
                 CombatManager.moveRollBack = false;
