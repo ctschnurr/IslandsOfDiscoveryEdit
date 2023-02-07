@@ -15,11 +15,11 @@ namespace IslandsOfDiscoveryTxtRPG
         Map map = new Map();
         CombatManager combatManager = new CombatManager();
         CursorController cursorController = new CursorController();
-
+        HUD hud = new HUD();
 
         //Game Loop
         public void RunGame()
-        {            
+        {          
             while (gameOver == false)
             {   
                 //updates
@@ -31,11 +31,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 //draws
                 player.Draw(player.posX, player.posY);
                 enemy.Draw(enemy.posX, enemy.posY);
-                
-                if (CombatManager.startFight == true)
-                {
-                    CombatManager.Combat();
-                }
+               
               
             }
         }
