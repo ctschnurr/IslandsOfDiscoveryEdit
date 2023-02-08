@@ -10,7 +10,15 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public Slime()
         {
+            posX = 14;
+            posY = 4;
             character = "s";
+            basehealth = 2;
+            basespeed = 2;
+            basestrength = 1;
+            health = basehealth;
+            speed = basespeed;
+            strength = basestrength;
         }
     }
 }

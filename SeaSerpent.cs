@@ -11,6 +11,12 @@ namespace IslandsOfDiscoveryTxtRPG
         public SeaSerpent()
         {
             character = "S";
+            basehealth = 22;
+            basespeed = 5;
+            basestrength = 8;
+            health = basehealth;
+            speed = basespeed;
+            strength = basestrength;
         }
 
     }

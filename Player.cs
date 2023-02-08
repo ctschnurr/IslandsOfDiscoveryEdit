@@ -28,16 +28,16 @@ namespace IslandsOfDiscoveryTxtRPG
             speed = basespeed + level;
             strength = basestrength + level;
         }
-        public void Update(Enemy enemy)
+        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
             GetMyPOS();
             PlayerChoice();
-            Map.WallCheck(posX, posY);
-            CombatManager.FightCheck(posX, posY, enemy.posX, enemy.posY);
-            if (Map.moveRollBack == true || CombatManager.moveRollBack == true)
+            WallCheck(posX, posY);
+            CombatManager.FightCheck(posX, posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
+            if (moveRollBack == true || CombatManager.moveRollBack == true)
             {
                 CombatManager.moveRollBack = false;
-                Map.moveRollBack = false;
+                moveRollBack = false;
                 ResetMyPOS();                
             }
             Map.Redraw(oldPosX, oldPosY);                        
@@ -70,37 +70,6 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
                 default:
                     break;
-            }
-        }
-
-        public void Draw(int posX, int posY)
-        {
-            CursorController.CharacterPrintCursor(posX, posY); 
-            if (dead == false)
-            {
-                Console.Write(character);
-            }
-            else if (dead == true)
-            {
-                Console.Write(corpse);
-            }
-        }
-
-        public void GetMyPOS()
-        {
-            oldPosX = posX;
-            oldPosY = posY;
-        }
-        public void ResetMyPOS()        //replace the old rollback system
-        {
-            posX = oldPosX;
-            posY = oldPosY;
-        }
-        public void DeathCheck()
-        {
-            if (health <= 0)
-            {
-                dead = true;
             }
         }
     }

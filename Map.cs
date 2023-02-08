@@ -28,8 +28,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public static int rows = map.GetLength(0);
         public static int cols = map.GetLength(1);
         public static int scale = 1;
-        public static bool firstmaprender = true;
-        public static bool moveRollBack = false;
+        public static bool firstmaprender = true;        
 
         public void Update()
         {
@@ -120,34 +119,6 @@ namespace IslandsOfDiscoveryTxtRPG
             ColourCode(y - 1, x - 1);                                               //gets the appropriate colour for reprinting the previous position
             Console.Write(map[y - 1, x - 1]);                                       //writes the map array location at the player's previous location
             Console.BackgroundColor = ConsoleColor.Black;                           //resets the console color for normal printing        
-        }
-
-        //PUT THIS IN THE CHARACTER CLASS SO PLAYER AND ENEMY CAN USE DIFFERENT CHECKS YOU DOLT
-        public static void WallCheck(int x, int y) //checks to see if the character is allowed to move onto the map location
-        {
-            if (x > cols || x < 0 + 1) //prevents character from moving outside bounds of border
-            {
-                moveRollBack = true;
-            }
-            else if (y > rows || y < 0 + 1) //prevents character from moving outside bounds of border
-            {
-                moveRollBack = true;
-            }
-            else
-            {
-                switch (map[y - 1, x - 1])
-                {
-                    case '^':
-                        moveRollBack = true;
-                        break;
-                    case '~':
-                        moveRollBack = true;
-                        break;
-                    default:
-                        moveRollBack = false;
-                        break;
-                }
-            }
         }       
     }
 }
