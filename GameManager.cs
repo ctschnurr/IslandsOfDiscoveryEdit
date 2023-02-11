@@ -34,8 +34,9 @@ namespace IslandsOfDiscoveryTxtRPG
                 //combat manager update goes here.
 
                 //draws
-                hud.HudDraw();                
-                map.DisplayMap(1);
+                hud.HudDraw();
+                CursorController.CursorInner(0, 0);
+                map.DisplayMap();
                 Console.ReadKey();
                 //player.Draw(player.posX, player.posY);
                 //enemy.Draw(enemy.posX, enemy.posY);

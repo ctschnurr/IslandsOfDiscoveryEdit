@@ -9,9 +9,8 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Map
     {       
-        public char[,] map;
-                
-        public static int scale = 1;
+        public char[,] map;                
+        
         public static bool firstmaprender = true;
 
         public int rows;
@@ -22,9 +21,8 @@ namespace IslandsOfDiscoveryTxtRPG
             if (firstmaprender == true)
             {
                 //Console.Clear();
-                firstmaprender = false;
-                
-                DisplayMap(scale);
+                firstmaprender = false;                
+                DisplayMap();
             }
         }
 
@@ -41,46 +39,42 @@ namespace IslandsOfDiscoveryTxtRPG
             rows = map.GetLength(0);
             cols = map.GetLength(1);
         }        
-        public void DisplayMap(int scale)
-        {              
+        public void DisplayMap()
+        {
+            int posY = 0;
                 for (int x = 0; x < rows; x++)
-                {
-                    for (int m = 0; m < scale; m++)
-                    {                        
-                        for (int y = 0; y < cols; y++)
-                        {
-                            for (int z = 0; z < scale; z++)
-                            {
-                                ColourCode(x, y);
-                                //set the cursor here?
-                                Console.Write(map[x, y]);
-                            }
-                        }
-                        Console.BackgroundColor = ConsoleColor.Black;                        
-                        Console.WriteLine();
+                {                    
+                    for (int y = 0; y < cols; y++)
+                    {                           
+                        ColourCode(x, y);                        
+                        Console.Write(map[x, y]);                           
                     }
+                    Console.BackgroundColor = ConsoleColor.Black;                        
+                    Console.WriteLine();
+                    CursorController.CursorInner(0, posY); //adjusts the cursor to print each line on the correct line
+                    posY++;
                 }                
         }
         public void ColourCode(int x, int y)
         {
             switch (map[x, y]) //checks the characters in the array and assigns them colours
             {
-                case '^':
+                case '^': //mountain
                     Console.BackgroundColor = ConsoleColor.Gray;
                     break;
-                case '`':
+                case '#': //grass
                     Console.BackgroundColor = ConsoleColor.Green;
                     break;
-                case '~':
+                case '~': //water
                     Console.BackgroundColor = ConsoleColor.Blue;
                     break;
-                case '*':
+                case '*': //forest
                     Console.BackgroundColor = ConsoleColor.Yellow;
                     break;
-                case '∩':
+                case '∩': //dungeon entrance
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
-                case 'C':
+                case 'C': //castle entrance
                     Console.BackgroundColor = ConsoleColor.Magenta;
                     break;
                 default:
