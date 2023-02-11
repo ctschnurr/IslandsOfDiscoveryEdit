@@ -24,20 +24,21 @@ namespace IslandsOfDiscoveryTxtRPG
         public void RunGame()
         {                      
             while (gameOver == false)
-            {   
-                //updates
-                map.Update();
-                player.Update(enemy, enemy2, enemy3);
-                enemy.Update(player, enemy, enemy2, enemy3);
-                enemy2.Update(player, enemy, enemy2, enemy3);
-                enemy3.Update(player, enemy, enemy2, enemy3);
+            {
+                //updates               
+                //map.Update();
+                //player.Update(enemy, enemy2, enemy3);
+                //enemy.Update(player, enemy, enemy2, enemy3);
+                //enemy2.Update(player, enemy, enemy2, enemy3);
+                //enemy3.Update(player, enemy, enemy2, enemy3);
                 //combat manager update goes here.
 
                 //draws
-                player.Draw(player.posX, player.posY);
-                enemy.Draw(enemy.posX, enemy.posY);
-                enemy2.Draw(enemy2.posX, enemy2.posY);
-                enemy3.Draw(enemy3.posX, enemy3.posY);
+                hud.HudDraw();               
+                //player.Draw(player.posX, player.posY);
+                //enemy.Draw(enemy.posX, enemy.posY);
+                //enemy2.Draw(enemy2.posX, enemy2.posY);
+                //enemy3.Draw(enemy3.posX, enemy3.posY);
             }
         }
     }
