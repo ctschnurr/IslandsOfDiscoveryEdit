@@ -21,7 +21,7 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         public void PrintHud()
         {
-            string[] hudBorders = File.ReadAllLines("D:\\GitHub\\Game Development\\Game-Development\\IslandsOfDiscoveryTxtRPG\\HudBorders.txt");
+            string[] hudBorders = File.ReadAllLines(@"HudBorders.txt");
 
             for (int y = 0; y < hudBorders.GetLength(0); y++)
             {

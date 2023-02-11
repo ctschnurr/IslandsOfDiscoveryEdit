@@ -11,6 +11,8 @@ namespace IslandsOfDiscoveryTxtRPG
         private int enemyCount = 0;
         private int x = 12;
         private int y = 11;
+
+        Map map;
         public Enemy()
         {
             posX = x;
@@ -43,7 +45,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveRollBack = false;
                 ResetMyPOS();                
             }
-            Map.Redraw(oldPosX, oldPosY);            
+            map.Redraw(oldPosX, oldPosY);            
         }
         public void SpawnMe()
         {                        

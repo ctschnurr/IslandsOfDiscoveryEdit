@@ -10,7 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {                
         public ConsoleKeyInfo key;
         private int level;
-        
+        Map map;
         public Player(int x, int y)
         {
             posX = x;
@@ -40,7 +40,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveRollBack = false;
                 ResetMyPOS();                
             }
-            Map.Redraw(oldPosX, oldPosY);                        
+            map.Redraw(oldPosX, oldPosY);                        
         }
 
         public void PlayerChoice()

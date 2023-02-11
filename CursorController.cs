@@ -19,8 +19,8 @@ namespace IslandsOfDiscoveryTxtRPG
             OuterTop = 0;
             InnerLeft = 1;
             InnerTop = 0;           
-            //inputAreaLeft = 1;
-            //inputAreaTop = Map.rows * Map.scale + 2;  
+            inputAreaLeft = 1;
+            inputAreaTop = 22;  
             //playerStatsLeftInner = Map.rows * Map.scale + 3;
             //playerStatsTopInner = 1;
             //playerStatsLeftOuter = Map.rows * Map.scale + 2;
@@ -36,9 +36,9 @@ namespace IslandsOfDiscoveryTxtRPG
             Console.SetCursorPosition(OuterLeft, OuterTop);
         }
 
-        public static void CursorInner()
+        public static void CursorInner(int offsetY, int offsetX)
         {
-            Console.SetCursorPosition(InnerLeft, InnerTop);
+            Console.SetCursorPosition(InnerLeft + offsetY, InnerTop + offsetX);
         }
 
         public static void CharacterPrintCursor(int x, int y)
@@ -48,7 +48,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public static void InputAreaCursor()
         {
-            Console.SetCursorPosition(1, 22);
+            Console.SetCursorPosition(inputAreaLeft, inputAreaTop);
         }
 
         public static void PlayerStatsCursorInner()
