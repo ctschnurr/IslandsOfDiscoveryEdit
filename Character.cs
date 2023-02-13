@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
-    internal class Character
+    internal abstract class Character //abstract prevents you from contructing this class on the field
     {
         protected static int basehealth = 0;
         protected static int basespeed = 0;
         protected static int basestrength = 0;
         protected static int health, speed, strength;
 
-        protected string character; //the alive version of the character
-        protected string corpse;       //the dead version of the character
-        public int posX, posY, oldPosX, oldPosY; //current and one step prior locations for characters (utilized for map redrawing)
-        protected bool dead = false; //decides whether the character is dead or not, which determines what char is drawn for the character
-        protected bool moveRollBack = false; //switch to flip if character is attempting to move into an illegal location        
+        protected string character;                         //the alive version of the character
+        protected string corpse;                            //the dead version of the character
+        public int posX, posY, oldPosX, oldPosY;            //current and one step prior locations for characters (utilized for map redrawing)
+        protected bool dead = false;                        //decides whether the character is dead or not, which determines what char is drawn for the character
+        protected bool moveRollBack = false;                //switch to flip if character is attempting to move into an illegal location        
 
-        Map map;
+        public Map map;
+
+        public Character (int posX, int posY, Map map) //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        {            
+            this.posX = posX;
+            this.posY = posY;            
+            this.map = map;
+        }
 
         virtual protected void WallCheck(int x, int y) //checks to see if the character is allowed to move onto the map location
         {

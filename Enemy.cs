@@ -8,12 +8,8 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Enemy : Character
     {      
-        private int enemyCount = 0;
-        private int x = 12;
-        private int y = 11;
-
-        Map map;
-        public Enemy()
+        private int enemyCount = 0;        
+        public Enemy(int x, int y, Map map) : base(x, y, map)
         {
             posX = x;
             posY = y;
@@ -28,6 +24,7 @@ namespace IslandsOfDiscoveryTxtRPG
             health = basehealth;
             speed = basespeed;
             strength = basestrength;
+            base.map = map;
         }
         public void Update(Player player, Enemy enemy, Enemy enemy2, Enemy enemy3)
         {

@@ -42,7 +42,7 @@ namespace IslandsOfDiscoveryTxtRPG
             int chance = random.Next(1,5);
             if (chance < 3)
             {
-                CursorController.InputAreaCursor();
+                CursorController.InputAreaCursor(0, 0);
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("game over");
@@ -50,7 +50,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             else
             {
-                CursorController.InputAreaCursor();
+                CursorController.InputAreaCursor(0, 0);
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("enemy dies");

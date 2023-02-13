@@ -10,15 +10,14 @@ namespace IslandsOfDiscoveryTxtRPG
     {                
         public ConsoleKeyInfo key;
         private int level;
-        Map map;
-        public Player(int x, int y)
+        public Player(int x, int y, Map map) : base(x, y, map)
         {
             posX = x;
             posY = y;
             oldPosX = x;
             oldPosY = y;
             character = "P";
-            corpse = "X";            
+            corpse = "X";
             dead = false;
             level = 1;
             basehealth = 25;
@@ -27,6 +26,7 @@ namespace IslandsOfDiscoveryTxtRPG
             health = basehealth + level;
             speed = basespeed + level;
             strength = basestrength + level;
+            base.map = map;
         }
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
@@ -38,16 +38,18 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 CombatManager.moveRollBack = false;
                 moveRollBack = false;
-                ResetMyPOS();                
+                ResetMyPOS();
             }
-            map.Redraw(oldPosX, oldPosY);                        
+            map.Redraw(oldPosX, oldPosY);
         }
 
         public void PlayerChoice()
         {
-            CursorController.InputAreaCursor();
+            CursorController.InputAreaCursor(0, 0);
 
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
+
+            CursorController.InputAreaCursor(1, 0);
 
             key = Console.ReadKey();
 

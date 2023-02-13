@@ -22,13 +22,13 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 //Console.Clear();
                 firstmaprender = false;                
-                DisplayMap();
+                Draw();
             }
         }
 
-        public Map()
+        public Map() //constructor
         {
-            string[] mapString = File.ReadAllLines(@"OverworldMap_01.txt");
+            string[] mapString = File.ReadAllLines(@"Maps_and_Overlays/OverworldMap_01.txt");
             map = new char[mapString.GetLength(0), mapString[0].Length];
 
             for (int x = 0; x < mapString.GetLength(0); x++)
@@ -39,8 +39,9 @@ namespace IslandsOfDiscoveryTxtRPG
             rows = map.GetLength(0);
             cols = map.GetLength(1);
         }        
-        public void DisplayMap()
+        public void Draw()
         {
+            CursorController.CursorInner(0, 0);
             int posY = 0;
                 for (int x = 0; x < rows; x++)
                 {                    
@@ -62,20 +63,23 @@ namespace IslandsOfDiscoveryTxtRPG
                 case '^': //mountain
                     Console.BackgroundColor = ConsoleColor.Gray;
                     break;
-                case '#': //grass
+                case '`': //grass
                     Console.BackgroundColor = ConsoleColor.Green;
                     break;
                 case '~': //water
                     Console.BackgroundColor = ConsoleColor.Blue;
                     break;
                 case '*': //forest
-                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
                     break;
                 case '∩': //dungeon entrance
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
                 case 'C': //castle entrance
                     Console.BackgroundColor = ConsoleColor.Magenta;
+                    break;
+                case '#': //sand
+                    Console.BackgroundColor = ConsoleColor.Yellow;
                     break;
                 default:
                     Console.BackgroundColor = ConsoleColor.Black;

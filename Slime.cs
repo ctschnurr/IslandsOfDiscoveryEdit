@@ -8,10 +8,8 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Slime : Enemy
     {
-        public Slime()
-        {
-            posX = 14;
-            posY = 4;
+        public Slime(int x, int y, Map map) : base(x, y, map)
+        {            
             character = "s";
             basehealth = 2;
             basespeed = 2;
@@ -19,6 +17,7 @@ namespace IslandsOfDiscoveryTxtRPG
             health = basehealth;
             speed = basespeed;
             strength = basestrength;
+            base.map = map;
         }
     }
 }

@@ -11,17 +11,17 @@ namespace IslandsOfDiscoveryTxtRPG
     {      
         private bool firstRender = true;
 
-        public void HudDraw()
+        public void Draw()
         {   
             if (firstRender)
             {
-                PrintHud();
+                Print();
                 firstRender = false;
             }
         }
-        public void PrintHud()
+        public void Print()
         {
-            string[] hudBorders = File.ReadAllLines(@"HudBorders.txt");
+            string[] hudBorders = File.ReadAllLines(@"Maps_and_Overlays/HudBorders.txt");
 
             for (int y = 0; y < hudBorders.GetLength(0); y++)
             {
