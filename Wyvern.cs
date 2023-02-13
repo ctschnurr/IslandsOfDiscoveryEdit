@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
-    internal class SeaSerpent : Enemy
+    internal class Wyvern : Enemy
     {
-        public SeaSerpent(int x, int y, Map map) : base(x, y, map)
+        public Wyvern(int x, int y, Map map) : base(x, y, map)
         {
-            character = "S";
-            basehealth = 22;
-            basespeed = 5;
-            basestrength = 8;
+            character = "W";
+            basehealth = 12;
+            basespeed = 12;
+            basestrength = 4;
             health = basehealth;
             speed = basespeed;
             strength = basestrength;
@@ -33,25 +33,12 @@ namespace IslandsOfDiscoveryTxtRPG
             else
             {
                 switch (map.map[y - 1, x - 1])
-                {
-                    case '^':
-                        moveRollBack = true;
-                        break;
-                    case '`':
-                        moveRollBack = true;
-                        break;
-                    case '#':
-                        moveRollBack = true;
-                        break;
-                    case '*':
-                        moveRollBack = true;
-                        break;
+                {                    
                     default:
                         moveRollBack = false;
                         break;
                 }
             }
         }
-
     }
 }

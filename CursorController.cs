@@ -11,8 +11,7 @@ namespace IslandsOfDiscoveryTxtRPG
         protected static int OuterLeft, OuterTop;
         protected static int InnerLeft, InnerTop;        
         protected static int inputAreaLeft, inputAreaTop;
-        protected static int playerStatsLeftInner, playerStatsTopInner, playerStatsLeftOuter, playerStatsTopOuter;
-        protected static int enemyStatsLeft, enemyStatsTop, enemyStatsLeftOuter, enemyStatsTopOuter;        
+        
         public CursorController() 
         {
             OuterLeft = 0;
@@ -20,15 +19,7 @@ namespace IslandsOfDiscoveryTxtRPG
             InnerLeft = 1;
             InnerTop = 1;           
             inputAreaLeft = 1;
-            inputAreaTop = 23;  
-            //playerStatsLeftInner = Map.rows * Map.scale + 3;
-            //playerStatsTopInner = 1;
-            //playerStatsLeftOuter = Map.rows * Map.scale + 2;
-            //playerStatsTopOuter = 0;
-            //enemyStatsLeft = Map.rows * Map.scale + 3;
-            //enemyStatsTop = HUD.statsRows * HUD.statsCols + 3;
-            //enemyStatsLeftOuter = Map.rows * Map.scale + 2;
-            //enemyStatsTopOuter = 0 + HUD.statsRows + 3;
+            inputAreaTop = 23;             
         }
 
         public static void CursorOuter()
@@ -51,14 +42,14 @@ namespace IslandsOfDiscoveryTxtRPG
             Console.SetCursorPosition(inputAreaLeft + offsetY, inputAreaTop + offsetX);
         }
 
-        public static void PlayerStatsCursorInner()
+        public static void PlayerStatsCursorInner(int offsetX)
         {
-            Console.SetCursorPosition(49, 0);
+            Console.SetCursorPosition(49, 0 + offsetX);
         }
 
-        public static void EnemyStatsCursorInner()
+        public static void EnemyStatsCursorInner(int offsetX)
         {
-            Console.SetCursorPosition(49, 11);
+            Console.SetCursorPosition(49, 11 + offsetX);
         }
     }
 }

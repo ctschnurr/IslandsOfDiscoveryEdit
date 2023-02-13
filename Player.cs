@@ -10,6 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {                
         public ConsoleKeyInfo key;
         private int level;
+        protected int xp;
         public Player(int x, int y, Map map) : base(x, y, map)
         {
             posX = x;
@@ -26,6 +27,7 @@ namespace IslandsOfDiscoveryTxtRPG
             health = basehealth + level;
             speed = basespeed + level;
             strength = basestrength + level;
+            xp = 0;
             base.map = map;
         }
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
