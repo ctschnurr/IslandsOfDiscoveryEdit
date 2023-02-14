@@ -42,7 +42,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public void Draw()
         {
             CursorController.CursorInner(0, 0);
-            int posY = 0;
+            int posY = 1;
                 for (int x = 0; x < rows; x++)
                 {                    
                     for (int y = 0; y < cols; y++)
