@@ -44,12 +44,12 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public static void PlayerStatsCursorInner(int offsetX)
         {
-            Console.SetCursorPosition(49, 0 + offsetX);
+            Console.SetCursorPosition(49, 1 + offsetX);
         }
 
         public static void EnemyStatsCursorInner(int offsetX)
         {
-            Console.SetCursorPosition(49, 11 + offsetX);
+            Console.SetCursorPosition(49, 12 + offsetX);
         }
     }
 }

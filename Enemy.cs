@@ -16,11 +16,8 @@ namespace IslandsOfDiscoveryTxtRPG
             oldPosX = x;
             oldPosY = y;
             character = "@";            
-            corpse = "x";            
+            corpse = "x";
             dead = false;
-            basehealth = 10;
-            basespeed = 3;
-            basestrength = 3;
             health = basehealth;
             speed = basespeed;
             strength = basestrength;
@@ -42,7 +39,8 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveRollBack = false;
                 ResetMyPOS();                
             }
-            map.Redraw(oldPosX, oldPosY);            
+            map.Redraw(oldPosX, oldPosY);
+            //StatMe();
         }
         public void SpawnMe()
         {                        
@@ -50,8 +48,7 @@ namespace IslandsOfDiscoveryTxtRPG
         }
 
         public void MoveMe()
-        {
-            Random random = new Random();
+        {            
             int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
             
         switch (enemyMove)
@@ -75,6 +72,30 @@ namespace IslandsOfDiscoveryTxtRPG
                 default:             
                     break;
             }
-        }  
+        }
+        private void StatMe(Enemy enemy)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                CursorController.EnemyStatsCursorInner(i);
+                switch (i)
+                {
+                    case 0:
+                        Console.WriteLine("Enemy Stats");
+                        break;
+                    case 1:
+                        Console.WriteLine("Health: " + health);
+                        break;
+                    case 2:
+                        Console.WriteLine("Strength: " + strength);
+                        break;
+                    case 3:
+                        Console.WriteLine("Speed: " + speed);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

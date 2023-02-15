@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
-    internal abstract class Character //abstract prevents you from contructing this class on the field
+    internal abstract class Character                       //abstract prevents you from contructing this class on the field
     {
-        protected static int basehealth = 0;
-        protected static int basespeed = 0;
-        protected static int basestrength = 0;
-        protected static int health, speed, strength;
+        protected int basehealth, basespeed, basestrength;        
+        protected int health, speed, strength;
 
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character
@@ -21,20 +19,22 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public Map map;
 
-        public Character (int posX, int posY, Map map) //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        protected Random random = new Random();
+
+        public Character (int posX, int posY, Map map)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {            
             this.posX = posX;
             this.posY = posY;            
             this.map = map;
         }
 
-        virtual protected void WallCheck(int x, int y) //checks to see if the character is allowed to move onto the map location
+        virtual protected void WallCheck(int x, int y)      //checks to see if the character is allowed to move onto the map location
         {
-            if (x > map.cols || x < 0 + 1) //prevents character from moving outside bounds of border
+            if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
             {
                 moveRollBack = true;
             }
-            else if (y > map.rows || y < 0 + 1) //prevents character from moving outside bounds of border
+            else if (y > map.rows || y < 0 + 1)             //prevents character from moving outside bounds of border
             {
                 moveRollBack = true;
             }
