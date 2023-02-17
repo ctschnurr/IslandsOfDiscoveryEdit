@@ -10,6 +10,8 @@ namespace IslandsOfDiscoveryTxtRPG
     {                
         public ConsoleKeyInfo key;
         private int level, xp;
+
+        
         public Player(int x, int y, Map map) : base(x, y, map)
         {
             posX = x;
@@ -29,6 +31,7 @@ namespace IslandsOfDiscoveryTxtRPG
             xp = 0;
             base.map = map;
         }
+
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
             GetMyPOS();

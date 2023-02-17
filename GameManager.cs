@@ -18,6 +18,7 @@ namespace IslandsOfDiscoveryTxtRPG
         CombatManager combatManager = new CombatManager();
         CursorController cursorController = new CursorController();
         HUD hud = new HUD();
+        Items items = new Items();
         //EnemyManager enemyManager = new EnemyManager();
 
         //Game Loop

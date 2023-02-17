@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
-    internal abstract class Character                       //abstract prevents you from contructing this class on the field
+    internal abstract class Character                       //abstract prevents you from constructing this class on the field
     {
         protected int basehealth, basespeed, basestrength;        
         protected int health, speed, strength;
