@@ -10,7 +10,6 @@ namespace IslandsOfDiscoveryTxtRPG
     {                
         public ConsoleKeyInfo key;
         private int level, xp;
-
         
         public Player(int x, int y, Map map) : base(x, y, map)
         {
