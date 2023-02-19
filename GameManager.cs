@@ -35,6 +35,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 enemy2.Update(player, enemy, enemy2, enemy3);
                 enemy3.Update(player, enemy, enemy2, enemy3);
                 //combat manager update goes here.
+                itemManager.Update();
 
                 //draws  
                 //map.Draw();                
