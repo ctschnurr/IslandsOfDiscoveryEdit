@@ -31,7 +31,7 @@ namespace IslandsOfDiscoveryTxtRPG
             base.map = map;
         }
 
-        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
+        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3, ItemManager itemManager)
         {
             GetMyPOS();
             PlayerChoice();
@@ -44,12 +44,12 @@ namespace IslandsOfDiscoveryTxtRPG
                 ResetMyPOS();
             }
             map.Redraw(oldPosX, oldPosY);
-            StatMe();
+            StatMe(itemManager);            
         }
 
-        private void StatMe()
+        private void StatMe(ItemManager itemManager)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 CursorController.PlayerStatsCursorInner(i);
                 switch (i)
@@ -72,6 +72,9 @@ namespace IslandsOfDiscoveryTxtRPG
                     case 5:
                         Console.WriteLine("Speed: " + speed);
                         break;
+                    case 6:
+                        Console.WriteLine("Inventory: " + itemManager._PlayerInv);                                               
+                        break;
                     default:
                         break;
                 }
@@ -84,7 +87,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
 
-            CursorController.InputAreaCursor(1, 0);
+            CursorController.InputAreaCursor(0, 0);
 
             key = Console.ReadKey();
 

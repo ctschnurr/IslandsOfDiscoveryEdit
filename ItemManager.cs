@@ -11,22 +11,22 @@ namespace IslandsOfDiscoveryTxtRPG
 
         private bool firstRun = true;
         
-        List<string> treasureInv = new List<string>();          //field list for master treasure list
-        List<string> playerInv = new List<string>();            //field list for player inventory list
+        List<string> _treasureInv = new List<string>();          //field list for master treasure list
+        List<string> _playerInv = new List<string>();            //field list for player inventory list
         public ItemManager()                                    //constructor for Item Manager
         { 
-            treasureInv = new List<string>();
-            playerInv = new List<string>();
+            _treasureInv = new List<string>();
+            _playerInv = new List<string>();
         }
 
-        public string PlayerInv { get; set; }                   //getter/setter for the player inventory
-        public string TreasureInv { get; set; }                 //getter/setter for the master treasure list
+        public string _PlayerInv { get; set; }                   //getter/setter for the player inventory
+        public string _TreasureInv { get; set; }                 //getter/setter for the master treasure list
 
         public void InitTreasureInv()                           //initializes the starting master treasure list
         {
-            treasureInv.Add("boat");
-            treasureInv.Add("sword");
-            treasureInv.Add("key");
+            _treasureInv.Add("boat");
+            _treasureInv.Add("sword");
+            _treasureInv.Add("key");
         }
 
         public void Update()                                 //updates the inventory system
@@ -40,20 +40,22 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Reward()
         {
-            if (playerInv.Contains("boat"))                     //if the player has already earned the boat, they will get the remaining treasure
+            if (_playerInv.Contains("boat"))                     //if the player has already earned the boat, they will get the remaining treasure
             {
                 CursorController.InputAreaCursor(0, 0);
-                foreach (string item in treasureInv)
+                foreach (string item in _treasureInv)
                 {
-                    Console.WriteLine("You've received " + item + "!");
+                    Console.WriteLine("You've received a " + item + "!");
                 }
-                playerInv.AddRange(treasureInv);
+                _playerInv.AddRange(_treasureInv);
+                _treasureInv.Clear();
             }
             else                                                //if the player has not earned the boat, they will get the boat
             {
                 CursorController.InputAreaCursor(0, 0);
-                Console.WriteLine("You've received the " + treasureInv.First() + "!");
-                playerInv.Add(treasureInv.First());
+                Console.WriteLine("You've received the " + _treasureInv.First() + "!");
+                _playerInv.Add(_treasureInv.First());
+                _treasureInv.Remove(_treasureInv.First());
             }
         }
     }

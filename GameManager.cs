@@ -30,12 +30,14 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 //updates               
                 map.Update();
-                player.Update(enemy, enemy2, enemy3);
+                player.Update(enemy, enemy2, enemy3, itemManager);
                 enemy.Update(player, enemy, enemy2, enemy3);
                 enemy2.Update(player, enemy, enemy2, enemy3);
                 enemy3.Update(player, enemy, enemy2, enemy3);
                 //combat manager update goes here.
-                itemManager.Update();
+                itemManager.Update();                
+                itemManager.Reward();
+                
 
                 //draws  
                 //map.Draw();                
