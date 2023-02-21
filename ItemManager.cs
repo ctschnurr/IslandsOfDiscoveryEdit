@@ -13,7 +13,7 @@ namespace IslandsOfDiscoveryTxtRPG
         
         List<string> _treasureInv = new List<string>();          //field list for master treasure list
         List<string> _playerInv = new List<string>();            //field list for player inventory list
-        public ItemManager()                                    //constructor for Item Manager
+        public ItemManager()                                     //constructor for Item Manager
         { 
             _treasureInv = new List<string>();
             _playerInv = new List<string>();
@@ -22,7 +22,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public string _PlayerInv { get; set; }                   //getter/setter for the player inventory
         public string _TreasureInv { get; set; }                 //getter/setter for the master treasure list
 
-        public void InitTreasureInv()                           //initializes the starting master treasure list
+        public void InitTreasureInv()                            //initializes the starting master treasure list
         {
             _treasureInv.Add("boat");
             _treasureInv.Add("sword");
@@ -42,17 +42,19 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             if (_playerInv.Contains("boat"))                     //if the player has already earned the boat, they will get the remaining treasure
             {
-                CursorController.InputAreaCursor(0, 0);
+                int x = 1;
                 foreach (string item in _treasureInv)
-                {
+                {                    
+                    CursorController.InputAreaCursor(x, 0);
                     Console.WriteLine("You've received a " + item + "!");
+                    x++;
                 }
                 _playerInv.AddRange(_treasureInv);
                 _treasureInv.Clear();
             }
             else                                                //if the player has not earned the boat, they will get the boat
             {
-                CursorController.InputAreaCursor(0, 0);
+                CursorController.InputAreaCursor(1, 0);                
                 Console.WriteLine("You've received the " + _treasureInv.First() + "!");
                 _playerInv.Add(_treasureInv.First());
                 _treasureInv.Remove(_treasureInv.First());

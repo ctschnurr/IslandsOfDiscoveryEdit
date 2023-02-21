@@ -46,6 +46,7 @@ namespace IslandsOfDiscoveryTxtRPG
                         moveRollBack = true;
                         break;
                     case '~':
+                        //boat logic goes here
                         moveRollBack = true;
                         break;
                     default:
