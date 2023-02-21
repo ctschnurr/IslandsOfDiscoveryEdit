@@ -73,7 +73,10 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("Speed: " + speed);
                         break;
                     case 6:
-                        Console.WriteLine("Inventory: " + itemManager._PlayerInv);                                               
+                        if (itemManager.BagCheck("boat"))
+                        {
+                            Console.WriteLine("Boat.");
+                        }                                                                       
                         break;
                     default:
                         break;
@@ -86,7 +89,7 @@ namespace IslandsOfDiscoveryTxtRPG
             CursorController.InputAreaCursor(0, 0);
 
             Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
-
+           
             CursorController.InputAreaCursor(0, 0);
 
             key = Console.ReadKey();
@@ -110,6 +113,34 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
                 default:
                     break;
+            }
+        }
+
+        override protected void WallCheck(int x, int y)     //checks to see if the character is allowed to move onto the map location
+        {
+            if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
+            {
+                moveRollBack = true;
+            }
+            else if (y > map.rows || y < 0 + 1)             //prevents character from moving outside bounds of border
+            {
+                moveRollBack = true;
+            }
+            else
+            {
+                switch (map.map[y - 1, x - 1])
+                {
+                    case '^':
+                        moveRollBack = true;
+                        break;
+                    case '~':
+                        
+                        moveRollBack = true;
+                        break;
+                    default:
+                        moveRollBack = false;
+                        break;
+                }
             }
         }
     }

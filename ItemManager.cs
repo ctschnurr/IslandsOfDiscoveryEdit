@@ -37,6 +37,28 @@ namespace IslandsOfDiscoveryTxtRPG
                 firstRun = false;
             }
         }
+        public bool BagCheck(string itemQuery)
+        {
+            if (_playerInv.Count < 1)
+            {
+                return false;
+            }
+            else
+            {
+                foreach (string item in _playerInv)
+                {
+                    if (item == itemQuery)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
 
         public void Reward()
         {
