@@ -58,7 +58,12 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("Strength: " + player.strength);
                         break;                    
                     case 5:
-                        Console.WriteLine("Inventory: " + itemManager.PlayerInv.First());
+                        foreach (string item in itemManager.PlayerInv)
+                        {
+                            Console.WriteLine("Inventory: " + item);
+                            i++;
+                            CursorController.PlayerStatsCursorInner(i);
+                        }                        
                         break;
                     default:
                         break;

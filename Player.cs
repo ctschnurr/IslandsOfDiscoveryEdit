@@ -44,8 +44,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveRollBack = false;
                 ResetMyPOS();
             }
-            map.Redraw(oldPosX, oldPosY);
-            //StatMe(itemManager);            
+            map.Redraw(oldPosX, oldPosY);                        
         }
 
         public void PlayerChoice()

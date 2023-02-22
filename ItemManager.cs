@@ -10,42 +10,42 @@ namespace IslandsOfDiscoveryTxtRPG
     {
 
         private bool firstRun = true;
-        
-        List<string> _treasureInv = new List<string>();          //field list for master treasure list
-        List<string> _playerInv = new List<string>();            //field list for player inventory list
-        public ItemManager()                                     //constructor for Item Manager
-        { 
-            _treasureInv = new List<string>();       
-            _playerInv = new List<string>();           
-        }        
-
         public List<string> PlayerInv { get; set; }             //getter/setter for the player inventory
         public List<string> TreasureInv { get; set; }           //getter/setter for the master treasure list
 
+        public ItemManager()                                     //constructor for Item Manager
+        { 
+            TreasureInv = new List<string>();       
+            PlayerInv = new List<string>();  
+            InitTreasureInv();
+        }        
+
+       
+
         public void InitTreasureInv()                            //initializes the starting master treasure list
         {
-            _treasureInv.Add("boat");
-            _treasureInv.Add("sword");
-            _treasureInv.Add("key");
+            TreasureInv.Add("boat");
+            TreasureInv.Add("sword");
+            TreasureInv.Add("key");
         }
 
         public void Update()                                 //updates the inventory system
         {
-            if (firstRun == true)
-            {
-                InitTreasureInv();
-                firstRun = false;
-            }            
+            //if (firstRun == true)
+            //{
+            //    InitTreasureInv();
+            //    firstRun = false;
+            //}            
         }
         public bool BagCheck(string itemQuery)
         {
-            if (_playerInv.Count < 1)
+            if (PlayerInv.Count < 1)
             {
                 return false;
             }
             else
             {
-                foreach (string item in _playerInv)
+                foreach (string item in PlayerInv)
                 {
                     if (item == itemQuery)
                     {
@@ -62,24 +62,24 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Reward()
         {
-            if (_playerInv.Contains("boat"))                     //if the player has already earned the boat, they will get the remaining treasure
+            if (PlayerInv.Contains("boat"))                     //if the player has already earned the boat, they will get the remaining treasure
             {
                 int x = 1;
-                foreach (string item in _treasureInv)
+                foreach (string item in TreasureInv)
                 {                    
                     CursorController.InputAreaCursor(x, 0);
                     Console.WriteLine("You've received a " + item + "!");
                     x++;
                 }
-                _playerInv.AddRange(_treasureInv);
-                _treasureInv.Clear();
+                PlayerInv.AddRange(TreasureInv);
+                TreasureInv.Clear();
             }
             else                                                //if the player has not earned the boat, they will get the boat
             {
                 CursorController.InputAreaCursor(1, 0);                
-                Console.WriteLine("You've received the " + _treasureInv.First() + "!");
-                _playerInv.Add(_treasureInv.First());
-                _treasureInv.Remove(_treasureInv.First());
+                Console.WriteLine("You've received the " + TreasureInv.First() + "!");
+                PlayerInv.Add(TreasureInv.First());
+                TreasureInv.Remove(TreasureInv.First());
             }
         }
     }

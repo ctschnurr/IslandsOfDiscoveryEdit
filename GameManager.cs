@@ -28,6 +28,7 @@ namespace IslandsOfDiscoveryTxtRPG
             while (gameOver == false)
             {
                 //updates
+                itemManager.Update();                
                 hud.Update(player, itemManager);
                 map.Update();
                 player.Update(enemy, enemy2, enemy3, itemManager);
@@ -35,7 +36,6 @@ namespace IslandsOfDiscoveryTxtRPG
                 enemy2.Update(enemy, enemy2, enemy3);
                 enemy3.Update(enemy, enemy2, enemy3);
                 //combat manager update goes here.
-                itemManager.Update();                
                 itemManager.Reward();
                 
 
