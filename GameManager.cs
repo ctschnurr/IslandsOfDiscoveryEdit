@@ -12,10 +12,10 @@ namespace IslandsOfDiscoveryTxtRPG
 
         static Map map = new Map();
         HUD hud = new HUD();
-        Player player = new Player(22, 14, map);
-        Enemy enemy = new SeaSerpent(4, 4, map);
-        Enemy enemy2 = new Wyvern(24, 15, map);
-        Enemy enemy3 = new Slime(25, 14, map);
+        static Player player = new Player(22, 14, map, player);
+        Enemy enemy = new SeaSerpent(4, 4, map, player);
+        Enemy enemy2 = new Wyvern(24, 15, map, player);
+        Enemy enemy3 = new Slime(25, 14, map, player);
         CombatManager combatManager = new CombatManager();
         CursorController cursorController = new CursorController();
         ItemManager itemManager = new ItemManager();
@@ -24,16 +24,16 @@ namespace IslandsOfDiscoveryTxtRPG
 
         //Game Loop
         public void RunGame()
-        {
-            hud.Draw();
+        {            
             while (gameOver == false)
             {
-                //updates               
+                //updates
+                hud.Update(player, itemManager);
                 map.Update();
                 player.Update(enemy, enemy2, enemy3, itemManager);
-                enemy.Update(player, enemy, enemy2, enemy3);
-                enemy2.Update(player, enemy, enemy2, enemy3);
-                enemy3.Update(player, enemy, enemy2, enemy3);
+                enemy.Update(enemy, enemy2, enemy3);
+                enemy2.Update(enemy, enemy2, enemy3);
+                enemy3.Update(enemy, enemy2, enemy3);
                 //combat manager update goes here.
                 itemManager.Update();                
                 itemManager.Reward();

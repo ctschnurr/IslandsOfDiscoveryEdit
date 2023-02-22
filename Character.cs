@@ -9,7 +9,8 @@ namespace IslandsOfDiscoveryTxtRPG
     internal abstract class Character                       //abstract prevents you from constructing this class on the field
     {
         protected int basehealth, basespeed, basestrength;        
-        protected int health, speed, strength;
+        public int health { get; set; }        
+        public int strength { get; set; }
 
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character
@@ -18,14 +19,16 @@ namespace IslandsOfDiscoveryTxtRPG
         protected bool moveRollBack = false;                //switch to flip if character is attempting to move into an illegal location        
 
         public Map map;
+        public Player player;
 
         protected Random random = new Random();
 
-        public Character (int posX, int posY, Map map)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        public Character (int posX, int posY, Map map, Player player)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {            
             this.posX = posX;
             this.posY = posY;            
             this.map = map;
+            this.player = player;
         }
 
         virtual protected void WallCheck(int x, int y)      //checks to see if the character is allowed to move onto the map location
@@ -55,12 +58,12 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
             }
         }
-        virtual protected void GetMyPOS()
+        virtual protected void GetMyPOS() //getter
         {
             oldPosX = posX;
             oldPosY = posY;
         }
-        virtual protected void ResetMyPOS()
+        virtual protected void ResetMyPOS() //setter
         {
             posX = oldPosX;
             posY = oldPosY;
@@ -71,6 +74,11 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 dead = true;
             }
+        }
+
+        virtual protected void TakeDamage(int damage)
+        {
+
         }
         virtual public void Draw(int posX, int posY)
         {

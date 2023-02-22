@@ -8,14 +8,13 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Wyvern : Enemy
     {
-        public Wyvern(int x, int y, Map map) : base(x, y, map)
+        public Wyvern(int x, int y, Map map, Player player) : base(x, y, map, player)
         {
             character = "W";
             basehealth = 12;
             basespeed = 12;
             basestrength = 4;
-            health = basehealth;
-            speed = basespeed;
+            health = basehealth;            
             strength = basestrength;
             base.map = map;
         }

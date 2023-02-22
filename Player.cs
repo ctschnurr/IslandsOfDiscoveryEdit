@@ -9,9 +9,10 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Player : Character
     {                
         public ConsoleKeyInfo key;
-        private int level, xp;
+        public int level { get; set; }
+        public int xp { get; set; }
         
-        public Player(int x, int y, Map map) : base(x, y, map)
+        public Player(int x, int y, Map map, Player player) : base(x, y, map, player)
         {
             posX = x;
             posY = y;
@@ -24,11 +25,11 @@ namespace IslandsOfDiscoveryTxtRPG
             basehealth = 25;
             basespeed = 5;
             basestrength = 5;
-            health = basehealth + level;
-            speed = basespeed + level;
+            health = basehealth + level;            
             strength = basestrength + level;
             xp = 0;
             base.map = map;
+            base.player = player;
         }
 
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3, ItemManager itemManager)
@@ -44,44 +45,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 ResetMyPOS();
             }
             map.Redraw(oldPosX, oldPosY);
-            StatMe(itemManager);            
-        }
-
-        private void StatMe(ItemManager itemManager)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                CursorController.PlayerStatsCursorInner(i);
-                switch (i)
-                {
-                    case 0:
-                        Console.WriteLine("Player Stats");
-                        break;
-                    case 1:
-                        Console.WriteLine("Level: " + level);
-                        break;
-                    case 2:
-                        Console.WriteLine("XP: " + xp);
-                        break;
-                    case 3:
-                        Console.WriteLine("Health: " + health);
-                        break;
-                    case 4:
-                        Console.WriteLine("Strength: " + strength);
-                        break;
-                    case 5:
-                        Console.WriteLine("Speed: " + speed);
-                        break;
-                    case 6:
-                        if (itemManager.BagCheck("boat"))
-                        {
-                            Console.WriteLine("Boat.");
-                        }                                                                       
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //StatMe(itemManager);            
         }
 
         public void PlayerChoice()

@@ -8,14 +8,13 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class SeaSerpent : Enemy
     {
-        public SeaSerpent(int x, int y, Map map) : base(x, y, map)
+        public SeaSerpent(int x, int y, Map map, Player player) : base(x, y, map, player)
         {
             character = "S";
             basehealth = 22;
             basespeed = 5;
             basestrength = 8;
-            health = basehealth;
-            speed = basespeed;
+            health = basehealth;            
             strength = basestrength;
             base.map = map;
         }

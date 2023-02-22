@@ -15,12 +15,12 @@ namespace IslandsOfDiscoveryTxtRPG
         List<string> _playerInv = new List<string>();            //field list for player inventory list
         public ItemManager()                                     //constructor for Item Manager
         { 
-            _treasureInv = new List<string>();
-            _playerInv = new List<string>();
-        }
+            _treasureInv = new List<string>();       
+            _playerInv = new List<string>();           
+        }        
 
-        public string _PlayerInv { get; set; }                   //getter/setter for the player inventory
-        public string _TreasureInv { get; set; }                 //getter/setter for the master treasure list
+        public List<string> PlayerInv { get; set; }             //getter/setter for the player inventory
+        public List<string> TreasureInv { get; set; }           //getter/setter for the master treasure list
 
         public void InitTreasureInv()                            //initializes the starting master treasure list
         {
@@ -35,7 +35,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 InitTreasureInv();
                 firstRun = false;
-            }
+            }            
         }
         public bool BagCheck(string itemQuery)
         {

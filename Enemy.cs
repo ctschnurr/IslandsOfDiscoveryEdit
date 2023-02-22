@@ -9,7 +9,7 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Enemy : Character
     {      
         private int enemyCount = 0;        
-        public Enemy(int x, int y, Map map) : base(x, y, map)
+        public Enemy(int x, int y, Map map, Player player) : base(x, y, map, player)
         {
             posX = x;
             posY = y;
@@ -18,12 +18,12 @@ namespace IslandsOfDiscoveryTxtRPG
             character = "@";            
             corpse = "x";
             dead = false;
-            health = basehealth;
-            speed = basespeed;
+            health = basehealth;            
             strength = basestrength;
             base.map = map;
+            this.player = player;
         }
-        public void Update(Player player, Enemy enemy, Enemy enemy2, Enemy enemy3)
+        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
             if (enemyCount == 0)
             {
@@ -75,7 +75,7 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         private void StatMe(Enemy enemy)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 CursorController.EnemyStatsCursorInner(i);
                 switch (i)
@@ -88,10 +88,7 @@ namespace IslandsOfDiscoveryTxtRPG
                         break;
                     case 2:
                         Console.WriteLine("Strength: " + strength);
-                        break;
-                    case 3:
-                        Console.WriteLine("Speed: " + speed);
-                        break;
+                        break;                    
                     default:
                         break;
                 }
