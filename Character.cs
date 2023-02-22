@@ -104,11 +104,6 @@ namespace IslandsOfDiscoveryTxtRPG
                 dead = true;
             }
         }
-
-        virtual protected void TakeDamage(int damage)
-        {
-            health = health - damage;
-        }
         virtual public void Draw(int posX, int posY)
         {
             CursorController.CharacterPrintCursor(posX, posY);

@@ -46,7 +46,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     makeAttack = false;
                     ResetMyPOS();
                     HUD.StatEnemy(this);
-                    TakeDamage(player.strength);
+                    player.TakeDamage(strength);
                     CursorController.InputAreaCursor(0, 2);
                     Console.WriteLine("Enemy takes " + strength + " damage!");
                 }
@@ -57,6 +57,11 @@ namespace IslandsOfDiscoveryTxtRPG
         public void SpawnMe()
         {                        
             Draw(posX, posY); //draws the enemy on the map            
+        }
+
+        public void TakeDamage(int damage)
+        {
+            health = health - damage;
         }
 
         public void MoveMe()

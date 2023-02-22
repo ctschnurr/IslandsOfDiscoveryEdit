@@ -49,7 +49,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 makeAttack = false;
                 ResetMyPOS();
-                TakeDamage(strength);
+                enemy.TakeDamage(strength);
                 CursorController.InputAreaCursor(0, 2);
                 Console.WriteLine("You take " + strength + " damage!");
             }
@@ -122,6 +122,11 @@ namespace IslandsOfDiscoveryTxtRPG
                         break;
                 }
             }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            health = health - damage;
         }
 
         private void GameOverCheck()
