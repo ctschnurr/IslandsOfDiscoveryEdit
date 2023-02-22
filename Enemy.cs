@@ -19,7 +19,7 @@ namespace IslandsOfDiscoveryTxtRPG
             corpse = "x";
             dead = false;
             health = basehealth;            
-            strength = basestrength;
+            strength = basestrength;            
             base.map = map;
             this.player = player;
             this.itemManager = itemManager;
@@ -30,16 +30,29 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 SpawnMe();
             }
-            GetMyPOS();
-            MoveMe();
-            WallCheck(posX, posY, itemManager);
-            FightCheck(player.posX, player.posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
-            if (moveRollBack == true)
+            if (dead == false)
             {
-                moveRollBack = false;
-                ResetMyPOS();                
+                GetMyPOS();
+                MoveMe();
+                WallCheck(posX, posY, itemManager);
+                if (moveRollBack == true)
+                {
+                    moveRollBack = false;
+                    ResetMyPOS();                
+                }
+                FightCheck(player.posX, player.posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
+                if (makeAttack == true)
+                {
+                    makeAttack = false;
+                    ResetMyPOS();
+                    HUD.StatEnemy(this);
+                    TakeDamage(player.strength);
+                    CursorController.InputAreaCursor(0, 2);
+                    Console.WriteLine("Enemy takes " + strength + " damage!");
+                }
+                DeathCheck(itemManager);
+                map.Redraw(oldPosX, oldPosY);
             }
-            map.Redraw(oldPosX, oldPosY);            
         }
         public void SpawnMe()
         {                        
@@ -71,26 +84,13 @@ namespace IslandsOfDiscoveryTxtRPG
                 default:             
                     break;
             }
-        }
-        private void StatMe(Enemy enemy)
+        }        
+        private void DeathCheck(ItemManager itemManager)
         {
-            for (int i = 0; i < 3; i++)
+            if (health <= 0)
             {
-                CursorController.EnemyStatsCursorInner(i);
-                switch (i)
-                {
-                    case 0:
-                        Console.WriteLine("Enemy Stats");
-                        break;
-                    case 1:
-                        Console.WriteLine("Health: " + health);
-                        break;
-                    case 2:
-                        Console.WriteLine("Strength: " + strength);
-                        break;                    
-                    default:
-                        break;
-                }
+                dead = true;
+                itemManager.Reward();
             }
         }
     }

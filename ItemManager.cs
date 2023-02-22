@@ -29,28 +29,28 @@ namespace IslandsOfDiscoveryTxtRPG
         {
                         
         }
-        public bool BagCheck(string itemQuery)
-        {
-            if (PlayerInv.Count < 1)
-            {
-                return false;
-            }
-            else
-            {
-                foreach (string item in PlayerInv)
-                {
-                    if (item == itemQuery)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            return false;
-        }
+        //public bool BagCheck(string itemQuery)
+        //{
+        //    if (PlayerInv.Count < 1)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        foreach (string item in PlayerInv)
+        //        {
+        //            if (item == itemQuery)
+        //            {
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public void Reward()
         {

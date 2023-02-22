@@ -10,6 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public SeaSerpent(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
         {
+            name = "SeaSerpent";
             character = "S";
             basehealth = 22;
             basespeed = 5;

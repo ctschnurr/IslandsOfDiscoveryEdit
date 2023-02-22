@@ -9,7 +9,8 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Slime : Enemy
     {
         public Slime(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
-        {            
+        {
+            name = "Slime";
             character = "s";
             basehealth = 2;
             basespeed = 2;

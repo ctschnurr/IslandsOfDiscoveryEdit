@@ -10,6 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public Wyvern(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
         {
+            name = "Wyvern";
             character = "W";
             basehealth = 12;
             basespeed = 12;

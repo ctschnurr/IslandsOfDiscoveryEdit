@@ -71,7 +71,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void StatEnemy(Enemy enemy)
+        public static void StatEnemy(Enemy enemy)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -80,11 +80,14 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     case 0:
                         Console.WriteLine("Enemy Stats");
-                        break; 
+                        break;
                     case 1:
-                        Console.WriteLine("Health: " + enemy.health);
+                        Console.WriteLine("Name: " + enemy.name);
                         break;
                     case 2:
+                        Console.WriteLine("Health: " + enemy.health);
+                        break;
+                    case 3:
                         Console.WriteLine("Strength: " + enemy.strength);
                         break;                    
                     default:

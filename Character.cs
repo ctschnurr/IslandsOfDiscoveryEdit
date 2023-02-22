@@ -11,9 +11,10 @@ namespace IslandsOfDiscoveryTxtRPG
         protected int basehealth, basespeed, basestrength;        
         public int health { get; set; }        
         public int strength { get; set; }
+        public string name { get; set; }                    //name of character
 
         protected string character;                         //the alive version of the character
-        protected string corpse;                            //the dead version of the character
+        protected string corpse;                            //the dead version of the character        
         public int posX, posY, oldPosX, oldPosY;            //current and one step prior locations for characters (utilized for map redrawing)
         protected bool dead = false;                        //decides whether the character is dead or not, which determines what char is drawn for the character
         protected bool moveRollBack = false;                //switch to flip if character is attempting to move into an illegal location        
@@ -65,12 +66,12 @@ namespace IslandsOfDiscoveryTxtRPG
             if (playerx == enemyx && playery == enemyy || playerx == enemy2x && playery == enemy2y || playerx == enemy3x && playery == enemy3y)  //compares player location to enemy locations
             {
                 moveRollBack = true;
-                makeAttack = true;
+                makeAttack = true;                
             }
             else if (enemyx == playerx && enemyy == playery || enemy2x == playerx && enemy2y == playery || enemy3x == playerx && enemy3y == playery) //compares enemy locations to player location
             {
                 moveRollBack = true;
-                makeAttack = true;
+                makeAttack = true;                
             }
             else if (enemyx == enemy2x && enemyy == enemy2y || enemyx == enemy3x && enemyx == enemy3y) //compares enemy 1 to other two enemies
             {
@@ -106,7 +107,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         virtual protected void TakeDamage(int damage)
         {
-
+            health = health - damage;
         }
         virtual public void Draw(int posX, int posY)
         {

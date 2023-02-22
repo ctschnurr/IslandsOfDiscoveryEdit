@@ -14,6 +14,7 @@ namespace IslandsOfDiscoveryTxtRPG
         
         public Player(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
         {
+            name = "Player";
             posX = x;
             posY = y;
             oldPosX = x;
@@ -38,12 +39,22 @@ namespace IslandsOfDiscoveryTxtRPG
             GetMyPOS();
             PlayerChoice();
             WallCheck(posX, posY, itemManager);
-            FightCheck(posX, posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
             if (moveRollBack == true)
             {
                 moveRollBack = false;
                 ResetMyPOS();
             }
+            FightCheck(posX, posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
+            if (makeAttack == true)
+            {
+                makeAttack = false;
+                ResetMyPOS();
+                TakeDamage(strength);
+                CursorController.InputAreaCursor(0, 2);
+                Console.WriteLine("You take " + strength + " damage!");
+            }
+            DeathCheck();
+            GameOverCheck();
             map.Redraw(oldPosX, oldPosY);                        
         }
 
@@ -110,6 +121,17 @@ namespace IslandsOfDiscoveryTxtRPG
                         moveRollBack = false;
                         break;
                 }
+            }
+        }
+
+        private void GameOverCheck()
+        {
+            if (dead == true)
+            {
+                GameManager.gameOver = true;
+                CursorController.InputAreaCursor(0, 1);
+                Console.WriteLine("Game Over!");
+                Console.ReadKey();
             }
         }
     }
