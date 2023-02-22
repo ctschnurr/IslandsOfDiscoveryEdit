@@ -12,7 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public int level { get; set; }
         public int xp { get; set; }
         
-        public Player(int x, int y, Map map, Player player) : base(x, y, map, player)
+        public Player(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
         {
             posX = x;
             posY = y;
@@ -30,13 +30,14 @@ namespace IslandsOfDiscoveryTxtRPG
             xp = 0;
             base.map = map;
             base.player = player;
+            this.itemManager = itemManager;
         }
 
-        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3, ItemManager itemManager)
+        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
             GetMyPOS();
             PlayerChoice();
-            WallCheck(posX, posY);
+            WallCheck(posX, posY, itemManager);
             CombatManager.FightCheck(posX, posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
             if (moveRollBack == true || CombatManager.moveRollBack == true)
             {
@@ -79,7 +80,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        override protected void WallCheck(int x, int y)     //checks to see if the character is allowed to move onto the map location
+        override protected void WallCheck(int x, int y, ItemManager itemManager)     //checks to see if the character is allowed to move onto the map location
         {
             if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
             {
@@ -97,8 +98,14 @@ namespace IslandsOfDiscoveryTxtRPG
                         moveRollBack = true;
                         break;
                     case '~':
-                        
-                        moveRollBack = true;
+                        if (itemManager.PlayerInv.Contains("boat"))
+                        {
+                            moveRollBack = false;
+                        }
+                        else
+                        {
+                            moveRollBack = true;
+                        }                      
                         break;
                     default:
                         moveRollBack = false;

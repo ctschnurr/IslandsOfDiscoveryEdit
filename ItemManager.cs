@@ -7,20 +7,16 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class ItemManager
-    {
-
-        private bool firstRun = true;
+    {        
         public List<string> PlayerInv { get; set; }             //getter/setter for the player inventory
         public List<string> TreasureInv { get; set; }           //getter/setter for the master treasure list
 
-        public ItemManager()                                     //constructor for Item Manager
+        public ItemManager()                                    //constructor for Item Manager
         { 
             TreasureInv = new List<string>();       
             PlayerInv = new List<string>();  
             InitTreasureInv();
         }        
-
-       
 
         public void InitTreasureInv()                            //initializes the starting master treasure list
         {
@@ -31,11 +27,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Update()                                 //updates the inventory system
         {
-            //if (firstRun == true)
-            //{
-            //    InitTreasureInv();
-            //    firstRun = false;
-            //}            
+                        
         }
         public bool BagCheck(string itemQuery)
         {

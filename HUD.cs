@@ -32,7 +32,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 Print();
                 firstRender = false;
             }
-            StatPlayer(player, itemManager);
+            StatPlayer(player, itemManager);            
         }
 
         private void StatPlayer(Player player, ItemManager itemManager)
@@ -65,6 +65,28 @@ namespace IslandsOfDiscoveryTxtRPG
                             CursorController.PlayerStatsCursorInner(i);
                         }                        
                         break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void StatEnemy(Enemy enemy)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                CursorController.EnemyStatsCursorInner(i);
+                switch (i)
+                {
+                    case 0:
+                        Console.WriteLine("Enemy Stats");
+                        break; 
+                    case 1:
+                        Console.WriteLine("Health: " + enemy.health);
+                        break;
+                    case 2:
+                        Console.WriteLine("Strength: " + enemy.strength);
+                        break;                    
                     default:
                         break;
                 }

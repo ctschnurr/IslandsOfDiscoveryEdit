@@ -9,7 +9,7 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Enemy : Character
     {      
         private int enemyCount = 0;        
-        public Enemy(int x, int y, Map map, Player player) : base(x, y, map, player)
+        public Enemy(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
         {
             posX = x;
             posY = y;
@@ -22,6 +22,7 @@ namespace IslandsOfDiscoveryTxtRPG
             strength = basestrength;
             base.map = map;
             this.player = player;
+            this.itemManager = itemManager;
         }
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
@@ -31,7 +32,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             GetMyPOS();
             MoveMe();
-            WallCheck(posX, posY);
+            WallCheck(posX, posY, itemManager);
             CombatManager.FightCheck(player.posX, player.posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
             if (moveRollBack == true || CombatManager.moveRollBack == true)
             {
