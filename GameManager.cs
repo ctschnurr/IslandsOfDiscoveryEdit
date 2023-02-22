@@ -16,8 +16,7 @@ namespace IslandsOfDiscoveryTxtRPG
         static Player player = new Player(22, 14, map, player, itemManager);
         Enemy enemy = new SeaSerpent(4, 4, map, player, itemManager);
         Enemy enemy2 = new Wyvern(24, 15, map, player, itemManager);
-        Enemy enemy3 = new Slime(25, 14, map, player, itemManager);
-        CombatManager combatManager = new CombatManager();
+        Enemy enemy3 = new Slime(25, 14, map, player, itemManager);        
         CursorController cursorController = new CursorController();
 
         //Game Loop

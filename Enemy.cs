@@ -33,15 +33,13 @@ namespace IslandsOfDiscoveryTxtRPG
             GetMyPOS();
             MoveMe();
             WallCheck(posX, posY, itemManager);
-            CombatManager.FightCheck(player.posX, player.posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
-            if (moveRollBack == true || CombatManager.moveRollBack == true)
+            FightCheck(player.posX, player.posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
+            if (moveRollBack == true)
             {
-                CombatManager.moveRollBack = false;
                 moveRollBack = false;
                 ResetMyPOS();                
             }
-            map.Redraw(oldPosX, oldPosY);
-            //StatMe();
+            map.Redraw(oldPosX, oldPosY);            
         }
         public void SpawnMe()
         {                        

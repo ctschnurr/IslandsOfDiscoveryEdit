@@ -30,7 +30,7 @@ namespace IslandsOfDiscoveryTxtRPG
             xp = 0;
             base.map = map;
             base.player = player;
-            this.itemManager = itemManager;
+            base.itemManager = itemManager;
         }
 
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
@@ -38,10 +38,9 @@ namespace IslandsOfDiscoveryTxtRPG
             GetMyPOS();
             PlayerChoice();
             WallCheck(posX, posY, itemManager);
-            CombatManager.FightCheck(posX, posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
-            if (moveRollBack == true || CombatManager.moveRollBack == true)
+            FightCheck(posX, posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
+            if (moveRollBack == true)
             {
-                CombatManager.moveRollBack = false;
                 moveRollBack = false;
                 ResetMyPOS();
             }
