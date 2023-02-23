@@ -30,6 +30,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 SpawnMe();
             }
+            DeathCheck(itemManager);
             if (dead == false)
             {
                 GetMyPOS();
@@ -40,15 +41,20 @@ namespace IslandsOfDiscoveryTxtRPG
                     moveRollBack = false;
                     ResetMyPOS();                
                 }
-                FightCheck(player.posX, player.posY, enemy.posX, enemy.posY, enemy2.posX, enemy2.posY, enemy3.posX, enemy3.posY);
+                FightCheck(player, enemy, enemy2, enemy3);
                 if (makeAttack == true)
                 {
                     makeAttack = false;
-                    ResetMyPOS();
+                    ResetMyPOS();                    
                     HUD.StatEnemy(this);
                     player.TakeDamage(strength);
-                    CursorController.InputAreaCursor(0, 2);
-                    Console.WriteLine("Enemy takes " + strength + " damage!");
+                    CursorController.InputAreaCursor(3, 0);
+                    Console.WriteLine("Player takes " + strength + " damage!");
+                }
+                if (moveRollBack == true)
+                {
+                    moveRollBack = false;
+                    ResetMyPOS();
                 }
                 DeathCheck(itemManager);
                 map.Redraw(oldPosX, oldPosY);
@@ -92,8 +98,14 @@ namespace IslandsOfDiscoveryTxtRPG
         }        
         private void DeathCheck(ItemManager itemManager)
         {
-            if (health <= 0)
+            if (dead == true)
             {
+                return;
+            }
+            else if (health <= 0)
+            {
+                health = 0;
+                HUD.StatEnemy(this);
                 dead = true;
                 itemManager.Reward();
             }

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class ItemManager
-    {        
+    {
+        private bool potionUsed = false;
         public List<string> PlayerInv { get; set; }             //getter/setter for the player inventory
         public List<string> TreasureInv { get; set; }           //getter/setter for the master treasure list
 
@@ -21,36 +22,35 @@ namespace IslandsOfDiscoveryTxtRPG
         public void InitTreasureInv()                            //initializes the starting master treasure list
         {
             TreasureInv.Add("boat");
-            TreasureInv.Add("sword");
+            TreasureInv.Add("potion");
             TreasureInv.Add("key");
         }
 
         public void Update()                                 //updates the inventory system
         {
-                        
+            if (potionUsed == true)
+            {
+                PlayerInv.Remove("potion");
+            }
         }
-        //public bool BagCheck(string itemQuery)
-        //{
-        //    if (PlayerInv.Count < 1)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        foreach (string item in PlayerInv)
-        //        {
-        //            if (item == itemQuery)
-        //            {
-        //                return true;
-        //            }
-        //            else
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //    return false;
-        //}
+        public void BagCheck(Player player)
+        {            
+            foreach (string item in PlayerInv)
+            {
+                if (item == "potion")
+                {
+                    CursorController.InputAreaCursor(5, 0);
+                    Console.WriteLine("The player has healed for 10 health!");
+                    player.health = player.health + 10;
+                    potionUsed = true;
+                }
+                else
+                {
+                    CursorController.InputAreaCursor(4, 0);
+                    Console.WriteLine("No potion.");                    
+                }
+            }         
+        }
 
         public void Reward()
         {

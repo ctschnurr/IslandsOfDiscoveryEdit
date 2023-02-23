@@ -32,7 +32,24 @@ namespace IslandsOfDiscoveryTxtRPG
                 Print();
                 firstRender = false;
             }
+            ClearPlayer();
             StatPlayer(player, itemManager);            
+        }
+        private void ClearPlayer()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                CursorController.PlayerStatsCursorInner(i);
+                Console.WriteLine("                 ");
+            }
+        }
+        private static void ClearEnemy()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                CursorController.EnemyStatsCursorInner(i);
+                Console.WriteLine("                 ");
+            }
         }
 
         private void StatPlayer(Player player, ItemManager itemManager)
@@ -73,7 +90,8 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public static void StatEnemy(Enemy enemy)
         {
-            for (int i = 0; i < 3; i++)
+            ClearEnemy();
+            for (int i = 0; i < 4; i++)
             {
                 CursorController.EnemyStatsCursorInner(i);
                 switch (i)

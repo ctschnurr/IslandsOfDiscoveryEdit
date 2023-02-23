@@ -61,31 +61,49 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
             }
         }
-        virtual protected void FightCheck(int playerx, int playery, int enemyx, int enemyy, int enemy2x, int enemy2y, int enemy3x, int enemy3y)
+        virtual protected Enemy FightCheck(Player player, Enemy enemy, Enemy enemy1, Enemy enemy2)
         {
-            if (playerx == enemyx && playery == enemyy || playerx == enemy2x && playery == enemy2y || playerx == enemy3x && playery == enemy3y)  //compares player location to enemy locations
+            if (player.posX == enemy.posX && player.posY == enemy.posY)
             {
-                moveRollBack = true;
+                makeAttack = true;                
+                return enemy;
+            }
+            else if (player.posX == enemy1.posX && player.posY == enemy1.posY)
+            {
+                makeAttack = true;                
+                return enemy1;
+            }
+            else if (player.posX == enemy2.posX && player.posY == enemy2.posY)
+            {
+                makeAttack = true;                
+                return enemy2;
+            }
+            else if (enemy.posX == player.posX && enemy.posY == player.posY)
+            {
+                makeAttack = true;                                
+            }
+            else if (enemy1.posX == player.posX && enemy1.posY == player.posY)
+            {
                 makeAttack = true;                
             }
-            else if (enemyx == playerx && enemyy == playery || enemy2x == playerx && enemy2y == playery || enemy3x == playerx && enemy3y == playery) //compares enemy locations to player location
+            else if (enemy2.posX == player.posX && enemy2.posY == player.posY)
             {
-                moveRollBack = true;
                 makeAttack = true;                
             }
-            else if (enemyx == enemy2x && enemyy == enemy2y || enemyx == enemy3x && enemyx == enemy3y) //compares enemy 1 to other two enemies
+            else if (enemy.posX == enemy1.posX && enemy.posY == enemy1.posY || enemy.posX == enemy2.posX && enemy.posY == enemy2.posY)
             {
                 moveRollBack = true;
             }
-            else if (enemy2x == enemyx && enemy2y == enemyy || enemy2x == enemy3x && enemy2x == enemy3y) //compares enemy 2 to other two enemies
+            else if (enemy1.posX == enemy2.posX && enemy1.posY == enemy2.posY || enemy1.posX == enemy.posX && enemy1.posY == enemy.posY)
             {
                 moveRollBack = true;
             }
-            else if (enemy3x == enemyx && enemy3y == enemyy || enemy3x == enemy2x && enemy3y == enemy2y) //compares enemy 3 to other two enemies
+            else if (enemy2.posX == enemy1.posX && enemy2.posY == enemy1.posY || enemy2.posX == enemy.posX && enemy2.posY == enemy.posY)
             {
                 moveRollBack = true;
             }
-            return;
+            moveRollBack = true;
+            return null;
         }        
         virtual protected void GetMyPOS() //getter
         {
@@ -101,6 +119,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             if (health <= 0)
             {
+                health = 0;
                 dead = true;
             }
         }
