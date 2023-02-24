@@ -12,7 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         private bool firstRender = true;
 
         public void Draw()
-        {   
+        {
             
         }
         public void Print()
@@ -31,9 +31,9 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Print();
                 firstRender = false;
-            }
+            }            
             ClearPlayer();
-            StatPlayer(player, itemManager);            
+            StatPlayer(player, itemManager);
         }
         private void ClearPlayer()
         {
@@ -49,6 +49,15 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 CursorController.EnemyStatsCursorInner(i);
                 Console.WriteLine("                 ");
+            }
+        }
+
+        public static void ClearInputArea()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                CursorController.InputAreaCursor(i, 0);
+                Console.WriteLine("                                                                 ");
             }
         }
 

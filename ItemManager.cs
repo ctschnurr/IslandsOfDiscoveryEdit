@@ -39,16 +39,11 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 if (item == "potion")
                 {
-                    CursorController.InputAreaCursor(5, 0);
+                    CursorController.InputAreaCursor(4, 0);
                     Console.WriteLine("The player has healed for 10 health!");
                     player.health = player.health + 10;
                     potionUsed = true;
-                }
-                else
-                {
-                    CursorController.InputAreaCursor(4, 0);
-                    Console.WriteLine("No potion.");                    
-                }
+                }               
             }         
         }
 

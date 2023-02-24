@@ -17,6 +17,9 @@ namespace IslandsOfDiscoveryTxtRPG
             basestrength = 1;
             health = basehealth;            
             strength = basestrength;
+            xpValue = 2;
+            moveEnergy = 0;
+            energyToMove = 200;
             base.map = map;
             base.player = player;
             base.itemManager = itemManager;

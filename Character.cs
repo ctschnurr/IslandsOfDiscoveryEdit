@@ -101,8 +101,7 @@ namespace IslandsOfDiscoveryTxtRPG
             else if (enemy2.posX == enemy1.posX && enemy2.posY == enemy1.posY || enemy2.posX == enemy.posX && enemy2.posY == enemy.posY)
             {
                 moveRollBack = true;
-            }
-            moveRollBack = true;
+            }            
             return null;
         }        
         virtual protected void GetMyPOS() //getter

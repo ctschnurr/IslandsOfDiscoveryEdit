@@ -8,7 +8,10 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Enemy : Character
     {      
-        private int enemyCount = 0;        
+        private int enemyCount = 0;
+        protected int xpValue;
+        protected int moveEnergy;
+        protected int energyToMove;
         public Enemy(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
         {
             posX = x;
@@ -19,7 +22,9 @@ namespace IslandsOfDiscoveryTxtRPG
             corpse = "x";
             dead = false;
             health = basehealth;            
-            strength = basestrength;            
+            strength = basestrength;
+            xpValue = 0;
+            moveEnergy = 0;
             base.map = map;
             this.player = player;
             this.itemManager = itemManager;
@@ -71,29 +76,34 @@ namespace IslandsOfDiscoveryTxtRPG
         }
 
         public void MoveMe()
-        {            
-            int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
-            
-        switch (enemyMove)
+        {
+            moveEnergy += 100;
+            if (moveEnergy >= energyToMove)
             {
-                case 1:
-                posY--;
-                    break;
+                int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
+            
+                switch (enemyMove)
+                {
+                    case 1:
+                    posY--;
+                        break;
 
-                case 2:
-                posX--;
-                    break;
+                    case 2:
+                    posX--;
+                        break;
 
-                case 3:
-                posY++;                
-                    break;
+                    case 3:
+                    posY++;                
+                        break;
 
-                case 4:
-                posX++;              
-                    break;
+                    case 4:
+                    posX++;              
+                        break;
 
-                default:             
-                    break;
+                    default:             
+                        break;
+                }
+                moveEnergy -= energyToMove;
             }
         }        
         private void DeathCheck(ItemManager itemManager)
@@ -108,6 +118,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 HUD.StatEnemy(this);
                 dead = true;
                 itemManager.Reward();
+                player.xp = player.xp + xpValue;
             }
         }
     }

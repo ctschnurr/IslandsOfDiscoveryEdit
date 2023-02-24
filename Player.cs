@@ -28,7 +28,7 @@ namespace IslandsOfDiscoveryTxtRPG
             basehealth = 25;
             basespeed = 5;
             basestrength = 5;
-            health = basehealth + level;            
+            health = basehealth;            
             strength = basestrength + level;
             xp = 0;
             base.map = map;
@@ -39,7 +39,9 @@ namespace IslandsOfDiscoveryTxtRPG
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
             GetMyPOS();
+            LevelCheck();
             PlayerChoice();
+            HUD.ClearInputArea();
             WallCheck(posX, posY, itemManager);
             if (moveRollBack == true)
             {
@@ -140,6 +142,16 @@ namespace IslandsOfDiscoveryTxtRPG
                 CursorController.InputAreaCursor(2, 0);
                 Console.WriteLine("Game Over!");
                 Console.ReadKey();
+            }
+        }
+
+        private void LevelCheck()
+        {
+            if (xp > level * 10)
+            {
+                xp -= level * 10;
+                level++;
+                strength = basestrength + level;
             }
         }
     }
