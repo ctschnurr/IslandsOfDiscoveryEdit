@@ -67,7 +67,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             CursorController.InputAreaCursor(0, 0);
 
-            Console.WriteLine("Press 'W' to move North, 'A' to move West, 'S' to move South, or 'D' to move East. Press 'ESC' to Quit.");
+            Console.WriteLine("North(W), West(A), South(S), East(D). Press 'ESC' to Quit.");
            
             CursorController.InputAreaCursor(1, 0);
 
