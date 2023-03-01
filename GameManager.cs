@@ -11,13 +11,13 @@ namespace IslandsOfDiscoveryTxtRPG
         public static bool gameOver = false;
 
         static Map map = new Map();
-        HUD hud = new HUD();
+        static HUD hud = new HUD();
         static ItemManager itemManager = new ItemManager();
-        static Player player = new Player(22, 14, map, player, itemManager);
-        Enemy enemy = new SeaSerpent(4, 4, map, player, itemManager);
-        Enemy enemy2 = new Wyvern(24, 15, map, player, itemManager);
-        Enemy enemy3 = new Slime(25, 14, map, player, itemManager);        
-        CursorController cursorController = new CursorController();
+        static CursorController cursorController = new CursorController();
+        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController);
+        Enemy enemy = new SeaSerpent(4, 4, map, player, itemManager, hud, cursorController);
+        Enemy enemy2 = new Wyvern(24, 15, map, player, itemManager, hud, cursorController);
+        Enemy enemy3 = new Slime(25, 14, map, player, itemManager, hud, cursorController);        
 
         //Game Loop
         public void RunGame()

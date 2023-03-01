@@ -14,7 +14,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         private Enemy target;
         
-        public Player(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
+        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, player, itemManager, hud, cursorController)
         {
             name = "Player";
             posX = x;
@@ -34,6 +34,8 @@ namespace IslandsOfDiscoveryTxtRPG
             base.map = map;
             base.player = player;
             base.itemManager = itemManager;
+            base.hud = hud;
+            base.cursorController = cursorController;
         }
 
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)

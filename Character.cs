@@ -23,16 +23,20 @@ namespace IslandsOfDiscoveryTxtRPG
         public Map map;
         public Player player;
         public ItemManager itemManager;
+        public HUD hud;
+        public CursorController cursorController;
 
         protected Random random = new Random();
 
-        public Character (int posX, int posY, Map map, Player player, ItemManager itemManager)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        public Character (int posX, int posY, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {
             this.posX = posX;
             this.posY = posY;
             this.map = map;
             this.player = player;
             this.itemManager = itemManager;
+            this.hud = hud;
+            this.cursorController = cursorController;
         }
 
         virtual protected void WallCheck(int x, int y, ItemManager itemManager)      //checks to see if the character is allowed to move onto the map location

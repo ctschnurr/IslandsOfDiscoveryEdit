@@ -8,7 +8,7 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class SeaSerpent : Enemy
     {
-        public SeaSerpent(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
+        public SeaSerpent(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, player, itemManager, hud, cursorController)
         {
             name = "SeaSerpent";
             character = "S";
@@ -23,6 +23,8 @@ namespace IslandsOfDiscoveryTxtRPG
             base.map = map;
             base.player = player;
             base.itemManager = itemManager;
+            base.hud = hud;
+            base.cursorController = cursorController;
         }
 
         override protected void WallCheck(int x, int y, ItemManager itemManager) //checks to see if the character is allowed to move onto the map location

@@ -12,7 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         protected int xpValue;
         protected int moveEnergy;
         protected int energyToMove;
-        public Enemy(int x, int y, Map map, Player player, ItemManager itemManager) : base(x, y, map, player, itemManager)
+        public Enemy(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, player, itemManager, hud, cursorController)
         {
             posX = x;
             posY = y;
@@ -28,6 +28,8 @@ namespace IslandsOfDiscoveryTxtRPG
             base.map = map;
             this.player = player;
             this.itemManager = itemManager;
+            this.hud = hud;
+            this.cursorController = cursorController;
         }
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
