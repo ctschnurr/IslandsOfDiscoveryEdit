@@ -9,6 +9,7 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class ItemManager
     {
         private bool potionUsed = false;
+        private int potionHealAmount = 10;
         public List<string> PlayerInv { get; set; }             //getter/setter for the player inventory
         public List<string> TreasureInv { get; set; }           //getter/setter for the master treasure list
 
@@ -33,15 +34,13 @@ namespace IslandsOfDiscoveryTxtRPG
                 PlayerInv.Remove("potion");
             }
         }
-        public void BagCheck(Player player)
+        public void CheckForPotion(Player player)
         {            
             foreach (string item in PlayerInv)
             {
                 if (item == "potion")
-                {
-                    CursorController.InputAreaCursor(4, 0);
-                    Console.WriteLine("The player has healed for 10 health!");
-                    player.health = player.health + 10;
+                {                    
+                    player.HealthIncrease(potionHealAmount);
                     potionUsed = true;
                 }               
             }         

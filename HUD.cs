@@ -11,12 +11,8 @@ namespace IslandsOfDiscoveryTxtRPG
     {      
         private bool firstRender = true;
         public string message;
-
+                
         public void Draw()
-        {
-            
-        }
-        public void Print()
         {
             string[] hudBorders = File.ReadAllLines(@"Maps_and_Overlays/HudBorders.txt");
 
@@ -30,7 +26,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             if (firstRender)
             {
-                Print();
+                Draw();
                 firstRender = false;
             }            
             ClearPlayer();

@@ -33,38 +33,30 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
-            if (enemyCount == 0)
-            {
-                SpawnMe();
-            }
+            SpawnMe();            
             DeathCheck(itemManager);
             if (dead == false)
             {
-                GetMyPOS();
+                StoreMyPOS();
                 MoveMe();
-                WallCheck(posX, posY, itemManager);
-                if (moveRollBack == true)
-                {
-                    moveRollBack = false;
-                    ResetMyPOS();                
-                }
-                FightCheck(player, enemy, enemy2, enemy3);
-                if (makeAttack == true)
-                {
-                    makeAttack = false;
-                    ResetMyPOS();                    
-                    HUD.StatEnemy(this);
-                    player.TakeDamage(strength);
-                    CursorController.InputAreaCursor(3, 0);
-                    Console.WriteLine("Player takes " + strength + " damage!");
-                }
-                if (moveRollBack == true)
-                {
-                    moveRollBack = false;
-                    ResetMyPOS();
-                }
+                ObstacleCheck(posX, posY, itemManager);
+                UndoMoveCheck();
+                CheckForFight(player, enemy, enemy2, enemy3);
+                Fight();
+                UndoMoveCheck();
                 DeathCheck(itemManager);
                 map.Redraw(oldPosX, oldPosY);
+            }
+        }
+
+        private void Fight()
+        {
+            if (makeAttack == true)
+            {
+                makeAttack = false;
+                ResetMyPOS();
+                HUD.StatEnemy(this);
+                player.HealthDecrease(strength);                
             }
         }
         public void SpawnMe()
@@ -72,10 +64,10 @@ namespace IslandsOfDiscoveryTxtRPG
             Draw(posX, posY); //draws the enemy on the map            
         }
 
-        public void TakeDamage(int damage)
-        {
-            health = health - damage;
-        }
+        //public void HealthDecrease(int amount)
+        //{
+        //    health -= amount;
+        //}
 
         public void MoveMe()
         {

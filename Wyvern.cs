@@ -27,7 +27,7 @@ namespace IslandsOfDiscoveryTxtRPG
             base.cursorController = cursorController;
         }
 
-        override protected void WallCheck(int x, int y, ItemManager itemManager) //checks to see if the character is allowed to move onto the map location
+        override protected void ObstacleCheck(int x, int y, ItemManager itemManager) //checks to see if the character is allowed to move onto the map location
         {
             if (x > map.cols || x < 0 + 1) //prevents character from moving outside bounds of border
             {

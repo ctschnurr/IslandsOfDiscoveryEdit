@@ -40,32 +40,36 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
         {
-            GetMyPOS();
-            LevelCheck();
-            PlayerChoice();
-            HUD.ClearInputArea();
-            WallCheck(posX, posY, itemManager);
-            if (moveRollBack == true)
-            {
-                moveRollBack = false;
-                ResetMyPOS();
-            }
-            target = FightCheck(this, enemy, enemy2, enemy3);
+            StoreMyPOS();                                               // stores the player's current POS for reference
+            PlayerInput();                                              // takes player input and adjusts x/y position
+            HUD.ClearInputArea();                                       // clears the input/output area to make room for future output
+            ObstacleCheck(posX, posY, itemManager);                     // checks if the space the player wants to move to is traversible
+            UndoMoveCheck();                                            // if the attempted move is illegal, moves the player back
+            target = CheckForFight(this, enemy, enemy2, enemy3);        // checks for a fight and returns the enemy that is being fought
+            Fight();                                                    // if there is a fight, informs the target of how much damage it takes
+            itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
+            map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map
+            EndOfTurnChecks();                                          // variety of state checks (level up, death, gameover)
+        }
+
+        private void Fight()
+        {
             if (makeAttack == true)
             {
                 makeAttack = false;
                 ResetMyPOS();
-                target.TakeDamage(strength);
-                CursorController.InputAreaCursor(3, 0);
-                Console.WriteLine(target.name + " takes " + strength + " damage!");
+                target.HealthDecrease(strength);
             }
-            itemManager.BagCheck(this);
-            DeathCheck();
-            GameOverCheck();
-            map.Redraw(oldPosX, oldPosY);                        
         }
 
-        public void PlayerChoice()
+        private void EndOfTurnChecks()
+        {
+            LevelIncrease();
+            DeathCheck();
+            GameOverCheck();
+        }
+
+        public void PlayerInput()
         {
             CursorController.InputAreaCursor(0, 0);
 
@@ -97,7 +101,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        override protected void WallCheck(int x, int y, ItemManager itemManager)     //checks to see if the character is allowed to move onto the map location
+        override protected void ObstacleCheck(int x, int y, ItemManager itemManager)     //checks to see if the character is allowed to move onto the map location
         {
             if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
             {
@@ -130,12 +134,6 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
             }
         }
-
-        public void TakeDamage(int damage)
-        {
-            health = health - damage;
-        }
-
         private void GameOverCheck()
         {
             if (dead == true)
@@ -147,13 +145,15 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        private void LevelCheck()
+        private void LevelIncrease()
         {
             if (xp > level * 10)
             {
                 xp -= level * 10;
                 level++;
                 strength = basestrength + level;
+                CursorController.InputAreaCursor(3, 0);
+                Console.WriteLine(name + " has gained a level!");
             }
         }
     }

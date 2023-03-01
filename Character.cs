@@ -39,7 +39,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.cursorController = cursorController;
         }
 
-        virtual protected void WallCheck(int x, int y, ItemManager itemManager)      //checks to see if the character is allowed to move onto the map location
+        virtual protected void ObstacleCheck(int x, int y, ItemManager itemManager)      //checks to see if the character is allowed to move onto the map location
         {
             if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
             {
@@ -65,7 +65,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
             }
         }
-        virtual protected Enemy FightCheck(Player player, Enemy enemy, Enemy enemy1, Enemy enemy2)
+        virtual protected Enemy CheckForFight(Player player, Enemy enemy, Enemy enemy1, Enemy enemy2)
         {
             if (player.posX == enemy.posX && player.posY == enemy.posY)
             {
@@ -108,15 +108,24 @@ namespace IslandsOfDiscoveryTxtRPG
             }            
             return null;
         }        
-        virtual protected void GetMyPOS() //getter
+        virtual protected void StoreMyPOS() 
         {
             oldPosX = posX;
             oldPosY = posY;
         }
-        virtual protected void ResetMyPOS() //setter
+        virtual protected void ResetMyPOS() 
         {
             posX = oldPosX;
             posY = oldPosY;
+        }
+
+        virtual protected void UndoMoveCheck()
+        {
+            if (moveRollBack == true)
+            {
+                moveRollBack = false;
+                ResetMyPOS();
+            }
         }
         virtual protected void DeathCheck()
         {
@@ -125,6 +134,19 @@ namespace IslandsOfDiscoveryTxtRPG
                 health = 0;
                 dead = true;
             }
+        }
+        virtual public void HealthDecrease(int amount)
+        {
+            CursorController.InputAreaCursor(4, 0);
+            Console.WriteLine("The " + name + " has lost " + amount + " health!");
+            health -= amount;
+        }
+
+        virtual public void HealthIncrease(int amount)
+        {
+            CursorController.InputAreaCursor(3, 0);
+            Console.WriteLine("The " + name + " has healed for " + amount + " health!");
+            health += amount;
         }
         virtual public void Draw(int posX, int posY)
         {
