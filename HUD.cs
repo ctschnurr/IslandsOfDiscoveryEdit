@@ -10,6 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class HUD
     {      
         private bool firstRender = true;
+        public string message;
 
         public void Draw()
         {

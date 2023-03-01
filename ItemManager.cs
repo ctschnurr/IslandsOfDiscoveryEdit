@@ -19,14 +19,14 @@ namespace IslandsOfDiscoveryTxtRPG
             InitTreasureInv();
         }        
 
-        public void InitTreasureInv()                            //initializes the starting master treasure list
+        public void InitTreasureInv()                           //initializes the starting master treasure list
         {
             TreasureInv.Add("boat");
             TreasureInv.Add("potion");
             TreasureInv.Add("key");
         }
 
-        public void Update()                                 //updates the inventory system
+        public void Update()                                    //updates the inventory system
         {
             if (potionUsed == true)
             {

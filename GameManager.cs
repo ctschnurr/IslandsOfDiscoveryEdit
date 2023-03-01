@@ -34,11 +34,11 @@ namespace IslandsOfDiscoveryTxtRPG
                 enemy3.Update(enemy, enemy2, enemy3);                                           
 
                 //draws 
+                //hud.Draw();
                 player.Draw(player.posX, player.posY);
                 enemy.Draw(enemy.posX, enemy.posY);
                 enemy2.Draw(enemy2.posX, enemy2.posY);
                 enemy3.Draw(enemy3.posX, enemy3.posY);
-                //hud.Draw();
             }           
         }
     }
