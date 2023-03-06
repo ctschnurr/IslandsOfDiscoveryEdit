@@ -6,25 +6,33 @@ using System.Threading.Tasks;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
-    //internal class EnemyManager
-    //{
-    //    int maxEnemies = 5;
+    internal class EnemyManager
+    {
+        Enemy[] enemies = new Enemy[25];
 
-    //    public Enemy[] enemyList = new Enemy[5];
+        //constructor
 
-    //    public EnemyManager()
-    //    {
-    //        for (int i = 0; i < maxEnemies; i++)
-    //        {
-    //            if (i < 3)
-    //            {
-    //                Enemy enemy = new Slime();
-    //            }
-    //            else if (i > 2)
-    //            {
-    //                Enemy enemy = new SeaSerpent();
-    //            }
-    //        }
-    //    }
-    //}
+        public EnemyManager()
+        {
+
+        }
+
+        public void Update()
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy enemy = enemies[i];
+                enemy.Update();
+            }
+        }
+
+        public void Draw()
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy enemy = enemies[i];
+                enemy.Draw();
+            }
+        }
+    }
 }
