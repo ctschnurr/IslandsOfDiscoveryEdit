@@ -38,14 +38,14 @@ namespace IslandsOfDiscoveryTxtRPG
             base.cursorController = cursorController;
         }
 
-        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
+        public void Update()
         {
             StoreMyPOS();                                               // stores the player's current POS for reference
             PlayerInput();                                              // takes player input and adjusts x/y position
             HUD.ClearInputArea();                                       // clears the input/output area to make room for future output
             ObstacleCheck(posX, posY, itemManager);                     // checks if the space the player wants to move to is traversible
             UndoMoveCheck();                                            // if the attempted move is illegal, moves the player back
-            target = CheckForFight(this, enemy, enemy2, enemy3);        // checks for a fight and returns the enemy that is being fought
+            //target = CheckForFight(this, enemy, enemy2, enemy3);        // checks for a fight and returns the enemy that is being fought
             Fight();                                                    // if there is a fight, informs the target of how much damage it takes
             itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
             map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map

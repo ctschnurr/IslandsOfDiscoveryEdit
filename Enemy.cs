@@ -31,7 +31,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.hud = hud;
             this.cursorController = cursorController;
         }
-        public void Update(Enemy enemy, Enemy enemy2, Enemy enemy3)
+        public void Update()
         {
             SpawnMe();            
             DeathCheck(itemManager);
@@ -41,7 +41,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 MoveMe();
                 ObstacleCheck(posX, posY, itemManager);
                 UndoMoveCheck();
-                CheckForFight(player, enemy, enemy2, enemy3);
+                //CheckForFight(player, enemy, enemy2, enemy3);
                 Fight();
                 UndoMoveCheck();
                 DeathCheck(itemManager);
@@ -63,11 +63,6 @@ namespace IslandsOfDiscoveryTxtRPG
         {                        
             Draw(posX, posY); //draws the enemy on the map            
         }
-
-        //public void HealthDecrease(int amount)
-        //{
-        //    health -= amount;
-        //}
 
         public void MoveMe()
         {
@@ -112,7 +107,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 HUD.StatEnemy(this);
                 dead = true;
                 itemManager.Reward();
-                player.xp = player.xp + xpValue;
+                player.xp += xpValue;
             }
         }
     }
