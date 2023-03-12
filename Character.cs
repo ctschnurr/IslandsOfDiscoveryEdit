@@ -39,30 +39,19 @@ namespace IslandsOfDiscoveryTxtRPG
             this.cursorController = cursorController;
         }
 
-        virtual protected void ObstacleCheck(int x, int y, ItemManager itemManager)      //checks to see if the character is allowed to move onto the map location
+        virtual protected void Walkable(int x, int y)
         {
-            if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
+            if (map.TerrainCheck('^', x, y))
             {
-                moveRollBack = true;
+                ResetMyPOS();
             }
-            else if (y > map.rows || y < 0 + 1)             //prevents character from moving outside bounds of border
+            else if (map.TerrainCheck('~', x, y))
             {
-                moveRollBack = true;
+                ResetMyPOS();
             }
-            else
+            else 
             {
-                switch (map.map[y - 1, x - 1])
-                {
-                    case '^':
-                        moveRollBack = true;
-                        break;
-                    case '~':                        
-                        moveRollBack = true;
-                        break;
-                    default:
-                        moveRollBack = false;
-                        break;
-                }
+                 
             }
         }
         virtual protected Enemy CheckForFight(Player player, Enemy enemy, Enemy enemy1, Enemy enemy2)
@@ -117,16 +106,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             posX = oldPosX;
             posY = oldPosY;
-        }
-
-        virtual protected void UndoMoveCheck()
-        {
-            if (moveRollBack == true)
-            {
-                moveRollBack = false;
-                ResetMyPOS();
-            }
-        }
+        }        
         virtual protected void DeathCheck()
         {
             if (health <= 0)

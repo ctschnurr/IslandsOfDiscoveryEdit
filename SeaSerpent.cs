@@ -27,37 +27,44 @@ namespace IslandsOfDiscoveryTxtRPG
             base.cursorController = cursorController;
         }
 
-        override protected void ObstacleCheck(int x, int y, ItemManager itemManager) //checks to see if the character is allowed to move onto the map location
+        //override protected void ObstacleCheck(int x, int y, ItemManager itemManager) //checks to see if the character is allowed to move onto the map location
+        //{
+        //    if (x > map.cols || x < 0 + 1) //prevents character from moving outside bounds of border
+        //    {
+        //        moveRollBack = true;
+        //    }
+        //    else if (y > map.rows || y < 0 + 1) //prevents character from moving outside bounds of border
+        //    {
+        //        moveRollBack = true;
+        //    }
+        //    else
+        //    {
+        //        switch (map.map[y - 1, x - 1])
+        //        {
+        //            case '^':
+        //                moveRollBack = true;
+        //                break;
+        //            case '`':
+        //                moveRollBack = true;
+        //                break;
+        //            case '#':
+        //                moveRollBack = true;
+        //                break;
+        //            case '*':
+        //                moveRollBack = true;
+        //                break;
+        //            default:
+        //                moveRollBack = false;
+        //                break;
+        //        }
+        //    }
+        //}
+        override protected void Walkable(int x, int y)
         {
-            if (x > map.cols || x < 0 + 1) //prevents character from moving outside bounds of border
+            if (!map.TerrainCheck('~', x, y))
             {
-                moveRollBack = true;
-            }
-            else if (y > map.rows || y < 0 + 1) //prevents character from moving outside bounds of border
-            {
-                moveRollBack = true;
-            }
-            else
-            {
-                switch (map.map[y - 1, x - 1])
-                {
-                    case '^':
-                        moveRollBack = true;
-                        break;
-                    case '`':
-                        moveRollBack = true;
-                        break;
-                    case '#':
-                        moveRollBack = true;
-                        break;
-                    case '*':
-                        moveRollBack = true;
-                        break;
-                    default:
-                        moveRollBack = false;
-                        break;
-                }
-            }
-        }  
+                ResetMyPOS();
+            }            
+        }
     }
 }

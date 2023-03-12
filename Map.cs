@@ -92,6 +92,19 @@ namespace IslandsOfDiscoveryTxtRPG
             ColourCode(y - 1, x - 1);                                               //gets the appropriate colour for reprinting the previous position
             Console.Write(map[y - 1, x - 1]);                                       //writes the map array location at the player's previous location
             Console.BackgroundColor = ConsoleColor.Black;                           //resets the console color for normal printing        
-        }       
+        }    
+        
+        public bool TerrainCheck(char i, int x, int y)                              //takes in a char representing a terrain tile and an x/y location and returns true/false if it matches the location on the map
+        {            
+            if (x > cols || x < 0 + 1 || y > rows || y < 0 + 1)                     //checks to see if the move is outside the bounds of the map first
+            {
+                return false;
+            }
+            else if (map[y - 1, x - 1] == i)
+            {
+                return true;
+            }
+            return false;            
+        }
     }
 }

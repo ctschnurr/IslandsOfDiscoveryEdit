@@ -42,9 +42,9 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             StoreMyPOS();                                               // stores the player's current POS for reference
             PlayerInput();                                              // takes player input and adjusts x/y position
-            HUD.ClearInputArea();                                       // clears the input/output area to make room for future output
-            ObstacleCheck(posX, posY, itemManager);                     // checks if the space the player wants to move to is traversible
-            UndoMoveCheck();                                            // if the attempted move is illegal, moves the player back
+            HUD.ClearInputArea();                                       // clears the input/output area to make room for future output            
+            Walkable(posX, posY);
+            //UndoMoveCheck();                                            // if the attempted move is illegal, moves the player back
             //target = CheckForFight(this, enemy, enemy2, enemy3);        // checks for a fight and returns the enemy that is being fought
             Fight();                                                    // if there is a fight, informs the target of how much damage it takes
             itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
@@ -99,39 +99,27 @@ namespace IslandsOfDiscoveryTxtRPG
                 default:
                     break;
             }
-        }
-
-        override protected void ObstacleCheck(int x, int y, ItemManager itemManager)     //checks to see if the character is allowed to move onto the map location
+        }        
+        override protected void Walkable(int x, int y)
         {
-            if (x > map.cols || x < 0 + 1)                  //prevents character from moving outside bounds of border
+            if (map.TerrainCheck('^', x, y))
             {
-                moveRollBack = true;
+                ResetMyPOS();
             }
-            else if (y > map.rows || y < 0 + 1)             //prevents character from moving outside bounds of border
+            else if (map.TerrainCheck('~', x, y))
             {
-                moveRollBack = true;
+                if (itemManager.PlayerInv.Contains("boat"))
+                {
+                  
+                }
+                else
+                {
+                    ResetMyPOS();
+                }
             }
             else
             {
-                switch (map.map[y - 1, x - 1])
-                {
-                    case '^':
-                        moveRollBack = true;
-                        break;
-                    case '~':
-                        if (itemManager.PlayerInv.Contains("boat"))
-                        {
-                            moveRollBack = false;
-                        }
-                        else
-                        {
-                            moveRollBack = true;
-                        }                      
-                        break;
-                    default:
-                        moveRollBack = false;
-                        break;
-                }
+                
             }
         }
         private void GameOverCheck()

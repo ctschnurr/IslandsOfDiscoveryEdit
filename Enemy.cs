@@ -38,12 +38,11 @@ namespace IslandsOfDiscoveryTxtRPG
             if (dead == false)
             {
                 StoreMyPOS();
-                MoveMe();
-                ObstacleCheck(posX, posY, itemManager);
-                UndoMoveCheck();
+                MoveMe();                
+                Walkable(posX, posY);
                 //CheckForFight(player, enemy, enemy2, enemy3);
                 Fight();
-                UndoMoveCheck();
+                //UndoMoveCheck();
                 DeathCheck(itemManager);
                 map.Redraw(oldPosX, oldPosY);
             }
