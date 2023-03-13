@@ -13,7 +13,7 @@ namespace IslandsOfDiscoveryTxtRPG
         protected int energyToMove;
 
         private Character target;
-        public Enemy(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager) : base(x, y, map, player, itemManager, hud, cursorController, combatManager)
+        public Enemy(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
         {
             posX = x;
             posY = y;
@@ -26,30 +26,28 @@ namespace IslandsOfDiscoveryTxtRPG
             strength = basestrength;
             xpValue = 0;
             moveEnergy = 0;
-            base.map = map;
-            this.player = player;
+            base.map = map;            
             this.itemManager = itemManager;
             this.hud = hud;
-            this.cursorController = cursorController;
-            this.combatManager = combatManager;
+            this.cursorController = cursorController;            
         }
-        public void Update()
+        public void Update(CombatManager combatManager, Player player)
         {
             SpawnMe();            
-            DeathCheck(itemManager);
+            DeathCheck(itemManager, player);
             if (dead == false)
             {
                 StoreMyPOS();
                 MoveMe();                
                 Walkable(posX, posY);
-                target = combatManager.FightCheck(this);
-                if (target != null)
-                {
-                    ResetMyPOS();
-                    combatManager.Battle(this, target);
-                    HUD.StatEnemy(this);
-                }
-                DeathCheck(itemManager);
+                //target = combatManager.FightCheck(this);
+                //if (target != null)
+                //{
+                //    ResetMyPOS();
+                //    combatManager.Battle(this, target);
+                //    HUD.StatEnemy(this);
+                //}
+                DeathCheck(itemManager, player);
                 map.Redraw(oldPosX, oldPosY);
             }
         }
@@ -90,7 +88,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveEnergy -= energyToMove;
             }
         }        
-        private void DeathCheck(ItemManager itemManager)
+        private void DeathCheck(ItemManager itemManager, Player player)
         {
             if (dead == true)
             {

@@ -8,7 +8,7 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Wyvern : Enemy
     {
-        public Wyvern(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager) : base(x, y, map, player, itemManager, hud, cursorController, combatManager)
+        public Wyvern(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
         {
             name = "Wyvern";
             character = "W";
@@ -20,12 +20,10 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = 5;
             moveEnergy = 0;
             energyToMove = 100;
-            base.map = map;
-            base.player = player;
+            base.map = map;            
             base.itemManager = itemManager;
             base.hud = hud;
-            base.cursorController = cursorController;
-            base.combatManager = combatManager;
+            base.cursorController = cursorController;            
         }
 
         override protected void Walkable(int x, int y)

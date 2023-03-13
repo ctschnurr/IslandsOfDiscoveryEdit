@@ -9,25 +9,19 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class CombatManager
     {
         private static Character one, two;
-        
+
         public Player player;
         public EnemyManager enemyManager;
-        public HUD hud;
-        public CursorController cursorController;
-        
-        public CombatManager(Player player, EnemyManager enemyManager, HUD hud, CursorController cursorController) 
+        public CombatManager(Player player, EnemyManager enemyManager) 
         {
             one = null;
             two = null;
             this.player = player;
             this.enemyManager = enemyManager;
-            this.hud = hud;
-            this.cursorController = cursorController;
-        }
-
+        }       
         public Character FightCheck(Character character)
         {
-            List<Enemy> enemyList = EnemyManager.GetEnemyList();
+            List<Enemy> enemyList = enemyManager.GetEnemyList();
 
             foreach (Enemy enemy in enemyList)                                  // checks for fight between player and all enemies
             {

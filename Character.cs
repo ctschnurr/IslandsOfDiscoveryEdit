@@ -24,12 +24,11 @@ namespace IslandsOfDiscoveryTxtRPG
         public Player player;
         public ItemManager itemManager;
         public HUD hud;
-        public CursorController cursorController;
-        public CombatManager combatManager;
+        public CursorController cursorController;        
 
         protected Random random = new Random();
 
-        public Character (int posX, int posY, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        public Character (int posX, int posY, Map map, ItemManager itemManager, HUD hud, CursorController cursorController)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {
             this.posX = posX;
             this.posY = posY;
@@ -37,8 +36,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.player = player;
             this.itemManager = itemManager;
             this.hud = hud;
-            this.cursorController = cursorController;
-            this.combatManager = combatManager;
+            this.cursorController = cursorController;            
         }
 
         virtual protected void Walkable(int x, int y)
