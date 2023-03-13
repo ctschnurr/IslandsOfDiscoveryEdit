@@ -44,12 +44,12 @@ namespace IslandsOfDiscoveryTxtRPG
             PlayerInput();                                              // takes player input and adjusts x/y position
             HUD.ClearInputArea();                                       // clears the input/output area to make room for future output            
             Walkable(posX, posY);                                       // checks for legal moves and undoes the move if illegal
-            //target = combatManager.FightCheck(this);                    // checks to see if there is an enemy to battle and returns that enemy
-            //if (target != null)
-            //{
-            //    ResetMyPOS();                                           // prevents moving on top of the enemy
-            //    combatManager.Battle(this, target);                     // applies damage to the enemy
-            //} 
+            target = combatManager.FightCheck(this);                    // checks to see if there is an enemy to battle and returns that enemy
+            if (target != null)
+            {
+                ResetMyPOS();                                           // prevents moving on top of the enemy
+                combatManager.Battle(this, target);                     // applies damage to the enemy
+            }
             itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
             map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map
             EndOfTurnChecks();                                          // variety of state checks (level up, death, gameover)

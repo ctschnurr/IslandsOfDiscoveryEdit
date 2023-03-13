@@ -29,12 +29,12 @@ namespace IslandsOfDiscoveryTxtRPG
                 hud.Update(player, itemManager);
                 map.Update();
                 player.Update(combatManager);
-                //enemyManager.Update(combatManager, player);
+                enemyManager.Update(combatManager, player);
 
                 //draws 
-                hud.Draw();
+                //hud.Draw(); 
                 player.Draw(player.posX, player.posY);
-                //enemyManager.Draw();
+                enemyManager.Draw();
 
             }           
         }

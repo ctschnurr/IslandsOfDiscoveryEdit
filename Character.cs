@@ -32,8 +32,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             this.posX = posX;
             this.posY = posY;
-            this.map = map;
-            this.player = player;
+            this.map = map;            
             this.itemManager = itemManager;
             this.hud = hud;
             this.cursorController = cursorController;            

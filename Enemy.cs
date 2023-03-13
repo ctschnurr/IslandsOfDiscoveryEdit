@@ -40,13 +40,13 @@ namespace IslandsOfDiscoveryTxtRPG
                 StoreMyPOS();
                 MoveMe();                
                 Walkable(posX, posY);
-                //target = combatManager.FightCheck(this);
-                //if (target != null)
-                //{
-                //    ResetMyPOS();
-                //    combatManager.Battle(this, target);
-                //    HUD.StatEnemy(this);
-                //}
+                target = combatManager.FightCheck(this);
+                if (target != null)
+                {
+                    ResetMyPOS();
+                    combatManager.Battle(this, target);
+                    HUD.StatEnemy(this);
+                }
                 DeathCheck(itemManager, player);
                 map.Redraw(oldPosX, oldPosY);
             }
