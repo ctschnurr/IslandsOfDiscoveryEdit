@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Enemy : Character
-    {      
-        private int enemyCount = 0;
+    {              
         protected int xpValue;
         protected int moveEnergy;
         protected int energyToMove;
-        public Enemy(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, player, itemManager, hud, cursorController)
+
+        private Character target;
+        public Enemy(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager) : base(x, y, map, player, itemManager, hud, cursorController, combatManager)
         {
             posX = x;
             posY = y;
@@ -30,6 +31,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.itemManager = itemManager;
             this.hud = hud;
             this.cursorController = cursorController;
+            this.combatManager = combatManager;
         }
         public void Update()
         {
@@ -40,24 +42,18 @@ namespace IslandsOfDiscoveryTxtRPG
                 StoreMyPOS();
                 MoveMe();                
                 Walkable(posX, posY);
-                //CheckForFight(player, enemy, enemy2, enemy3);
-                Fight();
-                //UndoMoveCheck();
+                target = combatManager.FightCheck(this);
+                if (target != null)
+                {
+                    ResetMyPOS();
+                    combatManager.Battle(this, target);
+                    HUD.StatEnemy(this);
+                }
                 DeathCheck(itemManager);
                 map.Redraw(oldPosX, oldPosY);
             }
         }
-
-        private void Fight()
-        {
-            if (makeAttack == true)
-            {
-                makeAttack = false;
-                ResetMyPOS();
-                HUD.StatEnemy(this);
-                player.HealthDecrease(strength);                
-            }
-        }
+        
         public void SpawnMe()
         {                        
             Draw(posX, posY); //draws the enemy on the map            

@@ -14,8 +14,9 @@ namespace IslandsOfDiscoveryTxtRPG
         static HUD hud = new HUD();
         static ItemManager itemManager = new ItemManager();
         static CursorController cursorController = new CursorController();
-        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController);
-        EnemyManager enemyManager = new EnemyManager(map, player, itemManager, hud, cursorController);               
+        static CombatManager combatManager = new CombatManager(player, enemyManager, hud, cursorController);
+        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController, combatManager);
+        static EnemyManager enemyManager = new EnemyManager(map, player, itemManager, hud, cursorController, combatManager); 
 
         //Game Loop
         public void RunGame()

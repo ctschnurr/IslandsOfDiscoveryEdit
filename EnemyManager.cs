@@ -7,26 +7,27 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class EnemyManager
-    {
-        Enemy[] enemies = new Enemy[3];
+    {        
+        protected static List<Enemy> enemiesList = new List<Enemy>();
+        protected static List<Enemy> deadEnemiesList = new List<Enemy>();
 
         //constructor
 
-        public EnemyManager(Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController)
+        public EnemyManager(Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager)
         {
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < enemiesList.Count; i++)
             {
                 switch (i) //change to if statement to deal with larger quantities
                 { 
                     case 0:
-                        enemies[i] = new Slime(25, 14, map, player, itemManager, hud, cursorController);
+                        enemiesList[i] = new Slime(25, 14, map, player, itemManager, hud, cursorController, combatManager);
                             break;
                     case 1:
-                        enemies[i] = new Wyvern(24, 15, map, player, itemManager, hud, cursorController);
+                        enemiesList[i] = new Wyvern(24, 15, map, player, itemManager, hud, cursorController, combatManager);
                             break;
                     case 2:
-                        enemies[i] = new SeaSerpent(4, 4, map, player, itemManager, hud, cursorController);
-                        break;
+                        enemiesList[i] = new SeaSerpent(4, 4, map, player, itemManager, hud, cursorController, combatManager);
+                            break;
                 default:
                     break;                
                 }
@@ -35,20 +36,39 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Update()
         {
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < enemiesList.Count; i++)
             {
-                Enemy enemy = enemies[i];
+                Enemy enemy = enemiesList[i];
                 enemy.Update();
             }
         }
 
         public void Draw()
         {
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < enemiesList.Count; i++)
             {
-                Enemy enemy = enemies[i];
+                Enemy enemy = enemiesList[i];
                 enemy.Draw(enemy.posX, enemy.posY);
             }
+        }
+
+        public static List<Enemy> GetEnemyList()
+        {
+            return enemiesList;
+        }
+
+        public static void DeadEnemy(Enemy enemy)
+        {
+            deadEnemiesList.Add(enemy);
+        }
+
+        public static void ClearDeadEnemies()
+        {
+            foreach (Enemy enemy in deadEnemiesList)
+            {
+                enemiesList.Remove(enemy);
+            }
+            deadEnemiesList.Clear();
         }
     }
 }

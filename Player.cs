@@ -12,9 +12,9 @@ namespace IslandsOfDiscoveryTxtRPG
         public int level { get; set; }
         public int xp { get; set; }
 
-        private Enemy target;
+        private Character target;
         
-        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, player, itemManager, hud, cursorController)
+        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager) : base(x, y, map, player, itemManager, hud, cursorController, combatManager)
         {
             name = "Player";
             posX = x;
@@ -36,6 +36,7 @@ namespace IslandsOfDiscoveryTxtRPG
             base.itemManager = itemManager;
             base.hud = hud;
             base.cursorController = cursorController;
+            base.combatManager = combatManager;
         }
 
         public void Update()
@@ -43,32 +44,23 @@ namespace IslandsOfDiscoveryTxtRPG
             StoreMyPOS();                                               // stores the player's current POS for reference
             PlayerInput();                                              // takes player input and adjusts x/y position
             HUD.ClearInputArea();                                       // clears the input/output area to make room for future output            
-            Walkable(posX, posY);
-            //UndoMoveCheck();                                            // if the attempted move is illegal, moves the player back
-            //target = CheckForFight(this, enemy, enemy2, enemy3);        // checks for a fight and returns the enemy that is being fought
-            Fight();                                                    // if there is a fight, informs the target of how much damage it takes
+            Walkable(posX, posY);                                       // checks for legal moves and undoes the move if illegal
+            target = combatManager.FightCheck(this);                    // checks to see if there is an enemy to battle and returns that enemy
+            if (target != null)
+            {
+                ResetMyPOS();                                           // prevents moving on top of the enemy
+                combatManager.Battle(this, target);                     // applies damage to the enemy
+            } 
             itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
             map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map
             EndOfTurnChecks();                                          // variety of state checks (level up, death, gameover)
-        }
-
-        private void Fight()
-        {
-            if (makeAttack == true)
-            {
-                makeAttack = false;
-                ResetMyPOS();
-                target.HealthDecrease(strength);
-            }
-        }
-
+        }  
         private void EndOfTurnChecks()
         {
             LevelIncrease();
             DeathCheck();
             GameOverCheck();
         }
-
         public void PlayerInput()
         {
             CursorController.InputAreaCursor(0, 0);
@@ -108,19 +100,11 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             else if (map.TerrainCheck('~', x, y))
             {
-                if (itemManager.PlayerInv.Contains("boat"))
-                {
-                  
-                }
-                else
+                if (!itemManager.PlayerInv.Contains("boat"))
                 {
                     ResetMyPOS();
-                }
-            }
-            else
-            {
-                
-            }
+                }                
+            }            
         }
         private void GameOverCheck()
         {

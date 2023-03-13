@@ -25,10 +25,11 @@ namespace IslandsOfDiscoveryTxtRPG
         public ItemManager itemManager;
         public HUD hud;
         public CursorController cursorController;
+        public CombatManager combatManager;
 
         protected Random random = new Random();
 
-        public Character (int posX, int posY, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        public Character (int posX, int posY, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, CombatManager combatManager)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {
             this.posX = posX;
             this.posY = posY;
@@ -37,6 +38,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.itemManager = itemManager;
             this.hud = hud;
             this.cursorController = cursorController;
+            this.combatManager = combatManager;
         }
 
         virtual protected void Walkable(int x, int y)
@@ -53,50 +55,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                  
             }
-        }
-        virtual protected Enemy CheckForFight(Player player, Enemy enemy, Enemy enemy1, Enemy enemy2)
-        {
-            if (player.posX == enemy.posX && player.posY == enemy.posY)
-            {
-                makeAttack = true;                
-                return enemy;
-            }
-            else if (player.posX == enemy1.posX && player.posY == enemy1.posY)
-            {
-                makeAttack = true;                
-                return enemy1;
-            }
-            else if (player.posX == enemy2.posX && player.posY == enemy2.posY)
-            {
-                makeAttack = true;                
-                return enemy2;
-            }
-            else if (enemy.posX == player.posX && enemy.posY == player.posY)
-            {
-                makeAttack = true;                                
-            }
-            else if (enemy1.posX == player.posX && enemy1.posY == player.posY)
-            {
-                makeAttack = true;                
-            }
-            else if (enemy2.posX == player.posX && enemy2.posY == player.posY)
-            {
-                makeAttack = true;                
-            }
-            else if (enemy.posX == enemy1.posX && enemy.posY == enemy1.posY || enemy.posX == enemy2.posX && enemy.posY == enemy2.posY)
-            {
-                moveRollBack = true;
-            }
-            else if (enemy1.posX == enemy2.posX && enemy1.posY == enemy2.posY || enemy1.posX == enemy.posX && enemy1.posY == enemy.posY)
-            {
-                moveRollBack = true;
-            }
-            else if (enemy2.posX == enemy1.posX && enemy2.posY == enemy1.posY || enemy2.posX == enemy.posX && enemy2.posY == enemy.posY)
-            {
-                moveRollBack = true;
-            }            
-            return null;
-        }        
+        }         
         virtual protected void StoreMyPOS() 
         {
             oldPosX = posX;
