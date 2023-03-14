@@ -8,49 +8,50 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class CombatManager
     {
-        private static Character one, two;
-
         public Player player;
         public EnemyManager enemyManager;
         public CombatManager(Player player, EnemyManager enemyManager) 
-        {
-            one = null;
-            two = null;
+        {            
             this.player = player;
             this.enemyManager = enemyManager;
         }       
         public Character FightCheck(Character character)
         {
             List<Enemy> enemyList = enemyManager.GetEnemyList();
-
-            foreach (Enemy enemy in enemyList)                                  // checks for fight between player and all enemies
+            if (character == player)
             {
-                one = character;
-                two = enemy;
-                if (one.posX == two.posX && one.posY == two.posY)
+                foreach (Enemy enemy in enemyList)
                 {
-                    return two;
-                }
-                else
-                {
-                    foreach (Enemy enemy2 in enemyList)
+                    if (player.posX == enemy.posX && player.posY == enemy.posY)
                     {
-                        one = enemy2;
-                        two = character;
-                        if (one.posX == two.posX && one.posY == two.posY)
-                        {
-                            return two;
-                        }
+                        return enemy;
+                    }
+                    else
+                    {
+                        return null;
                     }
                 }
-                return null;
+            }
+            else
+            {
+                foreach (Enemy enemy in enemyList)
+                {
+                    if (character.posX == enemy.posX && character.posY == enemy.posY)
+                    {
+                        return enemy;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
             return null;
         }
 
         public void Battle(Character attacker, Character target)
         {
-            target.HealthDecrease(attacker.strength);
+            target.HealthDecrease(attacker.Strength);
         }
     }
 }

@@ -22,8 +22,8 @@ namespace IslandsOfDiscoveryTxtRPG
             character = "@";            
             corpse = "x";
             dead = false;
-            health = basehealth;            
-            strength = basestrength;
+            Health = basehealth;            
+            Strength = basestrength;
             xpValue = 0;
             moveEnergy = 0;
             base.map = map;            
@@ -38,9 +38,13 @@ namespace IslandsOfDiscoveryTxtRPG
             if (dead == false)
             {
                 StoreMyPOS();
-                MoveMe();                
+                MoveMe();
+                if (map.BorderCheck(posX, posY))
+                {
+                    ResetMyPOS();
+                }
                 Walkable(posX, posY);
-                target = combatManager.FightCheck(this);
+                target = combatManager.FightCheck(this);                
                 if (target != null)
                 {
                     ResetMyPOS();
@@ -94,13 +98,13 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 return;
             }
-            else if (health <= 0)
+            else if (Health <= 0)
             {
-                health = 0;
+                Health = 0;
                 HUD.StatEnemy(this);
                 dead = true;
                 itemManager.Reward();
-                player.xp += xpValue;
+                player.xp += xpValue;                
             }
         }
     }

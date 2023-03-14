@@ -9,9 +9,9 @@ namespace IslandsOfDiscoveryTxtRPG
     internal abstract class Character                       //abstract prevents you from constructing this class on the field
     {
         protected int basehealth, basespeed, basestrength;        
-        public int health { get; set; }        
-        public int strength { get; set; }
-        public string name { get; set; }                    //name of character
+        public int Health { get; set; }        
+        public int Strength { get; set; }
+        public string Name { get; set; }                    //name of character
 
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character        
@@ -65,24 +65,24 @@ namespace IslandsOfDiscoveryTxtRPG
         }        
         virtual protected void DeathCheck()
         {
-            if (health <= 0)
+            if (Health <= 0)
             {
-                health = 0;
+                Health = 0;
                 dead = true;
             }
         }
         virtual public void HealthDecrease(int amount)
         {
             CursorController.InputAreaCursor(4, 0);
-            Console.WriteLine("The " + name + " has lost " + amount + " health!");
-            health -= amount;
+            Console.WriteLine("The " + Name + " has lost " + amount + " health!");
+            Health -= amount;
         }
 
         virtual public void HealthIncrease(int amount)
         {
             CursorController.InputAreaCursor(3, 0);
-            Console.WriteLine("The " + name + " has healed for " + amount + " health!");
-            health += amount;
+            Console.WriteLine("The " + Name + " has healed for " + amount + " health!");
+            Health += amount;
         }
         virtual public void Draw(int posX, int posY)
         {

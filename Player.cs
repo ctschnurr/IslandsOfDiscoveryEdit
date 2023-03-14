@@ -16,7 +16,7 @@ namespace IslandsOfDiscoveryTxtRPG
         
         public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
         {
-            name = "Player";
+            Name = "Player";
             posX = x;
             posY = y;
             oldPosX = x;
@@ -28,8 +28,8 @@ namespace IslandsOfDiscoveryTxtRPG
             basehealth = 25;
             basespeed = 5;
             basestrength = 5;
-            health = basehealth;            
-            strength = basestrength + level;
+            Health = basehealth;            
+            Strength = basestrength + level;
             xp = 0;
             base.map = map;
             base.player = player;
@@ -42,7 +42,11 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             StoreMyPOS();                                               // stores the player's current POS for reference
             PlayerInput();                                              // takes player input and adjusts x/y position
-            HUD.ClearInputArea();                                       // clears the input/output area to make room for future output            
+            HUD.ClearInputArea();                                       // clears the input/output area to make room for future output
+            if (map.BorderCheck(posX, posY))
+            {
+                ResetMyPOS();
+            }
             Walkable(posX, posY);                                       // checks for legal moves and undoes the move if illegal
             target = combatManager.FightCheck(this);                    // checks to see if there is an enemy to battle and returns that enemy
             if (target != null)
@@ -122,9 +126,9 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 xp -= level * 10;
                 level++;
-                strength = basestrength + level;
+                Strength = basestrength + level;
                 CursorController.InputAreaCursor(3, 0);
-                Console.WriteLine(name + " has gained a level!");
+                Console.WriteLine(Name + " has gained a level!");
             }
         }
     }

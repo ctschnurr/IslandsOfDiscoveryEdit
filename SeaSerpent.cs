@@ -10,13 +10,13 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public SeaSerpent(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
         {
-            name = "SeaSerpent";
+            Name = "SeaSerpent";
             character = "S";
             basehealth = 22;
             basespeed = 5;
             basestrength = 8;
-            health = basehealth;            
-            strength = basestrength;
+            Health = basehealth;            
+            Strength = basestrength;
             xpValue = 12;
             moveEnergy = 0;
             energyToMove = 125;

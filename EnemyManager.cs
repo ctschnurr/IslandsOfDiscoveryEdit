@@ -31,11 +31,10 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Update(CombatManager combatManager, Player player)
         {            
-            for (int i = 0; i < enemiesList.Count; i++)
+            foreach (Enemy enemy in enemiesList)
             {
-                Enemy enemy = enemiesList[i];
                 enemy.Update(combatManager, player);
-            }
+            }             
         }
 
         public void InitEnemiesList(Map map, ItemManager itemManager, HUD hud, CursorController cursorController)
@@ -61,9 +60,8 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void Draw()
         {
-            for (int i = 0; i < enemiesList.Count; i++)
+            foreach (Enemy enemy in enemiesList)
             {
-                Enemy enemy = enemiesList[i];
                 enemy.Draw(enemy.posX, enemy.posY);
             }
         }

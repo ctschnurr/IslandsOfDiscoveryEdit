@@ -75,10 +75,10 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("XP: " + player.xp);
                         break;
                     case 3:
-                        Console.WriteLine("Health: " + player.health);
+                        Console.WriteLine("Health: " + player.Health);
                         break;
                     case 4:
-                        Console.WriteLine("Strength: " + player.strength);
+                        Console.WriteLine("Strength: " + player.Strength);
                         break;                    
                     case 5:
                         foreach (string item in itemManager.PlayerInv)
@@ -106,13 +106,13 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("Enemy Stats");
                         break;
                     case 1:
-                        Console.WriteLine("Name: " + enemy.name);
+                        Console.WriteLine("Name: " + enemy.Name);
                         break;
                     case 2:
-                        Console.WriteLine("Health: " + enemy.health);
+                        Console.WriteLine("Health: " + enemy.Health);
                         break;
                     case 3:
-                        Console.WriteLine("Strength: " + enemy.strength);
+                        Console.WriteLine("Strength: " + enemy.Strength);
                         break;                    
                     default:
                         break;

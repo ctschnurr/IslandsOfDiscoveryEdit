@@ -10,13 +10,13 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public Slime(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
         {
-            name = "Slime";
+            Name = "Slime";
             character = "s";
             basehealth = 2;
             basespeed = 2;
             basestrength = 1;
-            health = basehealth;            
-            strength = basestrength;
+            Health = basehealth;            
+            Strength = basestrength;
             xpValue = 2;
             moveEnergy = 0;
             energyToMove = 200;

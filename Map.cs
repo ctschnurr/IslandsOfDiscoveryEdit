@@ -96,15 +96,20 @@ namespace IslandsOfDiscoveryTxtRPG
         
         public bool TerrainCheck(char i, int x, int y)                              //takes in a char representing a terrain tile and an x/y location and returns true/false if it matches the location on the map
         {            
-            if (x > cols || x < 0 + 1 || y > rows || y < 0 + 1)                     //checks to see if the move is outside the bounds of the map first
-            {
-                return false;
-            }
-            else if (map[y - 1, x - 1] == i)
+            if (map[y - 1, x - 1] == i)
             {
                 return true;
             }
             return false;            
+        }
+
+        public bool BorderCheck(int x, int y)
+        {
+            if (x < 1 || y < 1 || x > cols || y > rows)                     //checks to see if the move is outside the bounds of the map first
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

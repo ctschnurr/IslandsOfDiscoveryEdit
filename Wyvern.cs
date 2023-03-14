@@ -10,13 +10,13 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public Wyvern(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
         {
-            name = "Wyvern";
+            Name = "Wyvern";
             character = "W";
             basehealth = 12;
             basespeed = 12;
             basestrength = 4;
-            health = basehealth;            
-            strength = basestrength;
+            Health = basehealth;            
+            Strength = basestrength;
             xpValue = 5;
             moveEnergy = 0;
             energyToMove = 100;
