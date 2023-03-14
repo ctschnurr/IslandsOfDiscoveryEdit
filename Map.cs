@@ -105,7 +105,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public bool BorderCheck(int x, int y)
         {
-            if (x < 1 || y < 1 || x > cols || y > rows)                     //checks to see if the move is outside the bounds of the map first
+            if (x < 1 || y < 1 || x > cols || y > rows)                             //checks to see if the move is outside the bounds of the map first
             {
                 return true;
             }

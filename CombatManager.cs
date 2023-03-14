@@ -22,30 +22,40 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 foreach (Enemy enemy in enemyList)
                 {
-                    if (player.posX == enemy.posX && player.posY == enemy.posY)
+                    int row = character.posX;
+                    int col = character.posY;
+
+                    int row2 = enemy.posX;
+                    int col2 = enemy.posY;
+
+                    for (int i = row - 1; i <= row + 1; i++)
                     {
-                        return enemy;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Enemy enemy in enemyList)
-                {
-                    if (character.posX == enemy.posX && character.posY == enemy.posY)
-                    {
-                        return enemy;
-                    }
-                    else
-                    {
-                        return null;
+                        for (int j = col - 1; j <= col + 1; j++)
+                        {
+                            if (i >= 0 && i < row2 && j >= 0 && j < col2 && (i!= row || j!=col))
+                            {
+                                return enemy;
+                            }
+                        }
                     }
                 }
             }
+            
+
+            //else
+            //{
+            //    foreach (Enemy enemy in enemyList)
+            //    {
+            //        if (character.posX == enemy.posX && character.posY == enemy.posY)
+            //        {
+            //            return enemy;
+            //        }
+            //        else
+            //        {
+            //            return null;
+            //        }
+            //    }
+            //}
             return null;
         }
 
