@@ -18,7 +18,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public Character FightCheck(Character character)
         {
             List<Enemy> enemyList = enemyManager.GetEnemyList();
-            if (character == player)
+            if (character.Name == "Player")
             {
                 foreach (Enemy enemy in enemyList)
                 {
@@ -28,34 +28,30 @@ namespace IslandsOfDiscoveryTxtRPG
                     int row2 = enemy.posX;
                     int col2 = enemy.posY;
 
-                    for (int i = row - 1; i <= row + 1; i++)
+                    if (col > 0 && col - 1 != col2)
                     {
-                        for (int j = col - 1; j <= col + 1; j++)
-                        {
-                            if (i >= 0 && i < row2 && j >= 0 && j < col2 && (i!= row || j!=col))
-                            {
-                                return enemy;
-                            }
-                        }
+                        CursorController.InputAreaCursor(5, 1);
+                        Console.WriteLine("nope1");
+                        return null;
                     }
-                }
+                    else if (col < col2 - 1 && col + 1 != col2)
+                    {
+                        return null;
+                    }
+                    else if (row > 0 && row - 1 != row2)
+                    { 
+                        return null; 
+                    }
+                    else if (row < row2 - 1 && row + 1 != row2)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return enemy;
+                    }
+                }  
             }
-            
-
-            //else
-            //{
-            //    foreach (Enemy enemy in enemyList)
-            //    {
-            //        if (character.posX == enemy.posX && character.posY == enemy.posY)
-            //        {
-            //            return enemy;
-            //        }
-            //        else
-            //        {
-            //            return null;
-            //        }
-            //    }
-            //}
             return null;
         }
 
