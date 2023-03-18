@@ -16,21 +16,22 @@ namespace IslandsOfDiscoveryTxtRPG
         
         public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
         {
-            Name = "Player";
+            Name = globals.playerName;
             posX = x;
             posY = y;
             oldPosX = x;
             oldPosY = y;
-            character = "P";
-            corpse = "X";
-            dead = false;
-            level = 1;
-            basehealth = 25;
-            basespeed = 5;
-            basestrength = 5;
+            character = globals.playerCharacter;
+            corpse = globals.playerCorpse;
+            dead = globals.isPlayerDead;
+            level = globals.playerLevel;
+            basehealth = globals.playerBasehealth;
+            basespeed = globals.playerBasespeed;
+            basestrength = globals.playerBasestrength;
             Health = basehealth;            
             Strength = basestrength + level;
             xp = 0;
+
             base.map = map;
             base.player = player;
             base.itemManager = itemManager;
@@ -78,7 +79,7 @@ namespace IslandsOfDiscoveryTxtRPG
             switch (key.Key)
             {
                 case ConsoleKey.Escape:
-                    GameManager.gameOver = true;
+                    globals.gameOver = true;
                     break;
                 case ConsoleKey.W:
                     posY--;
@@ -114,8 +115,8 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             if (dead == true)
             {
-                GameManager.gameOver = true;
-                CursorController.InputAreaCursor(2, 0);
+                globals.gameOver = true;
+                CursorController.InputAreaCursor(2, 1);
                 Console.WriteLine("Game Over!");
                 Console.ReadKey();
             }
@@ -128,7 +129,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 xp -= level * 10;
                 level++;
                 Strength = basestrength + level;
-                CursorController.InputAreaCursor(3, 0);
+                CursorController.InputAreaCursor(3, 1);
                 Console.WriteLine(Name + " has gained a level!");
             }
         }

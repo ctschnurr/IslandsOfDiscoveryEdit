@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class GameManager
-    {
-        public static bool gameOver = false;
-
+    {        
         static Globals globals = new Globals();
-        static Map map = new Map();
+        static Map map = new Map(globals);
         static HUD hud = new HUD();
         static ItemManager itemManager = new ItemManager();
         static CursorController cursorController = new CursorController();       
@@ -23,7 +21,7 @@ namespace IslandsOfDiscoveryTxtRPG
         //Game Loop
         public void RunGame()
         {            
-            while (gameOver == false)
+            while (globals.gameOver == false)
             {
                 //updates
                 itemManager.Update();

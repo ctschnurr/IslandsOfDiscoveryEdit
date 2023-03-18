@@ -18,9 +18,8 @@ namespace IslandsOfDiscoveryTxtRPG
             posX = x;
             posY = y;
             oldPosX = x;
-            oldPosY = y;
-            character = "@";            
-            corpse = "x";
+            oldPosY = y;                        
+            corpse = globals.enemyCorpse;
             dead = false;
             Health = basehealth;            
             Strength = basestrength;

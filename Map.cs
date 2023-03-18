@@ -19,16 +19,15 @@ namespace IslandsOfDiscoveryTxtRPG
         public void Update()
         {
             if (firstmaprender == true)
-            {
-                //Console.Clear();
+            {                
                 firstmaprender = false;                
                 Draw();
             }
         }
 
-        public Map() //constructor
+        public Map(Globals globals) //constructor
         {
-            string[] mapString = File.ReadAllLines(@"Maps_and_Overlays/OverworldMap_01.txt");
+            string[] mapString = File.ReadAllLines(globals.worldMap);
             map = new char[mapString.GetLength(0), mapString[0].Length];
 
             for (int x = 0; x < mapString.GetLength(0); x++)

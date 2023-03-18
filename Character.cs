@@ -17,9 +17,7 @@ namespace IslandsOfDiscoveryTxtRPG
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character        
         public int posX, posY, oldPosX, oldPosY;            //current and one step prior locations for characters (utilized for map redrawing)
-        protected bool dead = false;                        //decides whether the character is dead or not, which determines what char is drawn for the character
-        protected bool moveRollBack = false;                //switch to flip if character is attempting to move into an illegal location        
-        protected bool makeAttack = false;                  //switch to flip if character is able to make an attack
+        protected bool dead;                                //decides whether the character is dead or not, which determines what char is drawn for the character        
 
         public Map map;
         public Player player;

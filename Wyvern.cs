@@ -10,17 +10,17 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public Wyvern(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
         {
-            Name = "Wyvern";
-            character = "W";
-            basehealth = 12;
-            basespeed = 12;
-            basestrength = 4;
+            Name = globals.wyvernName;
+            character = globals.wyvernCharacter;
+            basehealth = globals.wyvernBasehealth;
+            basespeed = globals.wyvernBasespeed;
+            basestrength = globals.wyvernBasestrength;
             Health = basehealth;            
             Strength = basestrength;
-            xpValue = 5;
-            moveEnergy = 0;
-            energyToMove = 100;
+            xpValue = globals.wyvernXPValue;            
+            energyToMove = globals.wyvernEnergyToMove;
             myID = globals.enemyID;
+
             base.map = map;            
             base.itemManager = itemManager;
             base.hud = hud;
