@@ -11,22 +11,23 @@ namespace IslandsOfDiscoveryTxtRPG
         public Map map;        
         public ItemManager itemManager;
         public HUD hud;
-        public CursorController cursorController;        
+        public CursorController cursorController;
+        public Globals globals;
         private int maxEnemies = 3;
         
         public List<Enemy> enemiesList { get; set; }
         public List<Enemy> deadEnemiesList { get; set; }
-        public EnemyManager (Map map, ItemManager itemManager, HUD hud, CursorController cursorController)
+        public EnemyManager (Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)
         {   
             this.map = map;            
             this.hud = hud;
             this.cursorController = cursorController;            
             this.itemManager = itemManager;
+            this.globals = globals;
 
             enemiesList = new List<Enemy>();
             deadEnemiesList = new List<Enemy>();
-            InitEnemiesList(map, itemManager, hud, cursorController);
-            
+            InitEnemiesList(map, itemManager, hud, cursorController, globals);            
         }
 
         public void Update(CombatManager combatManager, Player player)
@@ -37,20 +38,23 @@ namespace IslandsOfDiscoveryTxtRPG
             }             
         }
 
-        public void InitEnemiesList(Map map, ItemManager itemManager, HUD hud, CursorController cursorController)
+        public void InitEnemiesList(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)
         {
             for (int i = 0; i < maxEnemies; i++)
             {
                 switch (i) //change to if statement to deal with larger quantities
                 {
                     case 0:
-                        enemiesList.Add(new Slime(25, 14, map, itemManager, hud, cursorController));
+                        enemiesList.Add(new Slime(25, 14, map, itemManager, hud, cursorController, globals));
+                        globals.enemyID += 1;
                         break;
                     case 1:
-                        enemiesList.Add(new Wyvern(24, 15, map, itemManager, hud, cursorController));
+                        enemiesList.Add(new Wyvern(24, 15, map, itemManager, hud, cursorController, globals));
+                        globals.enemyID += 1;
                         break;
                     case 2:
-                        enemiesList.Add(new SeaSerpent(4, 4, map, itemManager, hud, cursorController));
+                        enemiesList.Add(new SeaSerpent(4, 4, map, itemManager, hud, cursorController, globals));
+                        globals.enemyID += 1;
                         break;
                     default:
                         break;

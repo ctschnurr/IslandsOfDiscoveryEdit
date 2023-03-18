@@ -8,7 +8,7 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class SeaSerpent : Enemy
     {
-        public SeaSerpent(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
+        public SeaSerpent(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
         {
             Name = "SeaSerpent";
             character = "S";
@@ -20,10 +20,12 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = 12;
             moveEnergy = 0;
             energyToMove = 125;
+            myID = globals.enemyID;
             base.map = map;            
             base.itemManager = itemManager;
             base.hud = hud;
-            base.cursorController = cursorController;            
+            base.cursorController = cursorController; 
+            base.globals = globals;
         }
         
         override protected void Walkable(int x, int y)

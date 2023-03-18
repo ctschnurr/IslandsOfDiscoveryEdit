@@ -18,39 +18,46 @@ namespace IslandsOfDiscoveryTxtRPG
         public Character FightCheck(Character character)
         {
             List<Enemy> enemyList = enemyManager.GetEnemyList();
+            int y = 2;
+            foreach (Enemy enemy in enemyList)
+            {
+                CursorController.InputAreaCursor(y, 1);
+                Console.WriteLine(enemy.posX +" " + enemy.posY);
+                y++;
+            }
+            CursorController.InputAreaCursor(y, 1);
+            Console.WriteLine(player.posX + " " + player.posY);            
             if (character.Name == "Player")
             {
                 foreach (Enemy enemy in enemyList)
                 {
-                    int row = character.posX;
-                    int col = character.posY;
-
-                    int row2 = enemy.posX;
-                    int col2 = enemy.posY;
-
-                    if (col > 0 && col - 1 != col2)
-                    {
-                        CursorController.InputAreaCursor(5, 1);
-                        Console.WriteLine("nope1");
-                        return null;
-                    }
-                    else if (col < col2 - 1 && col + 1 != col2)
-                    {
-                        return null;
-                    }
-                    else if (row > 0 && row - 1 != row2)
-                    { 
-                        return null; 
-                    }
-                    else if (row < row2 - 1 && row + 1 != row2)
-                    {
-                        return null;
-                    }
-                    else
+                    if (character.posX == enemy.posX && character.posY == enemy.posY)
                     {
                         return enemy;
                     }
+                    else
+                    {
+                        return null;
+                    }
                 }  
+            }
+            else
+            {
+                foreach (Enemy enemy in enemyList)
+                {
+                    if (character.posX == enemy.posX && character.posY == enemy.posY && character.myID != enemy.myID)
+                    {
+                        return enemy;
+                    }
+                    else if (character.posX == player.posX && character.posY == player.posY)
+                    {
+                        return player;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
             return null;
         }

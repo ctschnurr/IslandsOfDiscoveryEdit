@@ -10,13 +10,14 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public static bool gameOver = false;
 
+        static Globals globals = new Globals();
         static Map map = new Map();
         static HUD hud = new HUD();
         static ItemManager itemManager = new ItemManager();
         static CursorController cursorController = new CursorController();       
         //do not rearrange the order of these things - their constructors rely on timing of creation to function
-        static EnemyManager enemyManager = new EnemyManager(map, itemManager, hud, cursorController);
-        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController);
+        static EnemyManager enemyManager = new EnemyManager(map, itemManager, hud, cursorController, globals);
+        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController, globals);
         static CombatManager combatManager = new CombatManager(player, enemyManager);
 
         //Game Loop

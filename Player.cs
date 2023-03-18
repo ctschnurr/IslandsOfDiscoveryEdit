@@ -14,7 +14,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         private Character target;
         
-        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController) : base(x, y, map, itemManager, hud, cursorController)
+        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
         {
             Name = "Player";
             posX = x;
@@ -35,7 +35,8 @@ namespace IslandsOfDiscoveryTxtRPG
             base.player = player;
             base.itemManager = itemManager;
             base.hud = hud;
-            base.cursorController = cursorController;            
+            base.cursorController = cursorController; 
+            base.globals = globals;
         }
 
         public void Update(CombatManager combatManager)

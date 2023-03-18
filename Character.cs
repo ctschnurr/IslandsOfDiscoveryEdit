@@ -12,6 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public int Health { get; set; }        
         public int Strength { get; set; }
         public string Name { get; set; }                    //name of character
+        public int myID;                                    //id of character(enemy)
 
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character        
@@ -24,18 +25,20 @@ namespace IslandsOfDiscoveryTxtRPG
         public Player player;
         public ItemManager itemManager;
         public HUD hud;
-        public CursorController cursorController;        
+        public CursorController cursorController;
+        public Globals globals;
 
         protected Random random = new Random();
 
-        public Character (int posX, int posY, Map map, ItemManager itemManager, HUD hud, CursorController cursorController)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        public Character (int posX, int posY, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {
             this.posX = posX;
             this.posY = posY;
             this.map = map;            
             this.itemManager = itemManager;
             this.hud = hud;
-            this.cursorController = cursorController;            
+            this.cursorController = cursorController;
+            this.globals = globals;
         }
 
         virtual protected void Walkable(int x, int y)
