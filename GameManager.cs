@@ -10,7 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {        
         static Globals globals = new Globals();
         static Map map = new Map(globals);
-        static HUD hud = new HUD();
+        static HUD hud = new HUD(globals);
         static ItemManager itemManager = new ItemManager();
         static CursorController cursorController = new CursorController();       
         //do not rearrange the order of these things - their constructors rely on timing of creation to function

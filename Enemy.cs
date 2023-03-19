@@ -10,7 +10,11 @@ namespace IslandsOfDiscoveryTxtRPG
     {              
         protected int xpValue;
         protected int moveEnergy;
-        protected int energyToMove;        
+        protected int energyToMove;
+        protected bool hasSpawned;
+
+        public int[,] possibleSpawnPoints;
+        public int[,] spawnLocation;
 
         private Character target;
         public Enemy(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
@@ -26,6 +30,7 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = 0;
             moveEnergy = 0;
             myID = 0;
+            hasSpawned = false;
             
             base.map = map;            
             this.itemManager = itemManager;
@@ -108,6 +113,32 @@ namespace IslandsOfDiscoveryTxtRPG
                 itemManager.Reward();
                 player.xp += xpValue;                
             }
+        }
+
+        private Array SpawnPoint(char enemySpawnPoint)
+        {
+            possibleSpawnPoints = (int[,])map.SpawnPointsArray(enemySpawnPoint);
+            int x = 0;
+            int y = 0;
+            int[,] spawnLocation = new int[x, y];
+            
+
+            while (hasSpawned == false)
+            {
+                for (int i = 0; i < possibleSpawnPoints.GetLength(0); i++)
+                {
+                    for (int j = 0; j < possibleSpawnPoints.GetLength(1); j++)
+                    {
+                        if (random.Next(1,10) > 8)
+                        {
+                            hasSpawned = true;
+                            spawnLocation[x, y] = possibleSpawnPoints[x, y];
+                            return spawnLocation;
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

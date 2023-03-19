@@ -8,9 +8,11 @@ using System.IO;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Map
-    {       
-        public char[,] map;                
-        
+    {
+        public Globals globals;
+        public char[,] map;
+        public int[,] spawnPoints;
+
         public static bool firstmaprender = true;
 
         public int rows;
@@ -37,6 +39,8 @@ namespace IslandsOfDiscoveryTxtRPG
             
             rows = map.GetLength(0);
             cols = map.GetLength(1);
+
+            this.globals = globals;
         }        
         public void Draw()
         {
@@ -49,7 +53,7 @@ namespace IslandsOfDiscoveryTxtRPG
                         ColourCode(x, y);                        
                         Console.Write(map[x, y]);                           
                     }
-                    Console.BackgroundColor = ConsoleColor.Black;                        
+                    Console.BackgroundColor = globals.backgroundColor;                        
                     Console.WriteLine();
                     CursorController.CursorInner(0, posY);          //adjusts the cursor to print each line on the correct line
                     posY++;
@@ -60,28 +64,28 @@ namespace IslandsOfDiscoveryTxtRPG
             switch (map[x, y]) //checks the characters in the array and assigns them colours
             {
                 case '^': //mountain
-                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.BackgroundColor = globals.mountainColor;
                     break;
                 case '`': //grass
-                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.BackgroundColor = globals.grassColor;
                     break;
                 case '~': //water
-                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.BackgroundColor = globals.waterColor;
                     break;
                 case '*': //forest
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.BackgroundColor = globals.forestColor;
                     break;
                 case '∩': //dungeon entrance
-                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.BackgroundColor = globals.dungeonEntrance;
                     break;
                 case 'C': //castle entrance
-                    Console.BackgroundColor = ConsoleColor.Magenta;
+                    Console.BackgroundColor = globals.castleEntrance;
                     break;
                 case '#': //sand
-                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.BackgroundColor = globals.sandColor;
                     break;
                 default:
-                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = globals.backgroundColor;
                     break;
             }
         }
@@ -90,7 +94,7 @@ namespace IslandsOfDiscoveryTxtRPG
             CursorController.CharacterPrintCursor(x, y);                            //sets the cursor position to the players previous location                  
             ColourCode(y - 1, x - 1);                                               //gets the appropriate colour for reprinting the previous position
             Console.Write(map[y - 1, x - 1]);                                       //writes the map array location at the player's previous location
-            Console.BackgroundColor = ConsoleColor.Black;                           //resets the console color for normal printing        
+            Console.BackgroundColor = globals.backgroundColor;                      //resets the console color for normal printing        
         }    
         
         public bool TerrainCheck(char i, int x, int y)                              //takes in a char representing a terrain tile and an x/y location and returns true/false if it matches the location on the map
@@ -109,6 +113,21 @@ namespace IslandsOfDiscoveryTxtRPG
                 return true;
             }
             return false;
+        }
+
+        public Array SpawnPointsArray(char spawnPoint)
+        {  
+            for (int x = 0; x < rows; x++)
+            {
+                for (int  y = 0; y < cols; y++)
+                {
+                    if (map[x, y] == spawnPoint)
+                    {
+                        spawnPoints[x, y] = map[x, y];                        
+                    }
+                }
+            }
+            return spawnPoints;
         }
     }
 }

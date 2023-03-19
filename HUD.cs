@@ -11,10 +11,15 @@ namespace IslandsOfDiscoveryTxtRPG
     {      
         private bool firstRender = true;
         public string message;
-                
+
+        public Globals globals;
+        public HUD(Globals globals) 
+        { 
+            this.globals = globals;
+        }
         public void Draw()
         {
-            string[] hudBorders = File.ReadAllLines(@"Maps_and_Overlays/HudBorders.txt");
+            string[] hudBorders = File.ReadAllLines(globals.borders);
 
             for (int y = 0; y < hudBorders.GetLength(0); y++)
             {
