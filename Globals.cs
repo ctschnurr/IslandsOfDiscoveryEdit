@@ -28,7 +28,7 @@ namespace IslandsOfDiscoveryTxtRPG
         // Enemy - Slime
         public string slimeName = "Slime";
         public string slimeCharacter = "s";
-        public string slimeSpawnPoint = "`";
+        public char slimeSpawnPoint = '`';
         public int slimeBasehealth = 2;
         public int slimeBasespeed = 2;
         public int slimeBasestrength = 1;
@@ -38,7 +38,7 @@ namespace IslandsOfDiscoveryTxtRPG
         // Enemy - Wyvern
         public string wyvernName = "Wyvern";
         public string wyvernCharacter = "W";
-        public string wyvernSpawnPoint = "^";
+        public char wyvernSpawnPoint = '^';
         public int wyvernBasehealth = 12;
         public int wyvernBasespeed = 12;
         public int wyvernBasestrength = 4;
@@ -48,7 +48,7 @@ namespace IslandsOfDiscoveryTxtRPG
         // Enemy - Sea Serpent
         public string seaserpentName = "SeaSerpent";
         public string seaserpentCharacter = "S";
-        public string seaserpentSpawnPoint = "~";
+        public char seaserpentSpawnPoint = '~';
         public int seaserpentBasehealth = 22;
         public int seaserpentBasespeed = 5;
         public int seaserpentBasestrength = 8;

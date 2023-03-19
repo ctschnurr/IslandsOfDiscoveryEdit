@@ -12,6 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         protected int moveEnergy;
         protected int energyToMove;
         protected bool hasSpawned;
+        protected char mySpawnTile;
 
         public int[,] possibleSpawnPoints;
         public int[,] spawnLocation;
@@ -30,13 +31,14 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = 0;
             moveEnergy = 0;
             myID = 0;
-            hasSpawned = false;
-            
+            hasSpawned = false;  
+                        
             base.map = map;            
             this.itemManager = itemManager;
             this.hud = hud;
             this.cursorController = cursorController;  
             this.globals = globals;
+
         }
         public void Update(CombatManager combatManager, Player player)
         {
@@ -64,7 +66,7 @@ namespace IslandsOfDiscoveryTxtRPG
         }
         
         public void SpawnMe()
-        {                        
+        {            
             Draw(posX, posY); //draws the enemy on the map            
         }
 
@@ -115,7 +117,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        private Array SpawnPoint(char enemySpawnPoint)
+        protected void SpawnPoint(char enemySpawnPoint)
         {
             possibleSpawnPoints = (int[,])map.SpawnPointsArray(enemySpawnPoint);
             int x = 0;
@@ -132,13 +134,13 @@ namespace IslandsOfDiscoveryTxtRPG
                         if (random.Next(1,10) > 8)
                         {
                             hasSpawned = true;
-                            spawnLocation[x, y] = possibleSpawnPoints[x, y];
-                            return spawnLocation;
+                            spawnLocation[x, y] = possibleSpawnPoints[i, j];
+                            posX = x;
+                            posY = y;                            
                         }
                     }
                 }
-            }
-            return null;
+            }            
         }
     }
 }

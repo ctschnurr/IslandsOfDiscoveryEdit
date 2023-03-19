@@ -17,6 +17,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public int rows;
         public int cols;
+        public int x, y;
         
         public void Update()
         {
@@ -39,6 +40,8 @@ namespace IslandsOfDiscoveryTxtRPG
             
             rows = map.GetLength(0);
             cols = map.GetLength(1);
+
+            spawnPoints = new int[x, y];
 
             this.globals = globals;
         }        

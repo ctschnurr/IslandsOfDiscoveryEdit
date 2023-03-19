@@ -20,11 +20,14 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = globals.seaserpentXPValue;            
             energyToMove = globals.seaserpentEnergyToMove;
             myID = globals.enemyID;
+            mySpawnTile = globals.seaserpentSpawnPoint;
             base.map = map;            
             base.itemManager = itemManager;
             base.hud = hud;
             base.cursorController = cursorController; 
             base.globals = globals;
+
+            SpawnPoint(mySpawnTile);
         }
         
         override protected void Walkable(int x, int y)

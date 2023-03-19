@@ -20,11 +20,14 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = globals.slimeXPValue;            
             energyToMove = globals.slimeEnergyToMove;
             myID = globals.enemyID;
+            mySpawnTile = globals.slimeSpawnPoint;
             base.map = map;            
             base.itemManager = itemManager;
             base.hud = hud;
             base.cursorController = cursorController; 
             base.globals = globals;
+
+            SpawnPoint(mySpawnTile);
         }
     }
 }
