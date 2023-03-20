@@ -10,14 +10,14 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class Map
     {
         public Globals globals;
+
         public char[,] map;
-        public int[,] spawnPoints;
+        public List<Tuple<int, int>> spawnPoints;
 
         public static bool firstmaprender = true;
 
         public int rows;
-        public int cols;
-        public int x, y;
+        public int cols;        
         
         public void Update()
         {
@@ -41,7 +41,7 @@ namespace IslandsOfDiscoveryTxtRPG
             rows = map.GetLength(0);
             cols = map.GetLength(1);
 
-            spawnPoints = new int[x, y];
+            spawnPoints = new List<Tuple<int, int>>();
 
             this.globals = globals;
         }        
@@ -118,7 +118,7 @@ namespace IslandsOfDiscoveryTxtRPG
             return false;
         }
 
-        public Array SpawnPointsArray(char spawnPoint)
+        public List<Tuple<int, int>> SpawnPointsArray(char spawnPoint)
         {  
             for (int x = 0; x < rows; x++)
             {
@@ -126,7 +126,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     if (map[x, y] == spawnPoint)
                     {
-                        spawnPoints[x, y] = map[x, y];                        
+                        spawnPoints.Add(new Tuple<int, int>(x, y));
                     }
                 }
             }

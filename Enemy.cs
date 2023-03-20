@@ -14,8 +14,8 @@ namespace IslandsOfDiscoveryTxtRPG
         protected bool hasSpawned;
         protected char mySpawnTile;
 
-        public int[,] possibleSpawnPoints;
-        public int[,] spawnLocation;
+        public List<Tuple<int, int>> possibleSpawnPoints;
+        //public int[][] spawnLocation;
 
         private Character target;
         public Enemy(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
@@ -119,25 +119,17 @@ namespace IslandsOfDiscoveryTxtRPG
 
         protected void SpawnPoint(char enemySpawnPoint)
         {
-            possibleSpawnPoints = (int[,])map.SpawnPointsArray(enemySpawnPoint);
-            int x = 0;
-            int y = 0;
-            int[,] spawnLocation = new int[x, y];
+            possibleSpawnPoints = map.SpawnPointsArray(enemySpawnPoint);
             
-
             while (hasSpawned == false)
             {
-                for (int i = 0; i < possibleSpawnPoints.GetLength(0); i++)
+                foreach (Tuple<int, int>possibleSpawnPoints in possibleSpawnPoints)
                 {
-                    for (int j = 0; j < possibleSpawnPoints.GetLength(1); j++)
+                    if (random.Next(1,20) > 17) //fix this random so it's actually random goshdammit
                     {
-                        if (random.Next(1,10) > 8)
-                        {
-                            hasSpawned = true;
-                            spawnLocation[x, y] = possibleSpawnPoints[i, j];
-                            posX = x;
-                            posY = y;                            
-                        }
+                        hasSpawned = true;
+                        posY = possibleSpawnPoints.Item1;
+                        posX = possibleSpawnPoints.Item2;
                     }
                 }
             }            
