@@ -75,7 +75,7 @@ namespace IslandsOfDiscoveryTxtRPG
             moveEnergy += 100;
             if (moveEnergy >= energyToMove)
             {
-                int enemyMove = random.Next(1, 5); //a random number to represent the four cardinal directions
+                int enemyMove = globals.random.Next(1, 5); //a random number to represent the four cardinal directions
             
                 switch (enemyMove)
                 {
@@ -120,17 +120,24 @@ namespace IslandsOfDiscoveryTxtRPG
         protected void SpawnPoint(char enemySpawnPoint)
         {
             possibleSpawnPoints = map.SpawnPointsArray(enemySpawnPoint);
-            
+
+            int randomNum;
+            //int debugNum = 0;
             while (hasSpawned == false)
             {
                 foreach (Tuple<int, int>possibleSpawnPoints in possibleSpawnPoints)
                 {
-                    if (random.Next(1,20) > 17) //fix this random so it's actually random goshdammit
+                    randomNum = globals.random.Next(1, 20);
+                    if (randomNum > 17) //fix this random so it's actually random goshdammit
                     {
                         hasSpawned = true;
                         posY = possibleSpawnPoints.Item1;
                         posX = possibleSpawnPoints.Item2;
+                        //break;
                     }
+                    //debugNum++;
+                    //Console.WriteLine(debugNum + " " + randomNum);
+
                 }
             }            
         }

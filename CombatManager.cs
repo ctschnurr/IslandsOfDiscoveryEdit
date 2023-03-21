@@ -18,15 +18,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public Character FightCheck(Character character)
         {
             List<Enemy> enemyList = enemyManager.GetEnemyList();
-            int y = 2;
-            foreach (Enemy enemy in enemyList)
-            {
-                CursorController.InputAreaCursor(y, 1);
-                Console.WriteLine(enemy.posX +" " + enemy.posY);
-                y++;
-            }
-            CursorController.InputAreaCursor(y, 1);
-            Console.WriteLine(player.posX + " " + player.posY);            
+                     
             if (character.Name == "Player")
             {
                 foreach (Enemy enemy in enemyList)
@@ -35,11 +27,8 @@ namespace IslandsOfDiscoveryTxtRPG
                     {
                         return enemy;
                     }
-                    else
-                    {
-                        return null;
-                    }
                 }  
+                return null; // this is outside the if statement because it was preventing the foreach from going past the first enemy on the list
             }
             else
             {
@@ -52,14 +41,10 @@ namespace IslandsOfDiscoveryTxtRPG
                     else if (character.posX == player.posX && character.posY == player.posY)
                     {
                         return player;
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    }                    
                 }
-            }
-            return null;
+                return null;                    
+            }            
         }
 
         public void Battle(Character attacker, Character target)

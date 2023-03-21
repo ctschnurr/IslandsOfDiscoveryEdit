@@ -10,6 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         // Game Management
         public bool gameOver = false;
+        public Random random = new Random();
 
         // Player Information
         public string playerName = "Player";
@@ -70,5 +71,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public ConsoleColor dungeonEntrance = ConsoleColor.DarkGray;
         public ConsoleColor castleEntrance = ConsoleColor.Magenta;
         public ConsoleColor backgroundColor = ConsoleColor.Black;
+
     }
+    
 }

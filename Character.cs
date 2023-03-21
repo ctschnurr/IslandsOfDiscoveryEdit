@@ -24,9 +24,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public ItemManager itemManager;
         public HUD hud;
         public CursorController cursorController;
-        public Globals globals;
-
-        protected Random random = new Random();
+        public Globals globals;        
 
         public Character (int posX, int posY, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
         {
