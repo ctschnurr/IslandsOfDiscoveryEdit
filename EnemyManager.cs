@@ -12,8 +12,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public ItemManager itemManager;
         public HUD hud;
         public CursorController cursorController;
-        public Globals globals;
-        private int maxEnemies = 26;
+        public Globals globals;        
         
         public List<Enemy> enemiesList { get; set; }
         public List<Enemy> deadEnemiesList { get; set; }
@@ -35,26 +34,32 @@ namespace IslandsOfDiscoveryTxtRPG
             foreach (Enemy enemy in enemiesList)
             {
                 enemy.Update(combatManager, player);
-            }             
+                if (enemy.dead == true)
+                {
+                    DeadEnemy(enemy);                           // adds the dead enemy to the dead enemies list
+                    enemy.Draw(enemy.posX, enemy.posY);         // draws the dead enemies corpse
+                }
+            }     
+            ClearDeadEnemies();                                 // clear the list of dead enemies 
         }
 
         public void InitEnemiesList(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)
         {
-            for (int i = 0; i <= maxEnemies; i++)
+            for (int i = 0; i <= globals.maxEnemies; i++)
             {
                 if (i <= 24)
                 {
-                    enemiesList.Add(new Slime(25, 14, map, itemManager, hud, cursorController, globals));
+                    enemiesList.Add(new Slime(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
                 else if (i == 25)
                 {
-                    enemiesList.Add(new Wyvern(24, 15, map, itemManager, hud, cursorController, globals));
+                    enemiesList.Add(new Wyvern(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
                 else
                 {
-                    enemiesList.Add(new SeaSerpent(4, 4, map, itemManager, hud, cursorController, globals));
+                    enemiesList.Add(new SeaSerpent(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
             }

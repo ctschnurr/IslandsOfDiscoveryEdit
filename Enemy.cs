@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics; //Debug.WriteLine()
 
 namespace IslandsOfDiscoveryTxtRPG
 {
@@ -14,16 +15,15 @@ namespace IslandsOfDiscoveryTxtRPG
         protected bool hasSpawned;
         protected char mySpawnTile;
 
-        public List<Tuple<int, int>> possibleSpawnPoints;
-        //public int[][] spawnLocation;
+        public List<Tuple<int, int>> possibleSpawnPoints;       
 
         private Character target;
-        public Enemy(int x, int y, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
+        public Enemy(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
-            posX = x;
-            posY = y;
-            oldPosX = x;
-            oldPosY = y;                        
+            posX = 0;
+            posY = 0;
+            oldPosX = posX;
+            oldPosY = posY;                        
             corpse = globals.enemyCorpse;
             dead = false;
             Health = basehealth;            
@@ -111,35 +111,22 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Health = 0;
                 HUD.StatEnemy(this);
-                dead = true;
+                dead = true;                
                 itemManager.Reward();
                 player.xp += xpValue;                
             }
         }
 
         protected void SpawnPoint(char enemySpawnPoint)
-        {
-            possibleSpawnPoints = map.SpawnPointsArray(enemySpawnPoint);
+        {            
+            possibleSpawnPoints = map.SpawnPointsArray(enemySpawnPoint);        // gets all possible spawn points, based on the enemy specific desired char, from the Map
+            int listLength = possibleSpawnPoints.Count;                         // limiter for the upper bounds of the random number
+            int randomNum = globals.random.Next(1, listLength + 1);             // a random number that will be used to get a location in the possible spawn points list
+            
+            posY = possibleSpawnPoints.ElementAt(randomNum).Item1;              // sets the posY based on the first item at that random list location
+            posX = possibleSpawnPoints.ElementAt(randomNum).Item2;              // sets the posX based on the second item at that same random list location
 
-            int randomNum;
-            //int debugNum = 0;
-            while (hasSpawned == false)
-            {
-                foreach (Tuple<int, int>possibleSpawnPoints in possibleSpawnPoints)
-                {
-                    randomNum = globals.random.Next(1, 20);
-                    if (randomNum > 17) //fix this random so it's actually random goshdammit
-                    {
-                        hasSpawned = true;
-                        posY = possibleSpawnPoints.Item1;
-                        posX = possibleSpawnPoints.Item2;
-                        //break;
-                    }
-                    //debugNum++;
-                    //Console.WriteLine(debugNum + " " + randomNum);
-
-                }
-            }            
+            possibleSpawnPoints.Clear();                                        // clears the list to prevent ending up with a massive mixed list; super important
         }
     }
 }

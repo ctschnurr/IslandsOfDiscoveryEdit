@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
@@ -118,7 +119,7 @@ namespace IslandsOfDiscoveryTxtRPG
             return false;
         }
 
-        public List<Tuple<int, int>> SpawnPointsArray(char spawnPoint)
+        public List<Tuple<int, int>> SpawnPointsArray(char spawnPoint)              // takes in a char and returns a Tuple'd list of x/y positions that match that character
         {  
             for (int x = 0; x < rows; x++)
             {
@@ -126,10 +127,10 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     if (map[x, y] == spawnPoint)
                     {
-                        spawnPoints.Add(new Tuple<int, int>(x + 1, y + 1));
+                        spawnPoints.Add(new Tuple<int, int>(x+ 1, y + 1));         
                     }
                 }
-            }
+            }            
             return spawnPoints;
         }
     }

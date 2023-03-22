@@ -10,7 +10,7 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         // Game Management
         public bool gameOver = false;
-        public Random random = new Random();
+        public Random random = new Random();        
 
         // Player Information
         public string playerName = "Player";
@@ -25,6 +25,7 @@ namespace IslandsOfDiscoveryTxtRPG
         // All Enemy Information
         public int enemyID = 0;
         public string enemyCorpse = "x";
+        public int maxEnemies = 30;
 
         // Enemy - Slime
         public string slimeName = "Slime";

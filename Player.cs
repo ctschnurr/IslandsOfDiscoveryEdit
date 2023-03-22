@@ -14,7 +14,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         private Character target;
         
-        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(x, y, map, itemManager, hud, cursorController, globals)
+        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
             Name = globals.playerName;
             posX = x;
@@ -55,8 +55,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 ResetMyPOS();                                           // prevents moving on top of the enemy
                 combatManager.Battle(this, target);                     // applies damage to the enemy
-            }
-            itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
+            }            
             map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map
             EndOfTurnChecks();                                          // variety of state checks (level up, death, gameover)
         }  
@@ -70,7 +69,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             CursorController.InputAreaCursor(0, 0);
 
-            Console.WriteLine("North(W), West(A), South(S), East(D). Press 'ESC' to Quit.");
+            Console.WriteLine("North(W), West(A), South(S), East(D). (P) for Potion. Press 'ESC' to Quit.");
            
             CursorController.InputAreaCursor(1, 0);
 
@@ -92,6 +91,9 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
                 case ConsoleKey.D:
                     posX++;                   
+                    break;
+                case ConsoleKey.P:
+                    itemManager.CheckForPotion(this);                           // checks the player's inventory for a potion and uses it if found
                     break;
                 default:
                     break;

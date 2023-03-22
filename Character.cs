@@ -17,7 +17,7 @@ namespace IslandsOfDiscoveryTxtRPG
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character        
         public int posX, posY, oldPosX, oldPosY;            //current and one step prior locations for characters (utilized for map redrawing)
-        protected bool dead;                                //decides whether the character is dead or not, which determines what char is drawn for the character        
+        public bool dead;                                //decides whether the character is dead or not, which determines what char is drawn for the character        
 
         public Map map;
         public Player player;
@@ -26,10 +26,8 @@ namespace IslandsOfDiscoveryTxtRPG
         public CursorController cursorController;
         public Globals globals;        
 
-        public Character (int posX, int posY, Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
-        {
-            this.posX = posX;
-            this.posY = posY;
+        public Character (Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)      //constructor, required to create string of data down inherited classes (ex. character -> enemy -> sea serpent)
+        {            
             this.map = map;            
             this.itemManager = itemManager;
             this.hud = hud;
