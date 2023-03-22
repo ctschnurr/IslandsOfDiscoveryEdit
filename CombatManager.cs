@@ -34,7 +34,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 foreach (Enemy enemy in enemyList)
                 {
-                    if (character.posX == enemy.posX && character.posY == enemy.posY && character.myID != enemy.myID)
+                    if (character.posX == enemy.posX && character.posY == enemy.posY && character.myID != enemy.myID) // enemy.myID prevents enemies from attacking themselves
                     {
                         return enemy;
                     }

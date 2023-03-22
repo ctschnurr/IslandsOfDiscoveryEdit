@@ -111,7 +111,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Health = 0;
                 HUD.StatEnemy(this);
-                dead = true;                
+                dead = true;
                 itemManager.Reward();
                 player.xp += xpValue;                
             }
