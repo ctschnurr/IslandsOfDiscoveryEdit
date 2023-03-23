@@ -86,10 +86,13 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("Strength: " + player.Strength);
                         break;                    
                     case 5:
-                        foreach (string item in itemManager.PlayerInv)
+                        System.Collections.IList 
+                        list = itemManager.PlayerInventory;
+                        for (int p = 0; p < list.Count; p++)
                         {
+                            string item = (string)list[p];
                             Console.WriteLine("Inventory: " + item);
-                            i++;
+                            p++;
                             CursorController.PlayerStatsCursorInner(i);
                         }                        
                         break;

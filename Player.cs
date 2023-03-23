@@ -107,7 +107,9 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             else if (map.TerrainCheck('~', x, y))
             {
-                if (!itemManager.PlayerInv.Contains("boat"))
+                System.Collections.IList
+                list = itemManager.PlayerInventory;
+                if (!list.Contains("boat"))
                 {
                     ResetMyPOS();
                 }                

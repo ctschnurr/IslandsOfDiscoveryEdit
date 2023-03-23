@@ -10,10 +10,14 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public Player player;
         public EnemyManager enemyManager;
-        public CombatManager(Player player, EnemyManager enemyManager) 
+        public ItemManager itemManager;
+
+        private Character lootable;
+        public CombatManager(Player player, EnemyManager enemyManager, ItemManager itemManager) 
         {            
             this.player = player;
             this.enemyManager = enemyManager;
+            this.itemManager = itemManager;
         }       
         public Character FightCheck(Character character)
         {
@@ -47,9 +51,18 @@ namespace IslandsOfDiscoveryTxtRPG
             }            
         }
 
-        public void Battle(Character attacker, Character target)
+        public void Battle(Character aggressor, Character victim)
         {
-            target.HealthDecrease(attacker.Strength);
+            lootable = victim.HealthDecrease(aggressor.Strength);  // checks to see if the victim has died and become lootable
+
+            if (lootable == null)
+            {
+                return;
+            }
+            else
+            {
+                itemManager.Reward(aggressor, victim);              // loots the victim
+            }
         }
     }
 }

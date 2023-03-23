@@ -10,8 +10,8 @@ namespace IslandsOfDiscoveryTxtRPG
     {
         public SeaSerpent(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
-            Name = globals.seaserpentName;
-            character = globals.seaserpentCharacter;
+            Name = Globals.seaserpentName;
+            character = Globals.seaserpentCharacter;
             basehealth = globals.seaserpentBasehealth;
             basespeed = globals.seaserpentBasespeed;
             basestrength = globals.seaserpentBasestrength;
@@ -20,7 +20,7 @@ namespace IslandsOfDiscoveryTxtRPG
             xpValue = globals.seaserpentXPValue;            
             energyToMove = globals.seaserpentEnergyToMove;
             myID = globals.enemyID;
-            mySpawnTile = globals.seaserpentSpawnPoint;
+            mySpawnTile = Globals.seaserpentSpawnPoint;
             base.map = map;            
             base.itemManager = itemManager;
             base.hud = hud;

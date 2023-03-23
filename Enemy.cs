@@ -24,7 +24,7 @@ namespace IslandsOfDiscoveryTxtRPG
             posY = 0;
             oldPosX = posX;
             oldPosY = posY;                        
-            corpse = globals.enemyCorpse;
+            corpse = Globals.enemyCorpse;
             dead = false;
             Health = basehealth;            
             Strength = basestrength;
@@ -43,7 +43,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public void Update(CombatManager combatManager, Player player)
         {
             SpawnMe();            
-            DeathCheck(itemManager, player);
+            DeathCheck();
             if (dead == false)
             {
                 StoreMyPOS();
@@ -60,7 +60,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     combatManager.Battle(this, target);
                     HUD.StatEnemy(this);
                 }
-                DeathCheck(itemManager, player);
+                DeathCheck();
                 map.Redraw(oldPosX, oldPosY);
             }
         }
@@ -101,7 +101,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveEnergy -= energyToMove;
             }
         }        
-        private void DeathCheck(ItemManager itemManager, Player player)
+        private void DeathCheck()
         {
             if (dead == true)
             {
@@ -111,9 +111,8 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Health = 0;
                 HUD.StatEnemy(this);
-                dead = true;
-                itemManager.Reward();
-                player.xp += xpValue;                
+                dead = true;                
+                //player.xp += xpValue;                
             }
         }
 

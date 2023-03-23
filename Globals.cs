@@ -24,13 +24,13 @@ namespace IslandsOfDiscoveryTxtRPG
 
         // All Enemy Information
         public int enemyID = 0;
-        public string enemyCorpse = "x";
+        public const string enemyCorpse = "x";
         public int maxEnemies = 30;
 
         // Enemy - Slime
-        public string slimeName = "Slime";
-        public string slimeCharacter = "s";
-        public char slimeSpawnPoint = '`';
+        public const string slimeName = "Slime";
+        public const string slimeCharacter = "s";
+        public const char slimeSpawnPoint = '`';
         public int slimeBasehealth = 2;
         public int slimeBasespeed = 2;
         public int slimeBasestrength = 1;
@@ -38,9 +38,9 @@ namespace IslandsOfDiscoveryTxtRPG
         public int slimeEnergyToMove = 200;
 
         // Enemy - Wyvern
-        public string wyvernName = "Wyvern";
-        public string wyvernCharacter = "W";
-        public char wyvernSpawnPoint = '^';
+        public const string wyvernName = "Wyvern";
+        public const string wyvernCharacter = "W";
+        public const char wyvernSpawnPoint = '^';
         public int wyvernBasehealth = 12;
         public int wyvernBasespeed = 12;
         public int wyvernBasestrength = 4;
@@ -48,9 +48,9 @@ namespace IslandsOfDiscoveryTxtRPG
         public int wyvernEnergyToMove = 100;
 
         // Enemy - Sea Serpent
-        public string seaserpentName = "SeaSerpent";
-        public string seaserpentCharacter = "S";
-        public char seaserpentSpawnPoint = '~';
+        public const string seaserpentName = "SeaSerpent";
+        public const string seaserpentCharacter = "S";
+        public const char seaserpentSpawnPoint = '~';
         public int seaserpentBasehealth = 22;
         public int seaserpentBasespeed = 5;
         public int seaserpentBasestrength = 8;

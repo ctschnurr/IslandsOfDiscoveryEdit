@@ -127,7 +127,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     if (map[x, y] == spawnPoint)
                     {
-                        spawnPoints.Add(new Tuple<int, int>(x+ 1, y + 1));         
+                        spawnPoints.Add(new Tuple<int, int>(x + 1, y + 1));         
                     }
                 }
             }            
