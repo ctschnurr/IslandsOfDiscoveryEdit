@@ -45,7 +45,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public void InitEnemiesList(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)
         {
-            for (int i = 0; i <= globals.maxEnemies; i++)
+            for (int i = 0; i <= globals.maxEnemies - 1; i++)
             {
                 if (i <= 24)
                 {

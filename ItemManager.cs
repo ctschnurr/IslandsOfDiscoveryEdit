@@ -13,73 +13,68 @@ namespace IslandsOfDiscoveryTxtRPG
                 
         private int potionHealAmount = 10;        
         
-        public List<Tuple<string, int>> MasterTreasureList;     // item name, amount
-        public List<Tuple<string, int>> PlayerInventory;
-        public List<Tuple<string, int>>[] EnemyInventory;
+        public List<string> MasterTreasureList;     // item name, amount
+        public List<string> PlayerInventory;
+        public List<string>[] EnemyInventory;
 
         public ItemManager(Globals globals)                                    // constructor for Item Manager
         {             
             this.globals = globals;
-            MasterTreasureList = new List<Tuple<string, int>>();
-            PlayerInventory = new List<Tuple<string, int>>();
-            EnemyInventory = new List<Tuple<string, int>>[globals.maxEnemies];
+            MasterTreasureList = new List<string>();
+            PlayerInventory = new List<string>();
+            EnemyInventory = new List<string>[globals.maxEnemies];
                         
             InitTreasureInv();            
         }        
 
         public void InitTreasureInv()                           // initializes the starting master treasure list
         {
-            MasterTreasureList.Add(new Tuple<string, int>("boat", 1));
-            MasterTreasureList.Add(new Tuple<string, int>("key", 1));
-            MasterTreasureList.Add(new Tuple<string, int>("potion", globals.maxEnemies * 2));
-            MasterTreasureList.Add(new Tuple<string, int>("gold", globals.maxEnemies * 5));
-
-            Debug.WriteLine("masterlist is made");
+            MasterTreasureList.Add("boat");
+            MasterTreasureList.Add("key");
+            for (int i = 0; i < globals.maxEnemies * 2; i++)
+            {
+                MasterTreasureList.Add("potion");
+            }
+            for (int j = 0; j < globals.maxEnemies * 5; j++)
+            {
+                MasterTreasureList.Add("gold");
+            }
         }        
                 
         public void CreateEnemyInv(string name, int id)
         {
-            int randNum;
-            int listLength = MasterTreasureList.Count();
-            
-            Debug.WriteLine("Creating " + name + " id " + id + " inventory.");
+            int randNum; 
 
             switch (name)
             {
                 case Globals.slimeName:                    
                     int slimeRandNum = globals.random.Next(1, globals.maxEnemies / 6);      // the amount of items the enemy will have
+                    EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < slimeRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, listLength + 1);                       // random number no more than the length of the list
-
-                        //Debug.WriteLine("enemy id " + EnemyInventory[id]);
-                        
+                        randNum = globals.random.Next(0, MasterTreasureList.Count());       // random number no more than the length of the list
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));      // adds to the enemy inventory the inventory item at the random location in the master list
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));   // removes the previous item from the master inventory list
-                    }
-
-                    //int itemCount = EnemyInventory[id].Count;
-                    //for (int i = 0; i < itemCount; i++)
-                    //{
-                    //    Debug.WriteLine(EnemyInventory[id].ElementAt(i));
-                    //}
-                    //
+                    } 
                     break;
                     
                 case Globals.wyvernName:                    
                     int wyvernRandNum = globals.random.Next(1, globals.maxEnemies / 2);
+                    EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < wyvernRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, listLength + 1);
+                        randNum = globals.random.Next(0, MasterTreasureList.Count());                        
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));
                     }                    
                     break;
                 case Globals.seaserpentName:                    
                     int seaserpentRandNum = globals.random.Next(1, globals.maxEnemies);
+                    Debug.Assert(id < globals.maxEnemies);
+                    EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < seaserpentRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, listLength + 1);
+                        randNum = globals.random.Next(0, MasterTreasureList.Count());                        
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));
                     }                    
@@ -113,20 +108,30 @@ namespace IslandsOfDiscoveryTxtRPG
             if (aggressor.Name == "Player")
             {
                 int amount = victim.itemManager.EnemyInventory[victim.myID].Count();
-                for (int i = 0; i == amount; i++)
+                if (amount != 0)
                 {
-                    PlayerInventory.Add(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                    Debug.WriteLine(amount);
+                    for (int i = 0; i < amount; i++)
+                    {
+                        Debug.WriteLine(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                        PlayerInventory.Add(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                    }
+                    victim.itemManager.EnemyInventory[victim.myID].Clear();
                 }
-                victim.itemManager.EnemyInventory[victim.myID].Clear();
             }
             else
             {
                 int amount = victim.itemManager.EnemyInventory[victim.myID].Count();
-                for (int i = 0; i == amount; i++)
+                if (amount != 0)
                 {
-                    aggressor.itemManager.EnemyInventory[aggressor.myID].Add(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                    Debug.WriteLine(amount);
+                    for (int i = 0; i < amount; i++)
+                    {
+                        Debug.WriteLine(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                        aggressor.itemManager.EnemyInventory[aggressor.myID].Add(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                    }
+                    victim.itemManager.EnemyInventory[victim.myID].Clear();
                 }
-                victim.itemManager.EnemyInventory[victim.myID].Clear();
             }            
         }
     }
