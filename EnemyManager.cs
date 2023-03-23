@@ -26,8 +26,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
             enemiesList = new List<Enemy>();
             deadEnemiesList = new List<Enemy>();
-            InitEnemiesList(map, itemManager, hud, cursorController, globals);
-            InitEnemyTreasureList(itemManager);
+            InitEnemiesList(map, itemManager, hud, cursorController, globals);            
         }
 
         public void Update(CombatManager combatManager, Player player)
@@ -64,15 +63,6 @@ namespace IslandsOfDiscoveryTxtRPG
                     globals.enemyID += 1;
                 }
             }
-        }
-
-        public void InitEnemyTreasureList(ItemManager itemManager)
-        {
-            int enemyCount = enemiesList.Count();
-            for (int i = 0; i == enemyCount; i++)
-            {
-                itemManager.CreateEnemyInv(enemiesList.ElementAt(i).Name, enemiesList.ElementAt(i).myID);
-            }            
         }
 
         public void Draw()

@@ -28,6 +28,7 @@ namespace IslandsOfDiscoveryTxtRPG
             base.globals = globals;
 
             SpawnPoint(mySpawnTile);
+            itemManager.CreateEnemyInv(Name, myID);
         }
     }
 }

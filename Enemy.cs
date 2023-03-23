@@ -38,16 +38,6 @@ namespace IslandsOfDiscoveryTxtRPG
             this.hud = hud;
             this.cursorController = cursorController;  
             this.globals = globals;
-
-            itemManager.CreateEnemyInv(Name, myID);               //creates the enemies inventory upon instantiation
-            
-            //debug code; indicates the enemy inventory is null -> why?
-            //int itemCount = itemManager.EnemyInventory[myID].Count;
-            //for (int i = 0; i < itemCount; i++)
-            //{
-            //    Debug.WriteLine(itemManager.EnemyInventory[myID].ElementAt(i));
-            //}
-
         }
         public void Update(CombatManager combatManager, Player player)
         {

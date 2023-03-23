@@ -22,6 +22,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.globals = globals;
             MasterTreasureList = new List<Tuple<string, int>>();
             PlayerInventory = new List<Tuple<string, int>>();
+            EnemyInventory = new List<Tuple<string, int>>[globals.maxEnemies];
                         
             InitTreasureInv();            
         }        
@@ -32,14 +33,16 @@ namespace IslandsOfDiscoveryTxtRPG
             MasterTreasureList.Add(new Tuple<string, int>("key", 1));
             MasterTreasureList.Add(new Tuple<string, int>("potion", globals.maxEnemies * 2));
             MasterTreasureList.Add(new Tuple<string, int>("gold", globals.maxEnemies * 5));
-        }
 
-        public List<Tuple<string, int>> CreateEnemyInv(string name, int id)
+            Debug.WriteLine("masterlist is made");
+        }        
+                
+        public void CreateEnemyInv(string name, int id)
         {
             int randNum;
             int listLength = MasterTreasureList.Count();
             
-            Debug.WriteLine("Creating " + name + " inventory."); // name and id are coming through null -> why?; also there's one extra list entry -> should be equal to max enemies
+            Debug.WriteLine("Creating " + name + " id " + id + " inventory.");
 
             switch (name)
             {
@@ -47,8 +50,11 @@ namespace IslandsOfDiscoveryTxtRPG
                     int slimeRandNum = globals.random.Next(1, globals.maxEnemies / 6);      // the amount of items the enemy will have
                     for (int x = 0; x < slimeRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, listLength);                       // random number no more than the length of the list
-                        EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));                // adds to the enemy inventory the inventory item at the random location in the master list
+                        randNum = globals.random.Next(0, listLength + 1);                       // random number no more than the length of the list
+
+                        //Debug.WriteLine("enemy id " + EnemyInventory[id]);
+                        
+                        EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));      // adds to the enemy inventory the inventory item at the random location in the master list
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));   // removes the previous item from the master inventory list
                     }
 
@@ -57,29 +63,30 @@ namespace IslandsOfDiscoveryTxtRPG
                     //{
                     //    Debug.WriteLine(EnemyInventory[id].ElementAt(i));
                     //}
-                    return EnemyInventory[id]; 
+                    //
+                    break;
                     
                 case Globals.wyvernName:                    
                     int wyvernRandNum = globals.random.Next(1, globals.maxEnemies / 2);
                     for (int x = 0; x < wyvernRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, listLength);
+                        randNum = globals.random.Next(0, listLength + 1);
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));
-                    }
-                    return EnemyInventory[id];                    
+                    }                    
+                    break;
                 case Globals.seaserpentName:                    
                     int seaserpentRandNum = globals.random.Next(1, globals.maxEnemies);
                     for (int x = 0; x < seaserpentRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, listLength);
+                        randNum = globals.random.Next(0, listLength + 1);
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));
-                    }
-                    return EnemyInventory[id];                    
-                default:
-                    return null;                    
-            }            
+                    }                    
+                    break;
+                default:                    
+                    break;
+            }
         }
 
         public void Update()                                    // updates the inventory system
