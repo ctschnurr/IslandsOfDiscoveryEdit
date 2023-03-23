@@ -9,7 +9,7 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Enemy : Character
     {              
-        protected int xpValue;
+        //protected int xpValue;
         protected int moveEnergy;
         protected int energyToMove;
         protected bool hasSpawned;
@@ -119,7 +119,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {            
             possibleSpawnPoints = map.SpawnPointsArray(enemySpawnPoint);        // gets all possible spawn points, based on the enemy specific desired char, from the Map
             int listLength = possibleSpawnPoints.Count;                         // limiter for the upper bounds of the random number
-            int randomNum = globals.random.Next(0, listLength);             // a random number that will be used to get a location in the possible spawn points list
+            int randomNum = globals.random.Next(0, listLength);                 // a random number that will be used to get a location in the possible spawn points list
             
             posY = possibleSpawnPoints.ElementAt(randomNum).Item1;              // sets the posY based on the first item at that random list location
             posX = possibleSpawnPoints.ElementAt(randomNum).Item2;              // sets the posX based on the second item at that same random list location

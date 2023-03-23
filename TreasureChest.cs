@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace IslandsOfDiscoveryTxtRPG
+{
+    internal class TreasureChest : Enemy
+    {
+        public TreasureChest(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
+        {
+            Name = Globals.treasureName;
+            character = Globals.treasureCharacter;
+            basehealth = globals.treasureBasehealth;
+            basespeed = globals.treasureBasespeed;
+            basestrength = globals.treasureBasestrength;
+            Health = basehealth;
+            Strength = basestrength;
+            xpValue = globals.treasureXPValue;
+            energyToMove = globals.treasureEnergyToMove;
+            myID = globals.enemyID;
+            mySpawnTile = Globals.treasureSpawnPoint;
+            base.map = map;
+            base.itemManager = itemManager;
+            base.hud = hud;
+            base.cursorController = cursorController;
+            base.globals = globals;
+
+            SpawnPoint(mySpawnTile);
+            itemManager.CreateEnemyInv(Name, myID);
+        }
+    }
+}

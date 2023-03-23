@@ -47,19 +47,29 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             for (int i = 0; i <= globals.maxEnemies - 1; i++)
             {
-                if (i <= 24)
+                if (i < 2)
+                {
+                    enemiesList.Add(new TreasureChest(map, itemManager, hud, cursorController, globals));
+                    globals.enemyID += 1;
+                }
+                else if (i >= 2 && i <= 23)
                 {
                     enemiesList.Add(new Slime(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
-                else if (i == 25)
+                else if (i > 23 && i < 27)
                 {
                     enemiesList.Add(new Wyvern(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
-                else
+                else if (i >= 27 && i < globals.maxEnemies - 1)
                 {
                     enemiesList.Add(new SeaSerpent(map, itemManager, hud, cursorController, globals));
+                    globals.enemyID += 1;
+                }
+                else if (i ==  globals.maxEnemies - 1)
+                {
+                    enemiesList.Add(new Dragon(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
             }

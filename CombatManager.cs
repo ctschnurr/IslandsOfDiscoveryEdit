@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,9 +60,15 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 return;
             }
-            else
+            else if (aggressor.Name != "Player")
             {
                 itemManager.Reward(aggressor, victim);              // loots the victim
+            }
+            else
+            {
+                itemManager.Reward(aggressor, victim);
+                player.XPIncrease(victim.xpValue);
+                Debug.WriteLine("xp value is " + victim.xpValue); // xpvalue seems to be zero even when it shouldn't be
             }
         }
     }

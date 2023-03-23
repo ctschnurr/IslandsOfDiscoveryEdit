@@ -46,6 +46,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="CombatManager.cs" />
     <Compile Include="CursorController.cs" />
+    <Compile Include="Dragon.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="GameManager.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="SeaSerpent.cs" />
     <Compile Include="Slime.cs" />
     <Compile Include="TestBed.cs" />
+    <Compile Include="TreasureChest.cs" />
     <Compile Include="Wyvern.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -47,6 +47,35 @@ namespace IslandsOfDiscoveryTxtRPG
 
             switch (name)
             {
+                case Globals.treasureName:
+                    int treasureRandNum = globals.random.Next(1, 4);                        // the amount of items the enemy will have
+                    EnemyInventory[id] = new List<string>();
+                    for (int x = 0; x < treasureRandNum; x++)
+                    {
+                        randNum = globals.random.Next(0, MasterTreasureList.Count());       // random number no more than the length of the list
+                        if (MasterTreasureList.Contains("key") || MasterTreasureList.Contains("boat"))  // assures that plot critical items are distributed to chests
+                        {
+                            for (int y = 0; y < MasterTreasureList.Count(); y++)
+                            {
+                                if (MasterTreasureList[y] == "key")
+                                {
+                                    EnemyInventory[id].Add(MasterTreasureList.ElementAt(y));
+                                    MasterTreasureList.Remove(MasterTreasureList.ElementAt(y));
+                                }
+                                else if (MasterTreasureList[y] == "boat")
+                                {
+                                    EnemyInventory[id].Add(MasterTreasureList.ElementAt(y));
+                                    MasterTreasureList.Remove(MasterTreasureList.ElementAt(y));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));      // adds to the enemy inventory the inventory item at the random location in the master list
+                            MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));   // removes the previous item from the master inventory list
+                        }
+                    }
+                    break;
                 case Globals.slimeName:                    
                     int slimeRandNum = globals.random.Next(1, globals.maxEnemies / 6);      // the amount of items the enemy will have
                     EnemyInventory[id] = new List<string>();
@@ -78,6 +107,15 @@ namespace IslandsOfDiscoveryTxtRPG
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(randNum));
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));
                     }                    
+                    break;
+                case Globals.dragonName:                    
+                    Debug.Assert(id < globals.maxEnemies);
+                    EnemyInventory[id] = new List<string>();
+                    for (int x = 0; x < MasterTreasureList.Count; x++)
+                    {                        
+                        EnemyInventory[id].Add(MasterTreasureList.ElementAt(x));
+                        MasterTreasureList.Remove(MasterTreasureList.ElementAt(x));
+                    }
                     break;
                 default:                    
                     break;

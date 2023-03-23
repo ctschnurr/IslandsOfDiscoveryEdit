@@ -58,6 +58,24 @@ namespace IslandsOfDiscoveryTxtRPG
         public int seaserpentEnergyToMove = 125;
 
         // Enemy - Dragon
+        public const string dragonName = "Dragon";
+        public const string dragonCharacter = "D";
+        public const char dragonSpawnPoint = 'C';
+        public int dragonBasehealth = 60;
+        public int dragonBasespeed = 8;
+        public int dragonBasestrength = 20;
+        public int dragonXPValue = 200;
+        public int dragonEnergyToMove = 100;
+
+        // Enemy - Treasure Chest
+        public const string treasureName = "Treasure";
+        public const string treasureCharacter = "T";
+        public const char treasureSpawnPoint = '*';
+        public int treasureBasehealth = 10;
+        public int treasureBasespeed = 0;
+        public int treasureBasestrength = 0;
+        public int treasureXPValue = 0;
+        public int treasureEnergyToMove = 10000;
 
         // Maps Information
         public string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";

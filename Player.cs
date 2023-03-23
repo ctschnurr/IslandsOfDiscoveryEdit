@@ -126,11 +126,21 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
+        public void XPIncrease(int amount)
+        {
+            xp += amount;
+        }
+
+        private void XPDecrease(int amount)
+        {
+            xp -= amount;
+        }
+
         private void LevelIncrease()
         {
             if (xp > level * 10)
             {
-                xp -= level * 10;
+                XPDecrease(level * 10);
                 level++;
                 Strength = basestrength + level;
                 CursorController.InputAreaCursor(3, 1);

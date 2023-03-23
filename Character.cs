@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,8 @@ namespace IslandsOfDiscoveryTxtRPG
         public int Health { get; set; }        
         public int Strength { get; set; }
         public string Name { get; set; }                    //name of character
-        public int myID;                                    //id of character(enemy)
+        public int xpValue { get; set; }
+        public int myID;                                    //id of character(enemy)        
 
         protected string character;                         //the alive version of the character
         protected string corpse;                            //the dead version of the character        
@@ -100,6 +102,6 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Console.Write(corpse);
             }
-        }
+        }        
     }
 }
