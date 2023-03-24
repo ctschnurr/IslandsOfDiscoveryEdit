@@ -25,8 +25,7 @@ namespace IslandsOfDiscoveryTxtRPG
             corpse = globals.playerCorpse;
             dead = globals.isPlayerDead;
             level = globals.playerLevel;
-            basehealth = globals.playerBasehealth;
-            basespeed = globals.playerBasespeed;
+            basehealth = globals.playerBasehealth;            
             basestrength = globals.playerBasestrength;
             Health = basehealth;            
             Strength = basestrength + level;
@@ -45,7 +44,7 @@ namespace IslandsOfDiscoveryTxtRPG
             StoreMyPOS();                                               // stores the player's current POS for reference
             PlayerInput();                                              // takes player input and adjusts x/y position
             HUD.ClearInputArea();                                       // clears the input/output area to make room for future output
-            if (map.BorderCheck(posX, posY))
+            if (map.CheckForBorder(posX, posY))
             {
                 ResetMyPOS();
             }
@@ -54,6 +53,7 @@ namespace IslandsOfDiscoveryTxtRPG
             if (target != null)
             {
                 ResetMyPOS();                                           // prevents moving on top of the enemy
+                HUD.StatEnemy(target);
                 combatManager.Battle(this, target);                     // applies damage to the enemy
             }            
             map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map
@@ -69,7 +69,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             CursorController.InputAreaCursor(0, 0);
 
-            Console.WriteLine("North(W), West(A), South(S), East(D). (P) for Potion. Press 'ESC' to Quit.");
+            Console.WriteLine("North(W), West(A), South(S), East(D). (P) to Heal. (ESC) to Quit.");
            
             CursorController.InputAreaCursor(1, 0);
 
@@ -101,11 +101,11 @@ namespace IslandsOfDiscoveryTxtRPG
         }        
         override protected void Walkable(int x, int y)
         {
-            if (map.TerrainCheck('^', x, y))
+            if (map.CheckForTerrain('^', x, y))
             {
                 ResetMyPOS();
             }
-            else if (map.TerrainCheck('~', x, y))
+            else if (map.CheckForTerrain('~', x, y))
             {
                 System.Collections.IList
                 list = itemManager.PlayerInventory;
@@ -113,7 +113,27 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     ResetMyPOS();
                 }                
-            }            
+            }  
+            else if (map.CheckForTerrain('∩', x, y))
+            {
+                System.Collections.IList
+                list = itemManager.PlayerInventory;
+                if (!list.Contains("key"))
+                {
+                    ResetMyPOS();
+                }
+                else
+                {
+                    posY -= 2;                              //if the player has the key, teleports them into the mountain caldera
+                }
+            }
+            else if (map.CheckForTerrain('C', x, y))
+            {
+                CursorController.InputAreaCursor(2, 1);
+                Console.WriteLine("You Win!");
+                globals.gameOver = true;
+                Console.ReadKey();
+            }
         }
         private void GameOverCheck()
         {

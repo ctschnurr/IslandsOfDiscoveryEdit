@@ -67,8 +67,8 @@ namespace IslandsOfDiscoveryTxtRPG
             else
             {
                 itemManager.Reward(aggressor, victim);
-                player.XPIncrease(victim.xpValue);
-                Debug.WriteLine("xp value is " + victim.xpValue); // xpvalue seems to be zero even when it shouldn't be
+                player.XPIncrease(victim.XpValue);
+                Debug.WriteLine("xp value is " + victim.XpValue); // xpvalue seems to be zero even when it shouldn't be
             }
         }
     }

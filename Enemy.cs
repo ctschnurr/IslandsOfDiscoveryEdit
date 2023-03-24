@@ -28,7 +28,7 @@ namespace IslandsOfDiscoveryTxtRPG
             dead = false;
             Health = basehealth;            
             Strength = basestrength;
-            xpValue = 0;
+            XpValue = 0;
             moveEnergy = 0;
             myID = 0;
             hasSpawned = false;  
@@ -39,7 +39,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.cursorController = cursorController;  
             this.globals = globals;
         }
-        public void Update(CombatManager combatManager, Player player)
+        public void Update(CombatManager combatManager)
         {
             SpawnMe();            
             DeathCheck();
@@ -47,7 +47,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 StoreMyPOS();
                 MoveMe();
-                if (map.BorderCheck(posX, posY))
+                if (map.CheckForBorder(posX, posY))
                 {
                     ResetMyPOS();
                 }
@@ -56,8 +56,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 if (target != null)
                 {
                     ResetMyPOS();
-                    combatManager.Battle(this, target);
-                    HUD.StatEnemy(this);
+                    combatManager.Battle(this, target);                    
                 }
                 DeathCheck();
                 map.Redraw(oldPosX, oldPosY);
@@ -100,7 +99,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 moveEnergy -= energyToMove;
             }
         }        
-        private void DeathCheck()
+        override protected void DeathCheck()
         {
             if (dead == true)
             {
@@ -108,10 +107,8 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             else if (Health <= 0)
             {
-                Health = 0;
-                HUD.StatEnemy(this);
-                dead = true;                
-                //player.xp += xpValue;                
+                Health = 0;                
+                dead = true;    
             }
         }
 

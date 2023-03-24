@@ -9,13 +9,11 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal class ItemManager
     {
-        public Globals globals;
-                
-        private int potionHealAmount = 10;        
+        public Globals globals;               
         
-        public List<string> MasterTreasureList;     // item name, amount
-        public List<string> PlayerInventory;
-        public List<string>[] EnemyInventory;
+        public List<string> MasterTreasureList;     // Master List of all treasure, generated on start
+        public List<string> PlayerInventory;        // Player's inventory
+        public List<string>[] EnemyInventory;       // Array of enemy inventories
 
         public ItemManager(Globals globals)                                    // constructor for Item Manager
         {             
@@ -31,28 +29,28 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             MasterTreasureList.Add("boat");
             MasterTreasureList.Add("key");
-            for (int i = 0; i < globals.maxEnemies * 2; i++)
+            for (int i = 0; i < globals.maxEnemies * 2; i++)    // adds an amount of potions based on number of enemies
             {
                 MasterTreasureList.Add("potion");
             }
-            for (int j = 0; j < globals.maxEnemies * 5; j++)
+            for (int j = 0; j < globals.maxEnemies * 5; j++)    // adds an amount of gold based on number of enemies
             {
                 MasterTreasureList.Add("gold");
             }
         }        
                 
-        public void CreateEnemyInv(string name, int id)
+        public void CreateEnemyInv(string name, int id)         // utilizes enemy name and id number to create custom inventories for each enemy
         {
             int randNum; 
 
             switch (name)
             {
                 case Globals.treasureName:
-                    int treasureRandNum = globals.random.Next(1, 4);                        // the amount of items the enemy will have
+                    int treasureRandNum = globals.random.Next(1, 4);                                    // the amount of items the enemy will have
                     EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < treasureRandNum; x++)
                     {
-                        randNum = globals.random.Next(0, MasterTreasureList.Count());       // random number no more than the length of the list
+                        randNum = globals.random.Next(0, MasterTreasureList.Count());                   // random number no more than the length of the list
                         if (MasterTreasureList.Contains("key") || MasterTreasureList.Contains("boat"))  // assures that plot critical items are distributed to chests
                         {
                             for (int y = 0; y < MasterTreasureList.Count(); y++)
@@ -98,8 +96,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     }                    
                     break;
                 case Globals.seaserpentName:                    
-                    int seaserpentRandNum = globals.random.Next(1, globals.maxEnemies);
-                    Debug.Assert(id < globals.maxEnemies);
+                    int seaserpentRandNum = globals.random.Next(1, globals.maxEnemies);                    
                     EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < seaserpentRandNum; x++)
                     {
@@ -108,10 +105,9 @@ namespace IslandsOfDiscoveryTxtRPG
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(randNum));
                     }                    
                     break;
-                case Globals.dragonName:                    
-                    Debug.Assert(id < globals.maxEnemies);
+                case Globals.dragonName: 
                     EnemyInventory[id] = new List<string>();
-                    for (int x = 0; x < MasterTreasureList.Count; x++)
+                    for (int x = 0; x < MasterTreasureList.Count; x++)                      // The Dragon gets all remaining treasure on the list
                     {                        
                         EnemyInventory[id].Add(MasterTreasureList.ElementAt(x));
                         MasterTreasureList.Remove(MasterTreasureList.ElementAt(x));
@@ -121,14 +117,10 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
             }
         }
-
-        public void Update()                                    // updates the inventory system
+        
+        public void CheckForPotion(Player player)                       // called when player attempts to use a potion
         {
-            
-        }
-        public void CheckForPotion(Player player)
-        {
-            System.Collections.IList 
+            System.Collections.IList                                    // converts player inventory into a list (not a necessary format since Tuple removed?)
             list = PlayerInventory;
 
             for (int i = 0; i < list.Count; i++)
@@ -136,7 +128,9 @@ namespace IslandsOfDiscoveryTxtRPG
                 string item = (string)list[i];
                 if (item == "potion")
                 {                    
-                    player.HealthIncrease(potionHealAmount);
+                    player.HealthIncrease(Globals.potionHealAmount);    // calls the player method to increase health based on potion heal amount
+                    PlayerInventory.RemoveAt(i);                        // removes the potion from the player inventory
+                    break;                                              // leaves the loop to prevent the player from using ALL potions
                 }               
             }         
         }
@@ -171,6 +165,20 @@ namespace IslandsOfDiscoveryTxtRPG
                     victim.itemManager.EnemyInventory[victim.myID].Clear();
                 }
             }            
+        }
+
+        public int CountItems(string requestedItem)                 // creates a count of an offered item and returns the amount
+        {
+            int itemAmount = 0;            
+
+            foreach (string item in PlayerInventory)
+            {
+                if (item == requestedItem)
+                {
+                    itemAmount++;                    
+                }                
+            }
+            return itemAmount;
         }
     }
 }

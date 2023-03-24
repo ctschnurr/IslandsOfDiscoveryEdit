@@ -101,7 +101,7 @@ namespace IslandsOfDiscoveryTxtRPG
             Console.BackgroundColor = globals.backgroundColor;                      //resets the console color for normal printing        
         }    
         
-        public bool TerrainCheck(char i, int x, int y)                              //takes in a char representing a terrain tile and an x/y location and returns true/false if it matches the location on the map
+        public bool CheckForTerrain(char i, int x, int y)                              //takes in a char representing a terrain tile and an x/y location and returns true/false if it matches the location on the map
         {            
             if (map[y - 1, x - 1] == i)
             {
@@ -110,7 +110,7 @@ namespace IslandsOfDiscoveryTxtRPG
             return false;            
         }
 
-        public bool BorderCheck(int x, int y)
+        public bool CheckForBorder(int x, int y)
         {
             if (x < 1 || y < 1 || x > cols || y > rows)                             //checks to see if the move is outside the bounds of the map first
             {

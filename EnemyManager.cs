@@ -29,11 +29,11 @@ namespace IslandsOfDiscoveryTxtRPG
             InitEnemiesList(map, itemManager, hud, cursorController, globals);            
         }
 
-        public void Update(CombatManager combatManager, Player player)
+        public void Update(CombatManager combatManager)
         {            
             foreach (Enemy enemy in enemiesList)
             {
-                enemy.Update(combatManager, player);
+                enemy.Update(combatManager);
                 if (enemy.dead == true)
                 {
                     DeadEnemy(enemy);                           // adds the dead enemy to the dead enemies list
@@ -52,17 +52,17 @@ namespace IslandsOfDiscoveryTxtRPG
                     enemiesList.Add(new TreasureChest(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
-                else if (i >= 2 && i <= 23)
+                else if (i >= 2 && i <= 30)
                 {
                     enemiesList.Add(new Slime(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
-                else if (i > 23 && i < 27)
+                else if (i > 30 && i < 34)
                 {
                     enemiesList.Add(new Wyvern(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;
                 }
-                else if (i >= 27 && i < globals.maxEnemies - 1)
+                else if (i >= 34 && i < globals.maxEnemies - 1)
                 {
                     enemiesList.Add(new SeaSerpent(map, itemManager, hud, cursorController, globals));
                     globals.enemyID += 1;

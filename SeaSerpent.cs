@@ -11,13 +11,10 @@ namespace IslandsOfDiscoveryTxtRPG
         public SeaSerpent(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
             Name = Globals.seaserpentName;
-            character = Globals.seaserpentCharacter;
-            basehealth = globals.seaserpentBasehealth;
-            basespeed = globals.seaserpentBasespeed;
-            basestrength = globals.seaserpentBasestrength;
-            Health = basehealth;            
-            Strength = basestrength;
-            xpValue = globals.seaserpentXPValue;            
+            character = Globals.seaserpentCharacter;            
+            Health = globals.seaserpentBasehealth;            
+            Strength = globals.seaserpentBasestrength;
+            XpValue = globals.seaserpentXPValue;            
             energyToMove = globals.seaserpentEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.seaserpentSpawnPoint;
@@ -33,7 +30,7 @@ namespace IslandsOfDiscoveryTxtRPG
         
         override protected void Walkable(int x, int y)
         {
-            if (!map.TerrainCheck('~', x, y))
+            if (!map.CheckForTerrain('~', x, y))
             {
                 ResetMyPOS();
             }            

@@ -9,11 +9,11 @@ namespace IslandsOfDiscoveryTxtRPG
 {
     internal abstract class Character                       //abstract prevents you from constructing this class on the field
     {
-        protected int basehealth, basespeed, basestrength;        
+        protected int basehealth, basestrength;        
         public int Health { get; set; }        
         public int Strength { get; set; }
         public string Name { get; set; }                    //name of character
-        public int xpValue { get; set; }
+        public int XpValue { get; set; }
         public int myID;                                    //id of character(enemy)        
 
         protected string character;                         //the alive version of the character
@@ -39,11 +39,11 @@ namespace IslandsOfDiscoveryTxtRPG
 
         virtual protected void Walkable(int x, int y)
         {
-            if (map.TerrainCheck('^', x, y))
+            if (map.CheckForTerrain('^', x, y))
             {
                 ResetMyPOS();
             }
-            else if (map.TerrainCheck('~', x, y))
+            else if (map.CheckForTerrain('~', x, y))
             {
                 ResetMyPOS();
             }
@@ -102,6 +102,6 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Console.Write(corpse);
             }
-        }        
+        }   
     }
 }

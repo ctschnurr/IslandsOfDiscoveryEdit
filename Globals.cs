@@ -18,21 +18,19 @@ namespace IslandsOfDiscoveryTxtRPG
         public string playerCorpse = "X";
         public bool isPlayerDead = false;
         public int playerLevel = 1;
-        public int playerBasehealth = 25;
-        public int playerBasespeed = 5;
+        public int playerBasehealth = 25;        
         public int playerBasestrength = 5;
 
         // All Enemy Information
         public int enemyID = 0;
         public const string enemyCorpse = "x";
-        public int maxEnemies = 30;
+        public int maxEnemies = 40;
 
         // Enemy - Slime
         public const string slimeName = "Slime";
         public const string slimeCharacter = "s";
         public const char slimeSpawnPoint = '`';
-        public int slimeBasehealth = 2;
-        public int slimeBasespeed = 2;
+        public int slimeBasehealth = 2;        
         public int slimeBasestrength = 1;
         public int slimeXPValue = 2;
         public int slimeEnergyToMove = 200;
@@ -41,8 +39,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string wyvernName = "Wyvern";
         public const string wyvernCharacter = "W";
         public const char wyvernSpawnPoint = '^';
-        public int wyvernBasehealth = 12;
-        public int wyvernBasespeed = 12;
+        public int wyvernBasehealth = 12;        
         public int wyvernBasestrength = 4;
         public int wyvernXPValue = 5;
         public int wyvernEnergyToMove = 100;
@@ -51,8 +48,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string seaserpentName = "SeaSerpent";
         public const string seaserpentCharacter = "S";
         public const char seaserpentSpawnPoint = '~';
-        public int seaserpentBasehealth = 22;
-        public int seaserpentBasespeed = 5;
+        public int seaserpentBasehealth = 22;        
         public int seaserpentBasestrength = 8;
         public int seaserpentXPValue = 12;
         public int seaserpentEnergyToMove = 125;
@@ -61,8 +57,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string dragonName = "Dragon";
         public const string dragonCharacter = "D";
         public const char dragonSpawnPoint = 'C';
-        public int dragonBasehealth = 60;
-        public int dragonBasespeed = 8;
+        public int dragonBasehealth = 60;        
         public int dragonBasestrength = 20;
         public int dragonXPValue = 200;
         public int dragonEnergyToMove = 100;
@@ -71,8 +66,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string treasureName = "Treasure";
         public const string treasureCharacter = "T";
         public const char treasureSpawnPoint = '*';
-        public int treasureBasehealth = 10;
-        public int treasureBasespeed = 0;
+        public int treasureBasehealth = 10;        
         public int treasureBasestrength = 0;
         public int treasureXPValue = 0;
         public int treasureEnergyToMove = 10000;
@@ -91,6 +85,8 @@ namespace IslandsOfDiscoveryTxtRPG
         public ConsoleColor castleEntrance = ConsoleColor.Magenta;
         public ConsoleColor backgroundColor = ConsoleColor.Black;
 
+        // Item Information
+        public const int potionHealAmount = 10;
     }
     
 }

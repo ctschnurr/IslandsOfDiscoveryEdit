@@ -23,12 +23,11 @@ namespace IslandsOfDiscoveryTxtRPG
         {            
             while (globals.gameOver == false)
             {
-                //updates
-                itemManager.Update();
+                //updates                
                 hud.Update(player, itemManager);
                 map.Update();
                 player.Update(combatManager);
-                enemyManager.Update(combatManager, player);
+                enemyManager.Update(combatManager);
 
                 //draws 
                 //hud.Draw(); 

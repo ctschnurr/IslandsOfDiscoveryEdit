@@ -11,13 +11,10 @@ namespace IslandsOfDiscoveryTxtRPG
         public Wyvern(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
             Name = Globals.wyvernName;
-            character = Globals.wyvernCharacter;
-            basehealth = globals.wyvernBasehealth;
-            basespeed = globals.wyvernBasespeed;
-            basestrength = globals.wyvernBasestrength;
-            Health = basehealth;            
-            Strength = basestrength;
-            xpValue = globals.wyvernXPValue;            
+            character = Globals.wyvernCharacter;            
+            Health = globals.wyvernBasehealth;            
+            Strength = globals.wyvernBasestrength;
+            XpValue = globals.wyvernXPValue;            
             energyToMove = globals.wyvernEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.wyvernSpawnPoint;
@@ -34,7 +31,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         override protected void Walkable(int x, int y)
         {
-            if (map.TerrainCheck('~', x, y))
+            if (map.CheckForTerrain('~', x, y))
             {
                 ResetMyPOS();
             }

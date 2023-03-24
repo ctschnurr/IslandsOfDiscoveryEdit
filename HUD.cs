@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System.IO;
 
 namespace IslandsOfDiscoveryTxtRPG
-{
+{    
     internal class HUD
     {      
-        private bool firstRender = true;
-        public string message;
+        private bool firstRender = true;        
 
         public Globals globals;
+        private int returnedAmount;
         public HUD(Globals globals) 
         { 
             this.globals = globals;
@@ -65,7 +65,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         private void StatPlayer(Player player, ItemManager itemManager)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 9; i++)
             {
                 CursorController.PlayerStatsCursorInner(i);
                 switch (i)
@@ -86,15 +86,20 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("Strength: " + player.Strength);
                         break;                    
                     case 5:
-                        System.Collections.IList 
-                        list = itemManager.PlayerInventory;
-                        for (int p = 0; p < list.Count; p++)
-                        {
-                            string item = (string)list[p];
-                            Console.WriteLine("Inventory: " + item);
-                            p++;
-                            CursorController.PlayerStatsCursorInner(i);
-                        }                        
+                        returnedAmount = itemManager.CountItems("boat");
+                        Console.WriteLine("Inv: Boat  x " + returnedAmount);
+                        break;
+                    case 6:
+                        returnedAmount = itemManager.CountItems("key");
+                        Console.WriteLine("Inv: Key  x " + returnedAmount);
+                        break;
+                    case 7:
+                        returnedAmount = itemManager.CountItems("potion");
+                        Console.WriteLine("Inv: Potion  x " + returnedAmount);
+                        break;
+                    case 8:
+                        returnedAmount = itemManager.CountItems("gold");
+                        Console.WriteLine("Inv: Gold  x " + returnedAmount);
                         break;
                     default:
                         break;
@@ -102,7 +107,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public static void StatEnemy(Enemy enemy)
+        public static void StatEnemy(Character character)
         {
             ClearEnemy();
             for (int i = 0; i < 4; i++)
@@ -114,13 +119,13 @@ namespace IslandsOfDiscoveryTxtRPG
                         Console.WriteLine("Enemy Stats");
                         break;
                     case 1:
-                        Console.WriteLine("Name: " + enemy.Name);
+                        Console.WriteLine("Name: " + character.Name);
                         break;
                     case 2:
-                        Console.WriteLine("Health: " + enemy.Health);
+                        Console.WriteLine("Health: " + character.Health);
                         break;
                     case 3:
-                        Console.WriteLine("Strength: " + enemy.Strength);
+                        Console.WriteLine("Strength: " + character.Strength);
                         break;                    
                     default:
                         break;
