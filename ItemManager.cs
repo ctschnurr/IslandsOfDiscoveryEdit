@@ -46,7 +46,7 @@ namespace IslandsOfDiscoveryTxtRPG
             switch (name)
             {
                 case Globals.treasureName:
-                    int treasureRandNum = globals.random.Next(1, 4);                                    // the amount of items the enemy will have
+                    int treasureRandNum = globals.random.Next(2, 5);                                    // the amount of items the enemy will have
                     EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < treasureRandNum; x++)
                     {
