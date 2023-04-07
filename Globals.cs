@@ -77,18 +77,18 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int treasureEnergyToMove = 10000;
 
         // Maps Information
-        public string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";
-        public string borders = "Maps_and_Overlays/HudBorders.txt";
+        public const string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";
+        public const string borders = "Maps_and_Overlays/HudBorders.txt";
 
         // Map Colours
-        public ConsoleColor mountainColor = ConsoleColor.Gray;
-        public ConsoleColor grassColor = ConsoleColor.Green;
-        public ConsoleColor waterColor = ConsoleColor.Blue;
-        public ConsoleColor forestColor = ConsoleColor.DarkGreen;
-        public ConsoleColor sandColor = ConsoleColor.Yellow;
-        public ConsoleColor dungeonEntrance = ConsoleColor.DarkGray;
-        public ConsoleColor castleEntrance = ConsoleColor.Magenta;
-        public ConsoleColor backgroundColor = ConsoleColor.Black;
+        public const ConsoleColor mountainColor = ConsoleColor.Gray;
+        public const ConsoleColor grassColor = ConsoleColor.Green;
+        public const ConsoleColor waterColor = ConsoleColor.Blue;
+        public const ConsoleColor forestColor = ConsoleColor.DarkGreen;
+        public const ConsoleColor sandColor = ConsoleColor.Yellow;
+        public const ConsoleColor dungeonEntrance = ConsoleColor.DarkGray;
+        public const ConsoleColor castleEntrance = ConsoleColor.Magenta;
+        public const ConsoleColor backgroundColor = ConsoleColor.Black;
 
         // Item Information
         public const int potionHealAmount = 10;

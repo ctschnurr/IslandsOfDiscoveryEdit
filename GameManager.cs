@@ -9,11 +9,11 @@ namespace IslandsOfDiscoveryTxtRPG
     internal class GameManager
     {        
         static Globals globals = new Globals();
-        static Map map = new Map(globals);
-        static HUD hud = new HUD(globals);
+        static Map map = new Map();
+        static HUD hud = new HUD();
         static ItemManager itemManager = new ItemManager(globals);
-        static CursorController cursorController = new CursorController();       
         //do not rearrange the order of these things - their constructors rely on timing of creation to function
+        static CursorController cursorController = new CursorController();       
         static EnemyManager enemyManager = new EnemyManager(map, itemManager, hud, cursorController, globals);
         static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController, globals);
         static CombatManager combatManager = new CombatManager(player, enemyManager, itemManager);
@@ -29,11 +29,9 @@ namespace IslandsOfDiscoveryTxtRPG
                 player.Update(combatManager);
                 enemyManager.Update(combatManager);
 
-                //draws 
-                //hud.Draw(); 
+                //draws                  
                 player.Draw(player.posX, player.posY);
                 enemyManager.Draw();
-
             }           
         }
     }

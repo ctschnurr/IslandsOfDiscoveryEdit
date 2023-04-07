@@ -9,9 +9,7 @@ using System.Diagnostics;
 namespace IslandsOfDiscoveryTxtRPG
 {
     internal class Map
-    {
-        public Globals globals;
-
+    {    
         public char[,] map;
         public List<Tuple<int, int>> spawnPoints;
 
@@ -29,9 +27,9 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public Map(Globals globals) //constructor
+        public Map() //constructor
         {
-            string[] mapString = File.ReadAllLines(globals.worldMap);
+            string[] mapString = File.ReadAllLines(Globals.worldMap);
             map = new char[mapString.GetLength(0), mapString[0].Length];
 
             for (int x = 0; x < mapString.GetLength(0); x++)
@@ -43,8 +41,6 @@ namespace IslandsOfDiscoveryTxtRPG
             cols = map.GetLength(1);
 
             spawnPoints = new List<Tuple<int, int>>();
-
-            this.globals = globals;
         }        
         public void Draw()
         {
@@ -57,7 +53,7 @@ namespace IslandsOfDiscoveryTxtRPG
                         ColourCode(x, y);                        
                         Console.Write(map[x, y]);                           
                     }
-                    Console.BackgroundColor = globals.backgroundColor;                        
+                    Console.BackgroundColor = Globals.backgroundColor;                        
                     Console.WriteLine();
                     CursorController.CursorInner(0, posY);          //adjusts the cursor to print each line on the correct line
                     posY++;
@@ -68,28 +64,28 @@ namespace IslandsOfDiscoveryTxtRPG
             switch (map[x, y]) //checks the characters in the array and assigns them colours
             {
                 case '^': //mountain
-                    Console.BackgroundColor = globals.mountainColor;
+                    Console.BackgroundColor = Globals.mountainColor;
                     break;
                 case '`': //grass
-                    Console.BackgroundColor = globals.grassColor;
+                    Console.BackgroundColor = Globals.grassColor;
                     break;
                 case '~': //water
-                    Console.BackgroundColor = globals.waterColor;
+                    Console.BackgroundColor = Globals.waterColor;
                     break;
                 case '*': //forest
-                    Console.BackgroundColor = globals.forestColor;
+                    Console.BackgroundColor = Globals.forestColor;
                     break;
                 case '∩': //dungeon entrance
-                    Console.BackgroundColor = globals.dungeonEntrance;
+                    Console.BackgroundColor = Globals.dungeonEntrance;
                     break;
                 case 'C': //castle entrance
-                    Console.BackgroundColor = globals.castleEntrance;
+                    Console.BackgroundColor = Globals.castleEntrance;
                     break;
                 case '#': //sand
-                    Console.BackgroundColor = globals.sandColor;
+                    Console.BackgroundColor = Globals.sandColor;
                     break;
                 default:
-                    Console.BackgroundColor = globals.backgroundColor;
+                    Console.BackgroundColor = Globals.backgroundColor;
                     break;
             }
         }
@@ -98,7 +94,7 @@ namespace IslandsOfDiscoveryTxtRPG
             CursorController.CharacterPrintCursor(x, y);                            //sets the cursor position to the players previous location                  
             ColourCode(y - 1, x - 1);                                               //gets the appropriate colour for reprinting the previous position
             Console.Write(map[y - 1, x - 1]);                                       //writes the map array location at the player's previous location
-            Console.BackgroundColor = globals.backgroundColor;                      //resets the console color for normal printing        
+            Console.BackgroundColor = Globals.backgroundColor;                      //resets the console color for normal printing        
         }    
         
         public bool CheckForTerrain(char i, int x, int y)                              //takes in a char representing a terrain tile and an x/y location and returns true/false if it matches the location on the map

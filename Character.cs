@@ -73,7 +73,7 @@ namespace IslandsOfDiscoveryTxtRPG
         virtual public Character HealthDecrease(int amount)
         {
             CursorController.InputAreaCursor(4, 0);
-            Console.WriteLine("The " + Name + " has lost " + amount + " health!");
+            Console.WriteLine("The " + Name + " has lost " + amount + " health!          ");
             Health -= amount;
             if (Health < 0)                     //if this character dies as a result of the fight, returns the character to the CombatManager
             {

@@ -13,13 +13,13 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public Globals globals;
         private int returnedAmount;
-        public HUD(Globals globals) 
+        public HUD() 
         { 
-            this.globals = globals;
+            
         }
         public void Draw()
         {
-            string[] hudBorders = File.ReadAllLines(globals.borders);
+            string[] hudBorders = File.ReadAllLines(Globals.borders);
 
             for (int y = 0; y < hudBorders.GetLength(0); y++)
             {
