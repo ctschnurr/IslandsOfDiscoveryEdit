@@ -20,7 +20,7 @@ namespace IslandsOfDiscoveryTxtRPG
             this.globals = globals;
             MasterTreasureList = new List<string>();
             PlayerInventory = new List<string>();
-            EnemyInventory = new List<string>[globals.maxEnemies];
+            EnemyInventory = new List<string>[Globals.maxEnemies];
                         
             InitTreasureInv();            
         }        
@@ -29,11 +29,11 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             MasterTreasureList.Add("boat");
             MasterTreasureList.Add("key");
-            for (int i = 0; i < globals.maxEnemies * 2; i++)    // adds an amount of potions based on number of enemies
+            for (int i = 0; i < Globals.maxEnemies * 2; i++)    // adds an amount of potions based on number of enemies
             {
                 MasterTreasureList.Add("potion");
             }
-            for (int j = 0; j < globals.maxEnemies * 5; j++)    // adds an amount of gold based on number of enemies
+            for (int j = 0; j < Globals.maxEnemies * 5; j++)    // adds an amount of gold based on number of enemies
             {
                 MasterTreasureList.Add("gold");
             }
@@ -75,7 +75,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     }
                     break;
                 case Globals.slimeName:                    
-                    int slimeRandNum = globals.random.Next(1, globals.maxEnemies / 6);      // the amount of items the enemy will have
+                    int slimeRandNum = globals.random.Next(1, Globals.maxEnemies / 6);      // the amount of items the enemy will have
                     EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < slimeRandNum; x++)
                     {
@@ -86,7 +86,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     break;
                     
                 case Globals.wyvernName:                    
-                    int wyvernRandNum = globals.random.Next(1, globals.maxEnemies / 2);
+                    int wyvernRandNum = globals.random.Next(1, Globals.maxEnemies / 2);
                     EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < wyvernRandNum; x++)
                     {
@@ -96,7 +96,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     }                    
                     break;
                 case Globals.seaserpentName:                    
-                    int seaserpentRandNum = globals.random.Next(1, globals.maxEnemies);                    
+                    int seaserpentRandNum = globals.random.Next(1, Globals.maxEnemies);                    
                     EnemyInventory[id] = new List<string>();
                     for (int x = 0; x < seaserpentRandNum; x++)
                     {

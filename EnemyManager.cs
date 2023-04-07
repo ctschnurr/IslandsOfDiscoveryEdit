@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
@@ -14,8 +15,8 @@ namespace IslandsOfDiscoveryTxtRPG
         public CursorController cursorController;
         public Globals globals;
         
-        public List<Enemy> enemiesList { get; set; }
-        public List<Enemy> deadEnemiesList { get; set; }
+        public List<Enemy> EnemiesList { get; set; }
+        public List<Enemy> DeadEnemiesList { get; set; }
         public EnemyManager (Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)
         {   
             this.map = map;            
@@ -24,14 +25,14 @@ namespace IslandsOfDiscoveryTxtRPG
             this.itemManager = itemManager;
             this.globals = globals;
 
-            enemiesList = new List<Enemy>();
-            deadEnemiesList = new List<Enemy>();
+            EnemiesList = new List<Enemy>();
+            DeadEnemiesList = new List<Enemy>();
             InitEnemiesList(map, itemManager, hud, cursorController, globals);            
         }
 
         public void Update(CombatManager combatManager)
         {            
-            foreach (Enemy enemy in enemiesList)
+            foreach (Enemy enemy in EnemiesList)
             {
                 enemy.Update(combatManager);
                 if (enemy.dead == true)
@@ -44,40 +45,37 @@ namespace IslandsOfDiscoveryTxtRPG
         }
 
         public void InitEnemiesList(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals)
-        {
-            for (int i = 0; i <= globals.maxEnemies - 1; i++)
+        {            
+            for (int j = 0; j < Globals.treasureChestAmountToSpawn; j++)
             {
-                if (i < 2)
-                {
-                    enemiesList.Add(new TreasureChest(map, itemManager, hud, cursorController, globals));
-                    globals.enemyID += 1;
-                }
-                else if (i >= 2 && i <= 30)
-                {
-                    enemiesList.Add(new Slime(map, itemManager, hud, cursorController, globals));
-                    globals.enemyID += 1;
-                }
-                else if (i > 30 && i < 34)
-                {
-                    enemiesList.Add(new Wyvern(map, itemManager, hud, cursorController, globals));
-                    globals.enemyID += 1;
-                }
-                else if (i >= 34 && i < globals.maxEnemies - 1)
-                {
-                    enemiesList.Add(new SeaSerpent(map, itemManager, hud, cursorController, globals));
-                    globals.enemyID += 1;
-                }
-                else if (i ==  globals.maxEnemies - 1)
-                {
-                    enemiesList.Add(new Dragon(map, itemManager, hud, cursorController, globals));
-                    globals.enemyID += 1;
-                }
+                EnemiesList.Add(new TreasureChest(map, itemManager, hud, cursorController, globals));
+                globals.enemyID += 1;
             }
+            for (int j = 0; j < Globals.slimeAmountToSpawn; j++)
+            {
+                EnemiesList.Add(new Slime(map, itemManager, hud, cursorController, globals));
+                globals.enemyID += 1;
+            } 
+            for (int j = 0; j < Globals.wyvernAmountToSpawn; j++)
+            {
+                EnemiesList.Add(new Wyvern(map, itemManager, hud, cursorController, globals));
+                globals.enemyID += 1;
+            } 
+            for (int j = 0; j < Globals.seaserpentAmountToSpawn; j++)
+            {
+                EnemiesList.Add(new SeaSerpent(map, itemManager, hud, cursorController, globals));
+                globals.enemyID += 1;
+            }                    
+            for (int j = 0; j < Globals.dragonAmountToSpawn; j++)
+            {
+                EnemiesList.Add(new Dragon(map, itemManager, hud, cursorController, globals));
+                globals.enemyID += 1;
+            }                    
         }
 
         public void Draw()
         {
-            foreach (Enemy enemy in enemiesList)
+            foreach (Enemy enemy in EnemiesList)
             {
                 enemy.Draw(enemy.posX, enemy.posY);
             }
@@ -85,21 +83,21 @@ namespace IslandsOfDiscoveryTxtRPG
 
         public List<Enemy> GetEnemyList()
         {
-            return enemiesList;
+            return EnemiesList;
         }
 
         public void DeadEnemy(Enemy enemy)
         {
-            deadEnemiesList.Add(enemy);
+            DeadEnemiesList.Add(enemy);
         }
 
         public void ClearDeadEnemies()
         {
-            foreach (Enemy enemy in deadEnemiesList)
+            foreach (Enemy enemy in DeadEnemiesList)
             {
-                enemiesList.Remove(enemy);
+                EnemiesList.Remove(enemy);
             }
-            deadEnemiesList.Clear();
+            DeadEnemiesList.Clear();
         }
     }
 }
