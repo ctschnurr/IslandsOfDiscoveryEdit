@@ -16,17 +16,17 @@ namespace IslandsOfDiscoveryTxtRPG
         
         public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
-            Name = globals.playerName;
+            Name = Globals.playerName;
             posX = x;
             posY = y;
             oldPosX = x;
             oldPosY = y;
-            character = globals.playerCharacter;
-            corpse = globals.playerCorpse;
+            character = Globals.playerCharacter;
+            corpse = Globals.playerCorpse;
             dead = globals.isPlayerDead;
             level = globals.playerLevel;
-            basehealth = globals.playerBasehealth;            
-            basestrength = globals.playerBasestrength;
+            basehealth = Globals.playerBasehealth;            
+            basestrength = Globals.playerBasestrength;
             Health = basehealth;            
             Strength = basestrength + level;
             xp = 0;

@@ -12,10 +12,10 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             Name = Globals.seaserpentName;
             character = Globals.seaserpentCharacter;            
-            Health = globals.seaserpentBasehealth;            
-            Strength = globals.seaserpentBasestrength;
-            XpValue = globals.seaserpentXPValue;            
-            energyToMove = globals.seaserpentEnergyToMove;
+            Health = Globals.seaserpentBasehealth;            
+            Strength = Globals.seaserpentBasestrength;
+            XpValue = Globals.seaserpentXPValue;            
+            energyToMove = Globals.seaserpentEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.seaserpentSpawnPoint;
             base.map = map;            

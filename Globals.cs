@@ -13,13 +13,13 @@ namespace IslandsOfDiscoveryTxtRPG
         public Random random = new Random();        
 
         // Player Information
-        public string playerName = "Player";
-        public string playerCharacter = "P";
-        public string playerCorpse = "X";
+        public const string playerName = "Player";
+        public const string playerCharacter = "P";
+        public const string playerCorpse = "X";
         public bool isPlayerDead = false;
         public int playerLevel = 1;
-        public int playerBasehealth = 25;        
-        public int playerBasestrength = 5;
+        public const int playerBasehealth = 25;        
+        public const int playerBasestrength = 5;
 
         // All Enemy Information
         public int enemyID = 0;
@@ -31,50 +31,50 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string slimeCharacter = "s";
         public const char slimeSpawnPoint = '`';
         public const int slimeAmountToSpawn = 26;
-        public int slimeBasehealth = 2;        
-        public int slimeBasestrength = 1;
-        public int slimeXPValue = 2;
-        public int slimeEnergyToMove = 200;
+        public const int slimeBasehealth = 2;        
+        public const int slimeBasestrength = 1;
+        public const int slimeXPValue = 2;
+        public const int slimeEnergyToMove = 200;
 
         // Enemy - Wyvern
         public const string wyvernName = "Wyvern";
         public const string wyvernCharacter = "W";
         public const char wyvernSpawnPoint = '^';
         public const int wyvernAmountToSpawn = 5;
-        public int wyvernBasehealth = 12;        
-        public int wyvernBasestrength = 4;
-        public int wyvernXPValue = 5;
-        public int wyvernEnergyToMove = 100;
+        public const int wyvernBasehealth = 12;        
+        public const int wyvernBasestrength = 4;
+        public const int wyvernXPValue = 5;
+        public const int wyvernEnergyToMove = 100;
 
         // Enemy - Sea Serpent
         public const string seaserpentName = "SeaSerpent";
         public const string seaserpentCharacter = "S";
         public const char seaserpentSpawnPoint = '~';
         public const int seaserpentAmountToSpawn = 5;
-        public int seaserpentBasehealth = 22;        
-        public int seaserpentBasestrength = 8;
-        public int seaserpentXPValue = 12;
-        public int seaserpentEnergyToMove = 125;
+        public const int seaserpentBasehealth = 22;        
+        public const int seaserpentBasestrength = 8;
+        public const int seaserpentXPValue = 12;
+        public const int seaserpentEnergyToMove = 125;
 
         // Enemy - Dragon
         public const string dragonName = "Dragon";
         public const string dragonCharacter = "D";
         public const char dragonSpawnPoint = 'C';
         public const int dragonAmountToSpawn = 1; 
-        public int dragonBasehealth = 60;        
-        public int dragonBasestrength = 20;
-        public int dragonXPValue = 200;
-        public int dragonEnergyToMove = 100;
+        public const int dragonBasehealth = 60;        
+        public const int dragonBasestrength = 20;
+        public const int dragonXPValue = 200;
+        public const int dragonEnergyToMove = 100;
 
         // Enemy - Treasure Chest
         public const string treasureName = "Treasure";
         public const string treasureCharacter = "T";
         public const char treasureSpawnPoint = '*';
         public const int treasureChestAmountToSpawn = 3;
-        public int treasureBasehealth = 10;        
-        public int treasureBasestrength = 0;
-        public int treasureXPValue = 0;
-        public int treasureEnergyToMove = 10000;
+        public const int treasureBasehealth = 10;        
+        public const int treasureBasestrength = 0;
+        public const int treasureXPValue = 0;
+        public const int treasureEnergyToMove = 10000;
 
         // Maps Information
         public string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";

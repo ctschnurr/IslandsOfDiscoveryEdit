@@ -12,10 +12,10 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             Name = Globals.wyvernName;
             character = Globals.wyvernCharacter;            
-            Health = globals.wyvernBasehealth;            
-            Strength = globals.wyvernBasestrength;
-            XpValue = globals.wyvernXPValue;            
-            energyToMove = globals.wyvernEnergyToMove;
+            Health = Globals.wyvernBasehealth;            
+            Strength = Globals.wyvernBasestrength;
+            XpValue = Globals.wyvernXPValue;            
+            energyToMove = Globals.wyvernEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.wyvernSpawnPoint;
 

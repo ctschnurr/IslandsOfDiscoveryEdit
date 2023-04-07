@@ -12,10 +12,10 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             Name = Globals.dragonName;
             character = Globals.dragonCharacter;            
-            Health = globals.dragonBasehealth;
-            Strength = globals.dragonBasestrength;
-            XpValue = globals.dragonXPValue;
-            energyToMove = globals.dragonEnergyToMove;
+            Health = Globals.dragonBasehealth;
+            Strength = Globals.dragonBasestrength;
+            XpValue = Globals.dragonXPValue;
+            energyToMove = Globals.dragonEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.dragonSpawnPoint;
             base.map = map;

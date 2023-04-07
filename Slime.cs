@@ -12,10 +12,10 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             Name = Globals.slimeName;
             character = Globals.slimeCharacter;            
-            Health = globals.slimeBasehealth;            
-            Strength = globals.slimeBasestrength;
-            XpValue = globals.slimeXPValue;            
-            energyToMove = globals.slimeEnergyToMove;
+            Health = Globals.slimeBasehealth;            
+            Strength = Globals.slimeBasestrength;
+            XpValue = Globals.slimeXPValue;            
+            energyToMove = Globals.slimeEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.slimeSpawnPoint;
             base.map = map;            

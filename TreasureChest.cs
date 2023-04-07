@@ -13,10 +13,10 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             Name = Globals.treasureName;
             character = Globals.treasureCharacter;            
-            Health = globals.treasureBasehealth;
-            Strength = globals.treasureBasestrength;
-            XpValue = globals.treasureXPValue;
-            energyToMove = globals.treasureEnergyToMove;
+            Health = Globals.treasureBasehealth;
+            Strength = Globals.treasureBasestrength;
+            XpValue = Globals.treasureXPValue;
+            energyToMove = Globals.treasureEnergyToMove;
             myID = globals.enemyID;
             mySpawnTile = Globals.treasureSpawnPoint;
             base.map = map;
