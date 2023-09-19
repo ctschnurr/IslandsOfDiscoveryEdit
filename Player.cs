@@ -52,9 +52,16 @@ namespace IslandsOfDiscoveryTxtRPG
             target = combatManager.FightCheck(this);                    // checks to see if there is an enemy to battle and returns that enemy
             if (target != null)
             {
-                ResetMyPOS();                                           // prevents moving on top of the enemy
-                HUD.StatEnemy(target);
-                combatManager.Battle(this, target);                     // applies damage to the enemy
+                ResetMyPOS();
+                if (target.Name == "Trader")                            // prevents moving on top of the enemy
+                {
+                    Trader.Transaction(itemManager);                           // if the target is a trader we run the transaction script. Otherwise we attack it!
+                }
+                else
+                {
+                    HUD.StatEnemy(target);
+                    combatManager.Battle(this, target);                 // applies damage to the enemy
+                }
             }            
             map.Redraw(oldPosX, oldPosY);                               // redraws the player's sprite on the map
             EndOfTurnChecks();                                          // variety of state checks (level up, death, gameover)

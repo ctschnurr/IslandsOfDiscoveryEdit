@@ -24,7 +24,7 @@ namespace IslandsOfDiscoveryTxtRPG
         // All Enemy Information
         public int enemyID = 0;
         public const string enemyCorpse = "x";
-        public const int maxEnemies = 40;             // this should equal the total amount of enemies to spawn in each enemy category
+        public const int maxEnemies = 41;             // this should equal the total amount of enemies to spawn in each enemy category
         
         // Enemy - Slime
         public const string slimeName = "Slime";
@@ -75,6 +75,17 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int treasureBasestrength = 0;
         public const int treasureXPValue = 0;
         public const int treasureEnergyToMove = 10000;
+
+        // Enemy - Trader
+        public const string traderName = "Trader";
+        public const string traderCharacter = "t";
+        public const char traderSpawnPoint = '*';
+        public const int traderAmountToSpawn = 1;
+        public const int traderBasehealth = 10;
+        public const int traderBasestrength = 0;
+        public const int traderXPValue = 0;
+        public const int traderEnergyToMove = 10000;
+        public const int traderPotionCost = 25;
 
         // Maps Information
         public const string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";

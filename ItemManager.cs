@@ -180,5 +180,37 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             return itemAmount;
         }
+
+        public void GivePotion()
+        {
+            PlayerInventory.Add("potion");
+        }
+
+        public void SpendGold(int goldSpent)
+        {
+            int goldCheck = CountItems("gold");
+            if (goldCheck < goldSpent) Debug.WriteLine("Trying to spend more gold than is on hand.");
+            else
+            {
+                List<string> removeMe = new List<string>();
+
+                foreach (string item in PlayerInventory)
+                {
+                    if (goldSpent != 0)
+                    { 
+                        if (item == "gold")
+                        {
+                            removeMe.Add(item);
+                            goldSpent--;
+                        }
+                    }
+                }
+
+                foreach (string spent in removeMe)
+                {
+                    PlayerInventory.Remove(spent);
+                }
+            }
+        }
     }
 }

@@ -70,7 +70,12 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 EnemiesList.Add(new Dragon(map, itemManager, hud, cursorController, globals));
                 globals.enemyID += 1;
-            }                    
+            }
+            for (int j = 0; j < Globals.traderAmountToSpawn; j++)
+            {
+                EnemiesList.Add(new Trader(map, itemManager, hud, cursorController, globals));
+                globals.enemyID += 1;
+            }
         }
 
         public void Draw()

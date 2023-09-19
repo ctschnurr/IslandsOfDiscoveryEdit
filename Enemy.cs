@@ -56,7 +56,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 if (target != null)
                 {
                     ResetMyPOS();
-                    combatManager.Battle(this, target);                    
+                    if(target.Name != "Trader") combatManager.Battle(this, target);       // monsters will ignore trader without stepping on him!             
                 }
                 DeathCheck();
                 map.Redraw(oldPosX, oldPosY);

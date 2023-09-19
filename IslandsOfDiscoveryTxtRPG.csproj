@@ -60,6 +60,7 @@
     <Compile Include="SeaSerpent.cs" />
     <Compile Include="Slime.cs" />
     <Compile Include="TestBed.cs" />
+    <Compile Include="Trader.cs" />
     <Compile Include="TreasureChest.cs" />
     <Compile Include="Wyvern.cs" />
   </ItemGroup>
