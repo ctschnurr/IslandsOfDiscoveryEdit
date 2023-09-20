@@ -40,8 +40,8 @@ namespace IslandsOfDiscoveryTxtRPG
             }
             else
             {
-                itemManager.GivePotion();
                 itemManager.SpendGold(Globals.traderPotionCost);
+                itemManager.GivePotion();
 
                 CursorController.InputAreaCursor(4, 0);
                 Console.WriteLine("You purchased a potion for " + Globals.traderPotionCost + "!");

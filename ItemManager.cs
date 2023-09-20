@@ -142,10 +142,10 @@ namespace IslandsOfDiscoveryTxtRPG
                 int amount = victim.itemManager.EnemyInventory[victim.myID].Count();
                 if (amount != 0)
                 {
-                    Debug.WriteLine(amount);
+                    // Debug.WriteLine(amount);
                     for (int i = 0; i < amount; i++)
                     {
-                        Debug.WriteLine(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                        // Debug.WriteLine(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
                         PlayerInventory.Add(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
                     }
                     victim.itemManager.EnemyInventory[victim.myID].Clear();
@@ -156,10 +156,10 @@ namespace IslandsOfDiscoveryTxtRPG
                 int amount = victim.itemManager.EnemyInventory[victim.myID].Count();
                 if (amount != 0)
                 {
-                    Debug.WriteLine(amount);
+                    // Debug.WriteLine(amount);
                     for (int i = 0; i < amount; i++)
                     {
-                        Debug.WriteLine(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
+                        // Debug.WriteLine(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
                         aggressor.itemManager.EnemyInventory[aggressor.myID].Add(victim.itemManager.EnemyInventory[victim.myID].ElementAt(i));
                     }
                     victim.itemManager.EnemyInventory[victim.myID].Clear();
@@ -181,12 +181,12 @@ namespace IslandsOfDiscoveryTxtRPG
             return itemAmount;
         }
 
-        public void GivePotion()
+        public void GivePotion()                                                // added method to add a single potion to player's inventory
         {
             PlayerInventory.Add("potion");
         }
 
-        public void SpendGold(int goldSpent)
+        public void SpendGold(int goldSpent)                                    // added method for spending gold
         {
             int goldCheck = CountItems("gold");
             if (goldCheck < goldSpent) Debug.WriteLine("Trying to spend more gold than is on hand.");

@@ -79,7 +79,7 @@ namespace IslandsOfDiscoveryTxtRPG
         // Enemy - Trader
         public const string traderName = "Trader";
         public const string traderCharacter = "t";
-        public const char traderSpawnPoint = '*';
+        public const char traderSpawnPoint = '`';
         public const int traderAmountToSpawn = 1;
         public const int traderBasehealth = 10;
         public const int traderBasestrength = 0;
@@ -88,8 +88,11 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int traderPotionCost = 10;
 
         // Quest Constants
-        public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };
-        public const int questMaximum = 3;
+        public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };  // Enemy types added here will be excluded from quests
+        public const int questMaximum = 3;                                                                      // Maximum # of quests before Quest Manager defaults to "Slay the Dragon!"
+        public const float questCreationMonsterThreshold = 0.25f;                                               // The percentage threshold of monsters left before the Quest Manager stops making quests
+        public const int questRewardMin = 1;                                                                    // The minimum base gold the Quest Manager will randomly choose as a reward
+        public const int questRewardMax = 10;                                                                   // The maximum base gold the Quest Manager will randomly choose as a reward
 
         // Maps Information
         public const string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";

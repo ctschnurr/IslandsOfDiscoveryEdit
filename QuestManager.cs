@@ -38,7 +38,7 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             this.enemiesList = enemyManager.EnemiesList;
 
-            if (enemiesList.Count > enemiesMax / 4 && questCount <= Globals.questMaximum)   // if there are more than 1/4 of the enemies left and haven't completed the max number of quests, it'll generate a new quest
+            if (enemiesList.Count > enemiesMax * Globals.questCreationMonsterThreshold && questCount <= Globals.questMaximum)   // if there are more than 1/4 of the enemies left and haven't completed the max number of quests, it'll generate a new quest
             {                                                                               
                 questSubject = enemiesList[rand.Next(0, enemiesList.Count)];                // picks a random enemy
                 List<string> excluded = globals.excludedFromQuests;
@@ -58,7 +58,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     }
                 }
 
-                goldReward = rand.Next(1, 10);                                              // generating a gold reward amount
+                goldReward = rand.Next(Globals.questRewardMin, Globals.questRewardMax);                                              // generating a gold reward amount
                 goldReward *= subjectCount;
 
                 activeQuest = new Quest(questSubject.Name, subjectCount, goldReward);       // setting up the new quest with the given attributes
@@ -84,7 +84,6 @@ namespace IslandsOfDiscoveryTxtRPG
                     if (countUs.Name == questSubject.Name)
                     {
                         subjectCount++;
-                        Debug.WriteLine(subjectCount);
                     }
                 }
 
@@ -102,9 +101,9 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             int goldReward = activeQuest.goldReward;
             CursorController.InputAreaCursor(4, 0);
-            Console.WriteLine(" You completed a quest! Your reward is " + goldReward + "!");
+            Console.WriteLine(" You completed a quest! Your reward is " + goldReward + " gold!");
 
-            for (int i = 0; i < activeQuest.goldReward + 1; i++)
+            for (int i = 0; i <= activeQuest.goldReward; i++)
             {
                 itemManager.PlayerInventory.Add("gold");
             }

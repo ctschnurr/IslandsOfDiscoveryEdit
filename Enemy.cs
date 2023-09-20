@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics; //Debug.WriteLine()
+using System.Diagnostics;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
