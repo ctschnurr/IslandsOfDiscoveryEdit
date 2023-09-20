@@ -85,7 +85,11 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int traderBasestrength = 0;
         public const int traderXPValue = 0;
         public const int traderEnergyToMove = 10000;
-        public const int traderPotionCost = 25;
+        public const int traderPotionCost = 10;
+
+        // Quest Constants
+        public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };
+        public const int questMaximum = 3;
 
         // Maps Information
         public const string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";

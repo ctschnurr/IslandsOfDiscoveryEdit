@@ -36,7 +36,7 @@ namespace IslandsOfDiscoveryTxtRPG
             if (goldOnHand < Globals.traderPotionCost)
             {
                 CursorController.InputAreaCursor(4, 0);
-                Console.WriteLine("Trader: \'Potions are " + Globals.traderPotionCost + " \'gold each!\'");
+                Console.WriteLine("Trader: \'Potions are " + Globals.traderPotionCost + " gold each!\'");
             }
             else
             {

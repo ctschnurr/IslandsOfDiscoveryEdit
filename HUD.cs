@@ -27,7 +27,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void Update(Player player, ItemManager itemManager)
+        public void Update(Player player, ItemManager itemManager, QuestManager questManager)
         {
             if (firstRender)
             {
@@ -35,7 +35,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 firstRender = false;
             }            
             ClearPlayer();
-            StatPlayer(player, itemManager);
+            StatPlayer(player, itemManager, questManager);
         }
         private void ClearPlayer()
         {
@@ -63,9 +63,9 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        private void StatPlayer(Player player, ItemManager itemManager)
+        private void StatPlayer(Player player, ItemManager itemManager, QuestManager questManager)
         {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 11; i++)
             {
                 CursorController.PlayerStatsCursorInner(i);
                 switch (i)
@@ -100,6 +100,10 @@ namespace IslandsOfDiscoveryTxtRPG
                     case 8:
                         returnedAmount = itemManager.CountItems("gold");
                         Console.WriteLine("Inv: Gold  x " + returnedAmount);
+                        break;
+                    case 9:
+                        string quest = questManager.GetQuest();
+                        Console.WriteLine(quest);
                         break;
                     default:
                         break;

@@ -17,6 +17,7 @@ namespace IslandsOfDiscoveryTxtRPG
         static EnemyManager enemyManager = new EnemyManager(map, itemManager, hud, cursorController, globals);
         static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController, globals);
         static CombatManager combatManager = new CombatManager(player, enemyManager, itemManager);
+        static QuestManager questManager = new QuestManager(enemyManager, itemManager, globals);
 
         //Game Loop
         public void RunGame()
@@ -24,7 +25,8 @@ namespace IslandsOfDiscoveryTxtRPG
             while (globals.gameOver == false)
             {
                 //updates                
-                hud.Update(player, itemManager);
+                questManager.Update(enemyManager);
+                hud.Update(player, itemManager, questManager);
                 map.Update();
                 player.Update(combatManager);
                 enemyManager.Update(combatManager);
