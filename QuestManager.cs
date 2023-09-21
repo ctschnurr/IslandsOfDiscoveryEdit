@@ -14,7 +14,7 @@ namespace IslandsOfDiscoveryTxtRPG
         Globals globals;
         Enemy questSubject;
         Quest activeQuest;
-        bool activeQuesting = true;
+        bool continueQuests = true;
 
         int questCount = 0;
         int enemiesMax;
@@ -38,19 +38,19 @@ namespace IslandsOfDiscoveryTxtRPG
         {
             this.enemiesList = enemyManager.EnemiesList;
 
-            if (enemiesList.Count > enemiesMax * Globals.questCreationMonsterThreshold && questCount <= Globals.questMaximum)   // if there are more than 1/4 of the enemies left and haven't completed the max number of quests, it'll generate a new quest
+            if (enemiesList.Count > enemiesMax * Globals.questCreationMonsterThreshold && questCount <= Globals.questMaximum)   // if there are more than the threshold of enemies left and player hasn't completed the max number of quests, it'll generate a new quest
             {                                                                               
-                questSubject = enemiesList[rand.Next(0, enemiesList.Count)];                // picks a random enemy type
+                questSubject = enemiesList[rand.Next(0, enemiesList.Count)];                
                 List<string> excluded = globals.excludedFromQuests;
 
-                while (excluded.Contains(questSubject.Name))                                // making sure the chosen enemy isn't on the excluded enemies list
+                while (excluded.Contains(questSubject.Name))                                
                 {
                     questSubject = enemiesList[rand.Next(enemiesList.Count)];
                 }
 
                 int subjectCount = 0;
 
-                foreach (Enemy countUs in enemiesList)                                      // counting up the total of the chosen enemy
+                foreach (Enemy countUs in enemiesList)                                      
                 {
                     if (countUs.Name == questSubject.Name)
                     {
@@ -58,22 +58,22 @@ namespace IslandsOfDiscoveryTxtRPG
                     }
                 }
 
-                goldReward = rand.Next(Globals.questRewardMin, Globals.questRewardMax);     // generating a gold reward amount
+                goldReward = rand.Next(Globals.questRewardMin, Globals.questRewardMax);
                 goldReward *= subjectCount;
 
-                activeQuest = new Quest(questSubject.Name, subjectCount, goldReward);       // setting up the new quest with the given attributes
+                activeQuest = new Quest(questSubject.Name, subjectCount, goldReward);       
 
             }
             else
             {
-                activeQuest.questString = "Slay the Dragon!  ";                             // if not enough enemies remain or the max number of quests are complete, it'll default to slaying the dragon
-                activeQuesting = false;
+                activeQuest.questString = "Slay the Dragon!  ";
+                continueQuests = false;
             }
         }
 
-        public void Update(EnemyManager enemyManager)                                       // update checks the ememy list to see if any quest enemies were killed
+        public void Update(EnemyManager enemyManager)
         {
-            if(activeQuesting)
+            if(continueQuests)
             {
                 this.enemiesList = enemyManager.EnemiesList;
 
@@ -94,10 +94,9 @@ namespace IslandsOfDiscoveryTxtRPG
                 }
                 else QuestComplete();
             }
-
         }
 
-        public void QuestComplete()                                                         // when a quest is complete this will reward them and assign a new quest
+        public void QuestComplete()
         {
             int goldReward = activeQuest.goldReward;
             CursorController.InputAreaCursor(4, 0);

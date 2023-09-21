@@ -181,27 +181,27 @@ namespace IslandsOfDiscoveryTxtRPG
             return itemAmount;
         }
 
-        public void GiveItem(string giveItem)                                              // added method to add a single item to player's inventory
+        public void GiveItem(string giveItem)                                              
         {
             PlayerInventory.Add(giveItem);
         }
 
-        public void SpendItem(int itemSpent)                                               // added method for spending items
+        public void SpendItem(int amountSpent)                                               
         {
             int itemCheck = CountItems(Globals.traderSellCurrency);
-            if (itemCheck < itemSpent) Debug.WriteLine("Trying to spend more than is on hand.");
+            if (itemCheck < amountSpent) Debug.WriteLine("Trying to spend more than is on hand."); // this shouldn't happen as the trader first checks if player has the required items, but this will catch it in the future if more classes/methods are added that access this method
             else
             {
                 List<string> removeMe = new List<string>();
 
                 foreach (string item in PlayerInventory)
                 {
-                    if (itemSpent != 0)
+                    if (amountSpent != 0)
                     { 
                         if (item == Globals.traderSellCurrency)
                         {
                             removeMe.Add(item);
-                            itemSpent--;
+                            amountSpent--;
                         }
                     }
                 }

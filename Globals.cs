@@ -76,7 +76,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int treasureXPValue = 0;
         public const int treasureEnergyToMove = 10000;
 
-        // Enemy - Trader                                                                                       // Trader is an enemy based on Treasure Enemy
+        // Enemy - Trader                                                                                       
         public const string traderName = "Trader";
         public const string traderCharacter = "t";
         public const char traderSpawnPoint = '`';
@@ -86,17 +86,21 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int traderXPValue = 0;
         public const int traderEnergyToMove = 10000;
 
-        public const int traderSellCost = 10;                                                                   // added these constants on top of the usual Enemy constants
-        public const string traderSellItem = "potion";
-        public const string traderSellCurrency = "gold";
+        // Trader configurables
+        public const int traderSellQty = 1;
+        public const string traderSellItem = "potion";                                                          // Trader can sell anything, but game relevant items are potion, boat, key
+        public const int traderSellCost = 10;                                                                   
+        public const string traderSellCurrency = "gold";                                                        
 
         // Quest Constants
-        public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };  // Enemy types added here will be excluded from quests
-        public const int questMaximum = 3;                                                                      // Maximum # of quests before Quest Manager defaults to "Slay the Dragon!"
-        public const float questCreationMonsterThreshold = 0.25f;                                               // The percentage threshold of monsters left before the Quest Manager stops making quests
-        public const int questRewardMin = 1;                                                                    // The minimum base gold the Quest Manager will randomly choose as a reward
-        public const int questRewardMax = 10;                                                                   // The maximum base gold the Quest Manager will randomly choose as a reward
-
+        public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };  // Enemy types added here are excluded from being random quest targets
+        public const int questMaximum = 3;                                                                      // Quest Manager defaults to "Slay the Dragon!" after maximum quests completed
+        public const int questRewardMin = 1;                                                                    // Note that reward is multiplied by number of enemies in quest
+        public const int questRewardMax = 10;
+        public const float questCreationMonsterThreshold = 0.25f;                                               // Percentage threshold of monsters left before the Quest Manager stops
+                                                                                                                // making quests. 0.25 would have the quests stop if less than 25% of the
+                                                                                                                // total monsters remain, to prevent super easy 1 monster quests
+                                                                                                                // at the end. Defaults to "Slay the Dragon!" after met.
         // Maps Information
         public const string worldMap = "Maps_and_Overlays/OverworldMap_01.txt";
         public const string borders = "Maps_and_Overlays/HudBorders.txt";

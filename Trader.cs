@@ -29,22 +29,30 @@ namespace IslandsOfDiscoveryTxtRPG
             itemManager.CreateEnemyInv(Name, myID);
         }
 
-        public static void Transaction(ItemManager itemManager) // when the player interacts with the trader by running into them, this will take care of one potion purchase
+        public static void Transaction(ItemManager itemManager) // player can purchase any number of any item for any amount of another item, configurable in Globals
         {
-            int goldOnHand = itemManager.CountItems("gold");
+            int itemCount = itemManager.CountItems(Globals.traderSellCurrency);
 
-            if (goldOnHand < Globals.traderSellCost)
+            if (itemCount < Globals.traderSellCost)
             {
                 CursorController.InputAreaCursor(4, 0);
-                Console.WriteLine("Trader: \'" + Globals.traderSellItem + "s are " + Globals.traderSellCost + " " + Globals.traderSellCurrency + " each!\'");
+                Console.Write("Trader: \'I'll sell you " + Globals.traderSellQty + " " + Globals.traderSellItem);
+                if (Globals.traderSellQty > 1) Console.Write("s");
+                Console.WriteLine(" for " + Globals.traderSellCost + " " + Globals.traderSellCurrency + "!\'");
             }
             else
             {
                 itemManager.SpendItem(Globals.traderSellCost);
-                itemManager.GiveItem(Globals.traderSellItem);
+
+                for (int i = 0; i < Globals.traderSellQty; i++)
+                {
+                    itemManager.GiveItem(Globals.traderSellItem);
+                }
 
                 CursorController.InputAreaCursor(4, 0);
-                Console.WriteLine("You purchased a potion for " + Globals.traderSellCost + "!");
+                Console.Write("You purchased " + Globals.traderSellQty + " " + Globals.traderSellItem);
+                if (Globals.traderSellQty > 1) Console.Write("s");
+                Console.WriteLine(" for " + Globals.traderSellCost + " " + Globals.traderSellCurrency + "!");
             }
 
         }
