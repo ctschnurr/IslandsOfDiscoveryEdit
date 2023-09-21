@@ -40,7 +40,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
             if (enemiesList.Count > enemiesMax * Globals.questCreationMonsterThreshold && questCount <= Globals.questMaximum)   // if there are more than 1/4 of the enemies left and haven't completed the max number of quests, it'll generate a new quest
             {                                                                               
-                questSubject = enemiesList[rand.Next(0, enemiesList.Count)];                // picks a random enemy
+                questSubject = enemiesList[rand.Next(0, enemiesList.Count)];                // picks a random enemy type
                 List<string> excluded = globals.excludedFromQuests;
 
                 while (excluded.Contains(questSubject.Name))                                // making sure the chosen enemy isn't on the excluded enemies list
@@ -58,7 +58,7 @@ namespace IslandsOfDiscoveryTxtRPG
                     }
                 }
 
-                goldReward = rand.Next(Globals.questRewardMin, Globals.questRewardMax);                                              // generating a gold reward amount
+                goldReward = rand.Next(Globals.questRewardMin, Globals.questRewardMax);     // generating a gold reward amount
                 goldReward *= subjectCount;
 
                 activeQuest = new Quest(questSubject.Name, subjectCount, goldReward);       // setting up the new quest with the given attributes
@@ -71,7 +71,7 @@ namespace IslandsOfDiscoveryTxtRPG
             }
         }
 
-        public void Update(EnemyManager enemyManager)
+        public void Update(EnemyManager enemyManager)                                       // update checks the ememy list to see if any quest enemies were killed
         {
             if(activeQuesting)
             {
@@ -97,7 +97,7 @@ namespace IslandsOfDiscoveryTxtRPG
 
         }
 
-        public void QuestComplete()
+        public void QuestComplete()                                                         // when a quest is complete this will reward them and assign a new quest
         {
             int goldReward = activeQuest.goldReward;
             CursorController.InputAreaCursor(4, 0);

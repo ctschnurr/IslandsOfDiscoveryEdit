@@ -76,7 +76,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int treasureXPValue = 0;
         public const int treasureEnergyToMove = 10000;
 
-        // Enemy - Trader
+        // Enemy - Trader                                                                                       // Trader is an enemy based on Treasure Enemy
         public const string traderName = "Trader";
         public const string traderCharacter = "t";
         public const char traderSpawnPoint = '`';
@@ -85,7 +85,10 @@ namespace IslandsOfDiscoveryTxtRPG
         public const int traderBasestrength = 0;
         public const int traderXPValue = 0;
         public const int traderEnergyToMove = 10000;
-        public const int traderPotionCost = 10;
+
+        public const int traderSellCost = 10;                                                                   // added these constants on top of the usual Enemy constants
+        public const string traderSellItem = "potion";
+        public const string traderSellCurrency = "gold";
 
         // Quest Constants
         public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };  // Enemy types added here will be excluded from quests

@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace IslandsOfDiscoveryTxtRPG
 {
-    internal class Trader : Enemy
+    internal class Trader : Enemy //  Trader is treated as an enemy, similar to the existing Treasure enemy
     {
         public Trader(Map map, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
         {
@@ -29,22 +29,22 @@ namespace IslandsOfDiscoveryTxtRPG
             itemManager.CreateEnemyInv(Name, myID);
         }
 
-        public static void Transaction(ItemManager itemManager)
+        public static void Transaction(ItemManager itemManager) // when the player interacts with the trader by running into them, this will take care of one potion purchase
         {
             int goldOnHand = itemManager.CountItems("gold");
 
-            if (goldOnHand < Globals.traderPotionCost)
+            if (goldOnHand < Globals.traderSellCost)
             {
                 CursorController.InputAreaCursor(4, 0);
-                Console.WriteLine("Trader: \'Potions are " + Globals.traderPotionCost + " gold each!\'");
+                Console.WriteLine("Trader: \'" + Globals.traderSellItem + "s are " + Globals.traderSellCost + " " + Globals.traderSellCurrency + " each!\'");
             }
             else
             {
-                itemManager.SpendGold(Globals.traderPotionCost);
-                itemManager.GivePotion();
+                itemManager.SpendItem(Globals.traderSellCost);
+                itemManager.GiveItem(Globals.traderSellItem);
 
                 CursorController.InputAreaCursor(4, 0);
-                Console.WriteLine("You purchased a potion for " + Globals.traderPotionCost + "!");
+                Console.WriteLine("You purchased a potion for " + Globals.traderSellCost + "!");
             }
 
         }

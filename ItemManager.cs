@@ -181,27 +181,27 @@ namespace IslandsOfDiscoveryTxtRPG
             return itemAmount;
         }
 
-        public void GivePotion()                                                // added method to add a single potion to player's inventory
+        public void GiveItem(string giveItem)                                              // added method to add a single item to player's inventory
         {
-            PlayerInventory.Add("potion");
+            PlayerInventory.Add(giveItem);
         }
 
-        public void SpendGold(int goldSpent)                                    // added method for spending gold
+        public void SpendItem(int itemSpent)                                               // added method for spending items
         {
-            int goldCheck = CountItems("gold");
-            if (goldCheck < goldSpent) Debug.WriteLine("Trying to spend more gold than is on hand.");
+            int itemCheck = CountItems(Globals.traderSellCurrency);
+            if (itemCheck < itemSpent) Debug.WriteLine("Trying to spend more than is on hand.");
             else
             {
                 List<string> removeMe = new List<string>();
 
                 foreach (string item in PlayerInventory)
                 {
-                    if (goldSpent != 0)
+                    if (itemSpent != 0)
                     { 
-                        if (item == "gold")
+                        if (item == Globals.traderSellCurrency)
                         {
                             removeMe.Add(item);
-                            goldSpent--;
+                            itemSpent--;
                         }
                     }
                 }
