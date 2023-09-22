@@ -184,11 +184,12 @@ namespace IslandsOfDiscoveryTxtRPG
         public void GiveItem(string giveItem)                                              
         {
             PlayerInventory.Add(giveItem);
+            Debug.WriteLine("item given " + giveItem);
         }
 
-        public void SpendItem(int amountSpent)                                               
+        public void SpendGold(int amountSpent)                                               
         {
-            int itemCheck = CountItems(Globals.traderSellCurrency);
+            int itemCheck = CountItems("gold");
             if (itemCheck < amountSpent) Debug.WriteLine("Trying to spend more than is on hand."); // this shouldn't happen as the trader first checks if player has the required items, but this will catch it in the future if more classes/methods are added that access this method
             else
             {
@@ -198,7 +199,7 @@ namespace IslandsOfDiscoveryTxtRPG
                 {
                     if (amountSpent != 0)
                     { 
-                        if (item == Globals.traderSellCurrency)
+                        if (item == "gold")
                         {
                             removeMe.Add(item);
                             amountSpent--;

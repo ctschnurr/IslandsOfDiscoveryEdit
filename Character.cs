@@ -102,6 +102,7 @@ namespace IslandsOfDiscoveryTxtRPG
             {
                 Console.Write(corpse);
             }
-        }   
+        }
+        
     }
 }

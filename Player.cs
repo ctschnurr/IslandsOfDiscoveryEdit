@@ -13,8 +13,10 @@ namespace IslandsOfDiscoveryTxtRPG
         public int xp { get; set; }
 
         private Character target;
+        EnemyManager eMan;
+        QuestManager qMan;
         
-        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals) : base(map, itemManager, hud, cursorController, globals)
+        public Player(int x, int y, Map map, Player player, ItemManager itemManager, HUD hud, CursorController cursorController, Globals globals, EnemyManager enemyManager, QuestManager questManager) : base(map, itemManager, hud, cursorController, globals)
         {
             Name = Globals.playerName;
             posX = x;
@@ -30,6 +32,9 @@ namespace IslandsOfDiscoveryTxtRPG
             Health = basehealth;            
             Strength = basestrength + level;
             xp = 0;
+
+            eMan = enemyManager;
+            qMan = questManager;
 
             base.map = map;
             base.player = player;
@@ -55,7 +60,9 @@ namespace IslandsOfDiscoveryTxtRPG
                 ResetMyPOS();
                 if (target.Name == "Trader")                            // prevents moving on top of the enemy
                 {
-                    Trader.Transaction(itemManager);                           // if the target is a trader we run the transaction script. Otherwise we attack it!
+                    Trader trader = (Trader)target;
+
+                    trader.Transaction(this, itemManager, map, qMan);               // if the target is a trader we run the transaction script. Otherwise we attack it!
                 }
                 else
                 {

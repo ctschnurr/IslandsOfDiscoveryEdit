@@ -15,9 +15,9 @@ namespace IslandsOfDiscoveryTxtRPG
         //do not rearrange the order of these things - their constructors rely on timing of creation to function
         static CursorController cursorController = new CursorController();       
         static EnemyManager enemyManager = new EnemyManager(map, itemManager, hud, cursorController, globals);
-        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController, globals);
-        static CombatManager combatManager = new CombatManager(player, enemyManager, itemManager);
         static QuestManager questManager = new QuestManager(enemyManager, itemManager, globals);
+        static Player player = new Player(22, 14, map, player, itemManager, hud, cursorController, globals, enemyManager, questManager);
+        static CombatManager combatManager = new CombatManager(player, enemyManager, itemManager);
 
         //Game Loop
         public void RunGame()

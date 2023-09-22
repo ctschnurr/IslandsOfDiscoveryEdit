@@ -70,7 +70,7 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string treasureName = "Treasure";
         public const string treasureCharacter = "T";
         public const char treasureSpawnPoint = '*';
-        public const int treasureChestAmountToSpawn = 3;
+        public const int treasureChestAmountToSpawn = 4;
         public const int treasureBasehealth = 10;        
         public const int treasureBasestrength = 0;
         public const int treasureXPValue = 0;
@@ -80,17 +80,19 @@ namespace IslandsOfDiscoveryTxtRPG
         public const string traderName = "Trader";
         public const string traderCharacter = "t";
         public const char traderSpawnPoint = '`';
-        public const int traderAmountToSpawn = 1;
+        public const int traderAmountToSpawn = 5;
         public const int traderBasehealth = 10;
         public const int traderBasestrength = 0;
         public const int traderXPValue = 0;
         public const int traderEnergyToMove = 10000;
 
         // Trader configurables
-        public const int traderSellQty = 1;
-        public const string traderSellItem = "potion";                                                          // Trader can sell anything, but game relevant items are potion, boat, key
-        public const int traderSellCost = 10;                                                                   
-        public const string traderSellCurrency = "gold";                                                        
+        public static readonly List<string> traderAllItems = new List<string>() { "potion,10", "boat,25", "key,50" }; // trader possible items and costs for random traders.
+        public static readonly List<string> traderSetItems = new List<string>() { "potion,10", "boat,25", "key,50" }; // trader set inventory for non-random
+
+        public const bool tradersRandom = true;                                                                       // if TRUE, the trader's inventory will be random for all
+                                                                                                                      // traders, from the TraderAllItems list, if FALSE, inventory
+                                                                                                                      // will be exactly as ordered in TraderSetItems for all Traders
 
         // Quest Constants
         public readonly List<string> excludedFromQuests = new List<string> { "Dragon", "Treasure", "Trader" };  // Enemy types added here are excluded from being random quest targets
